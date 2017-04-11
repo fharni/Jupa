@@ -8,6 +8,9 @@ CREATE TABLE user (
   surname  VARCHAR(255)
 );
 
+CREATE UNIQUE INDEX user_username_idx
+  ON user (username);
+
 INSERT INTO user
 (username, password, forename, surname)
 VALUES
