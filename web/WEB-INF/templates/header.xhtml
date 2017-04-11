@@ -6,12 +6,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 >
 
-<h:head>
-    <title>Hallo Welt</title>
-</h:head>
-<h:body>
-    <ui:composition template="WEB-INF/templates/commonLayout.xhtml"/>
-
-
-</h:body>
+<ui:composition>
+    <h1>Kampfrichter Planungstool</h1>
+    <h:outputLabel value="#{userBean.name}"/>
+</ui:composition>
 </html>
