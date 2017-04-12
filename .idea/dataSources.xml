@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="HSQLDB (Remote) - krip@localhost" read-only="true" uuid="d2ec0f10-0a13-404c-9d30-57d286011c0b">
+    <data-source source="LOCAL" name="HSQLDB (Remote) - krip@localhost" uuid="d2ec0f10-0a13-404c-9d30-57d286011c0b">
       <driver-ref>hsqldb.remote</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.hsqldb.jdbcDriver</jdbc-driver>

@@ -1,6 +1,7 @@
 package de.falkharnisch.web.karip.beans;
 
 
+import de.falkharnisch.web.karip.constants.Roles;
 import de.falkharnisch.web.karip.database.User;
 import de.falkharnisch.web.karip.services.UserService;
 
@@ -10,7 +11,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.io.Serializable;
-import java.util.List;
+import java.security.Principal;
 
 /**
  * Managed Bean for handling with the user service.
@@ -23,24 +24,28 @@ public class UserBean implements Serializable {
     private UserService userService;
 
     public User getCurrentUser() {
-        FacesContext fc = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = fc.getExternalContext();
-
         if (isLoggedIn()) {
-            String username = externalContext.getUserPrincipal().getName();
+            String username = getUserPrinzipal().getName();
             return userService.getUserByUsername(username);
         }
         return null;
     }
 
     public boolean isLoggedIn() {
-        FacesContext fc = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = fc.getExternalContext();
-        return externalContext.getUserPrincipal() != null;
+        return getUserPrinzipal() != null;
     }
 
-    public List<User> getUsers() {
-        return userService.getUsers();
+    public boolean isUserAdmin() {
+        return getExternalContext().isUserInRole(Roles.USERADMIN_ROLE);
+    }
+
+    private Principal getUserPrinzipal() {
+        return getExternalContext().getUserPrincipal();
+    }
+
+    private ExternalContext getExternalContext() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        return fc.getExternalContext();
     }
 
     public String logout() {

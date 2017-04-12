@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
 >
 
 <ui:composition>
@@ -11,14 +12,15 @@
     <h:form styleClass="shadow-box">
         <div id="menu">
             <h:panelGroup rendered="#{userBean.loggedIn}">
-                <h:commandLink action="index" value="Startseite"/>
+                <p:commandLink action="index" value="Startseite"/>
+                <p:commandLink action="users" value="Benutzer" rendered="#{userBean.userAdmin}"/>
             </h:panelGroup>
         </div>
         <div id="userinfo">
             <h:panelGroup rendered="#{userBean.loggedIn}">
-                <h:outputLabel value="#{userBean.currentUser}"/>
-                <h:commandLink action="userinfo" value="Benutzerkonto"/>
-                <h:commandLink action="#{userBean.logout}" value="Abmelden"/>
+                <p:outputLabel value="#{userBean.currentUser}"/>
+                <p:commandLink action="userinfo" value="Benutzerkonto"/>
+                <p:commandLink action="#{userBean.logout}" value="Abmelden"/>
             </h:panelGroup>
         </div>
     </h:form>
