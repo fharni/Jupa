@@ -7,8 +7,8 @@
 >
 
 <ui:composition>
-    <h1>Kampfrichter Planungstool</h1>
-    <h:form>
+    <h1 class="shadow-box">Kampfrichter Planungstool</h1>
+    <h:form styleClass="shadow-box">
         <div id="menu">
             <h:panelGroup rendered="#{userBean.loggedIn}">
                 <h:commandLink action="index" value="Startseite"/>
@@ -16,7 +16,8 @@
         </div>
         <div id="userinfo">
             <h:panelGroup rendered="#{userBean.loggedIn}">
-                <h:outputLabel value="#{userBean.currentUser}"/> -
+                <h:outputLabel value="#{userBean.currentUser}"/>
+                <h:commandLink action="userinfo" value="Benutzerkonto"/>
                 <h:commandLink action="#{userBean.logout}" value="Abmelden"/>
             </h:panelGroup>
         </div>
