@@ -63,6 +63,7 @@
 
     <login-config>
         <auth-method>FORM</auth-method>
+        <realm-name>KripDatabaseRealm</realm-name>
         <form-login-config>
             <form-login-page>/login.xhtml</form-login-page>
             <form-error-page>/WEB-INF/logonError.xhtml</form-error-page>
@@ -71,5 +72,8 @@
 
     <security-role>
         <role-name>loginUser</role-name>
+    </security-role>
+    <security-role>
+        <role-name>useradmin</role-name>
     </security-role>
 </web-app>

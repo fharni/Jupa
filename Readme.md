@@ -12,11 +12,13 @@ Dieses Tool soll bei der Terminplanung von Kampfrichtern helfen. Es ist entwicke
 </tomee>
 ```
 
-## tomcat-users.xml
-Hier müssen die Benutzer für die Anmeldung eingetragen werden
+## server.xml
+Hier müssen für die Anmeldung ein neuer Realm eingetragen werden, der die Benutzer und Rollen aus der Datenbank ausliest.
 ```
-  <role rolename="loginUser"/>
-  <user username="admin" password="admin" roles="loginUser"/>
+<Realm name="KripDatabaseRealm" className="org.apache.catalina.realm.DataSourceRealm"
+  dataSourceName="jdbc/KripDS"
+  userTable="user" userNameCol="username" userCredCol="password"
+  userRoleTable="user_roles" roleNameCol="role" />
 ```
 
 ## Datenbank
