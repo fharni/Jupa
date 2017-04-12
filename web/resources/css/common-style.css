@@ -4,7 +4,7 @@ body {
 }
 
 #header {
-    background-color: blue;
+    background-color: gray;
 }
 
 #header h1 {
@@ -12,13 +12,43 @@ body {
     text-align: center;
 }
 
+#header form {
+    background-color: black;
+    color: white;
+    overflow: auto;
+}
+
+#header #menu {
+    float: left;
+}
+
+#header #userinfo {
+    float: right;
+}
+
 #content {
     background-color: white;
+}
+
+#login {
+    width: 350px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#logonError {
+    width: 600px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 #footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: red;
+    background-color: black;
+    color: white;
+    font-size: small;
 }

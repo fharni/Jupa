@@ -5,9 +5,7 @@ import de.falkharnisch.web.karip.database.User;
 import javax.enterprise.context.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
@@ -21,14 +19,15 @@ public class UserService implements Serializable {
     @PersistenceContext
     private EntityManager em;
 
+    public User getUserByUsername(String username) {
+        TypedQuery<User> query = em.createQuery("SELECT u from User u where u.username = :username", User.class);
+        query.setParameter("username", username);
+        return query.getSingleResult();
+    }
+
     @Transactional
     public List<User> getUsers() {
-        CriteriaBuilder builder = em.getCriteriaBuilder();
-
-        CriteriaQuery<User> query = builder.createQuery(User.class);
-        Root<User> root = query.from(User.class);
-        query.select(root);
-
-        return em.createQuery(query).getResultList();
+        TypedQuery<User> query = em.createQuery("SELECT u from User u", User.class);
+        return query.getResultList();
     }
 }

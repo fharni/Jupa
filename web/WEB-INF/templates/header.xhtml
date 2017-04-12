@@ -8,6 +8,18 @@
 
 <ui:composition>
     <h1>Kampfrichter Planungstool</h1>
-    <h:outputLabel value="#{userBean.name}"/>
+    <h:form>
+        <div id="menu">
+            <h:panelGroup rendered="#{userBean.loggedIn}">
+                <h:commandLink action="index" value="Startseite"/>
+            </h:panelGroup>
+        </div>
+        <div id="userinfo">
+            <h:panelGroup rendered="#{userBean.loggedIn}">
+                <h:outputLabel value="#{userBean.currentUser}"/> -
+                <h:commandLink action="#{userBean.logout}" value="Abmelden"/>
+            </h:panelGroup>
+        </div>
+    </h:form>
 </ui:composition>
 </html>
