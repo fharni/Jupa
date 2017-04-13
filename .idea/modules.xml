@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Krip.iml" filepath="$PROJECT_DIR$/.idea/modules/Krip.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Krip_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Krip_main.iml" group="Krip" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Krip_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Krip_test.iml" group="Krip" />
     </modules>
