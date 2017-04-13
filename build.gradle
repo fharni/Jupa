@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    providedCompile 'javax:javaee-api:7.0'
+    providedCompile 'org.apache.openjpa:openjpa:2.4.2'
+    compile 'org.primefaces:primefaces:5.3'
+}
+
+compileJava {
+    targetCompatibility = '1.8'
+    sourceCompatibility = '1.8'
+}
+
+buildscript {
+   repositories {
+       mavenCentral()
+   }
+
+   dependencies {
+       classpath 'org.apache.tomee.gradle:tomee-embedded:7.0.3'
+   }
+}
+
+apply plugin: 'org.apache.tomee.tomee-embedded'
