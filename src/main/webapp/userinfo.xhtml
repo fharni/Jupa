@@ -17,6 +17,9 @@
 
             <p:outputLabel value="Nachname:" for="surname"/>
             <p:inputText id="surname" value="#{userBean.currentUser.surname}"/>
+
+            <p:outputLabel value="Landesverband:" for="federation"/>
+            <p:inputText id="federation" value="#{userBean.currentUser.federation.name}"/>
         </h:panelGrid>
     </ui:define>
 </ui:composition>

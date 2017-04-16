@@ -6,5 +6,5 @@ package de.falkharnisch.web.karip.constants;
 public class Roles {
 
     public static final String USERADMIN_ROLE = "useradmin";
-
+    public static final String CHIEF_REFEREE = "chiefreferee";
 }

@@ -1,9 +1,6 @@
 package de.falkharnisch.web.karip.database;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Entity class for holding the user object.
@@ -19,6 +16,9 @@ public class User {
     private String password;
     private String forename;
     private String surname;
+
+    @OneToOne
+    private Federation federation;
 
     public int getId() {
         return id;
@@ -54,6 +54,10 @@ public class User {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public Federation getFederation() {
+        return federation;
     }
 
     @Override
