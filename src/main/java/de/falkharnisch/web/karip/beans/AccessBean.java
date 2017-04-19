@@ -16,9 +16,9 @@ import java.security.Principal;
 /**
  * Managed Bean for handling with the user service.
  */
-@ManagedBean
+@ManagedBean(name = "accessBean")
 @SessionScoped
-public class UserBean implements Serializable {
+public class AccessBean implements Serializable {
 
     @Inject
     private UserService userService;
@@ -37,6 +37,10 @@ public class UserBean implements Serializable {
 
     public boolean isUserAdmin() {
         return getExternalContext().isUserInRole(Roles.USERADMIN_ROLE);
+    }
+
+    public boolean isChiefReferee() {
+        return getExternalContext().isUserInRole(Roles.CHIEF_REFEREE);
     }
 
     private Principal getUserPrinzipal() {

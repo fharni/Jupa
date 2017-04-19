@@ -11,16 +11,17 @@
     <h1 class="shadow-box">Kampfrichter Planungstool</h1>
     <h:form styleClass="shadow-box">
         <div id="menu">
-            <h:panelGroup rendered="#{userBean.loggedIn}">
+            <h:panelGroup rendered="#{accessBean.loggedIn}">
                 <p:commandLink action="index" value="Startseite"/>
-                <p:commandLink action="users" value="Benutzer" rendered="#{userBean.userAdmin}"/>
+                <p:commandLink action="users" value="Benutzer" rendered="#{accessBean.userAdmin}"/>
+                <p:commandLink action="referees" value="Kampfrichter" rendered="#{accessBean.chiefReferee}"/>
             </h:panelGroup>
         </div>
         <div id="userinfo">
-            <h:panelGroup rendered="#{userBean.loggedIn}">
-                <p:outputLabel value="#{userBean.currentUser}"/>
+            <h:panelGroup rendered="#{accessBean.loggedIn}">
+                <p:outputLabel value="#{accessBean.currentUser}"/>
                 <p:commandLink action="userinfo" value="Benutzerkonto"/>
-                <p:commandLink action="#{userBean.logout}" value="Abmelden"/>
+                <p:commandLink action="#{accessBean.logout}" value="Abmelden"/>
             </h:panelGroup>
         </div>
     </h:form>

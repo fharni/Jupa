@@ -5,7 +5,6 @@ import de.falkharnisch.web.karip.database.User;
 import de.falkharnisch.web.karip.services.UserService;
 
 import javax.annotation.security.RolesAllowed;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.util.List;
@@ -13,7 +12,6 @@ import java.util.List;
 /**
  * Managed bean for manipulating other user data.
  */
-@ManagedBean
 @SessionScoped
 public class UserEditBean {
 
