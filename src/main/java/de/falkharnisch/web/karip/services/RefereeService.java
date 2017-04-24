@@ -2,6 +2,7 @@ package de.falkharnisch.web.karip.services;
 
 import de.falkharnisch.web.karip.database.Federation;
 import de.falkharnisch.web.karip.database.User;
+import de.falkharnisch.web.karip.database.User_;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
- * Created by A410581 on 17.04.2017.
+ * Service class for handling the referees.
  */
 @ApplicationScoped
 public class RefereeService {
@@ -24,8 +25,8 @@ public class RefereeService {
     public List<User> getRefereesByFederation(@NotNull Federation federation) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<User> query = criteriaBuilder.createQuery(User.class);
-        Root<User> root = query.from(User.class);
-        query.where(criteriaBuilder.equal(root.get("federation"), federation));
+        Root<User> user = query.from(User.class);
+        query.where(criteriaBuilder.equal(user.get(User_.federation), federation));
         return em.createQuery(query).getResultList();
     }
 }

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true">
+        <processor name="org.apache.openjpa.persistence.meta.AnnotationProcessor6" />
+      </profile>
+    </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Krip_main" target="1.8" />
       <module name="Krip_test" target="1.8" />
