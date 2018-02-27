@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <display-name>Kampfrichter Planungstool</display-name>
+    <display-name>Ju-Jutsu Passverwaltung</display-name>
 
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
@@ -63,7 +63,7 @@
 
     <login-config>
         <auth-method>FORM</auth-method>
-        <realm-name>KripDatabaseRealm</realm-name>
+        <realm-name>JuPaDatabaseRealm</realm-name>
         <form-login-config>
             <form-login-page>/login.xhtml</form-login-page>
             <form-error-page>/WEB-INF/logonError.xhtml</form-error-page>

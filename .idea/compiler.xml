@@ -5,10 +5,16 @@
       <profile default="true" name="Default" enabled="true">
         <processor name="org.apache.openjpa.persistence.meta.AnnotationProcessor6" />
       </profile>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="jupa-web" />
+        <module name="Krip" />
+      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Krip_main" target="1.8" />
-      <module name="Krip_test" target="1.8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="jupa-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
