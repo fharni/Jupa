@@ -1,4 +1,4 @@
-package de.falkharnisch.web.karip.database;
+package de.falkharnisch.web.jupa.database;
 
 import javax.persistence.*;
 
@@ -34,6 +34,10 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {

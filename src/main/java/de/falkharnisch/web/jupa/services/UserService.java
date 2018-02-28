@@ -1,6 +1,6 @@
-package de.falkharnisch.web.karip.services;
+package de.falkharnisch.web.jupa.services;
 
-import de.falkharnisch.web.karip.database.User;
+import de.falkharnisch.web.jupa.database.User;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;

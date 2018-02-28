@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Realm className="org.apache.catalina.realm.JAASRealm"
+           appName="JuPaLogin"
+           userClassNames="de.falkharnisch.web.jupa.jaas.UserPrincipal"
+           roleClassNames="de.falkharnisch.web.jupa.jaas.RolePrincipal"/>
+</Context>

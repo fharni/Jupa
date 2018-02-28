@@ -13,13 +13,20 @@ Dieses Tool soll alle Einträge des elektronischen Mitgliedsausweises verwalten.
 ```
 Hier kann natürlich auch jede andere Datenquelle eingebunden werden, in der das JuPa Schema vorhanden ist. Zusätzlich sollte dann aber auch noch der JDBC Treiber im lib Ordner des TomEE liegen.
 
-## server.xml
-Hier müssen für die Anmeldung ein neuer Realm eingetragen werden, der die Benutzer und Rollen aus der Datenbank ausliest.
+## Authentisierung
+Erzeugen Sie eine Datei jaas.conf im Ordner %TOMEE_HOME%\conf mit dem Inhalt:
 ```
-<Realm name="JuPaDatabaseRealm" className="org.apache.catalina.realm.DataSourceRealm"
-  dataSourceName="jdbc/JuPaDS"
-  userTable="user" userNameCol="username" userCredCol="password"
-  userRoleTable="user_roles" roleNameCol="role" />
+JuPaLogin {
+  org.apache.openejb.core.security.jaas.CDILoginModule required    
+    delegate="de.falkharnisch.web.jupa.jaas.JuPaLoginModule"
+    loginModuleAsCdiBean=false
+	debug=true;
+};
+```
+
+In der Datei standalone.bat fügen Sie hinter :okHome folgendes ein:
+```
+set JAVA_OPTS=%JAVA_OPTS% -Djava.security.auth.login.config=%CATALINA_HOME%/conf/jaas.conf
 ```
 
 ## Datenbank

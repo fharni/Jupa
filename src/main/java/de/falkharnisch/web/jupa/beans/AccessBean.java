@@ -1,9 +1,9 @@
-package de.falkharnisch.web.karip.beans;
+package de.falkharnisch.web.jupa.beans;
 
 
-import de.falkharnisch.web.karip.constants.Roles;
-import de.falkharnisch.web.karip.database.User;
-import de.falkharnisch.web.karip.services.UserService;
+import de.falkharnisch.web.jupa.constants.Roles;
+import de.falkharnisch.web.jupa.database.User;
+import de.falkharnisch.web.jupa.services.UserService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

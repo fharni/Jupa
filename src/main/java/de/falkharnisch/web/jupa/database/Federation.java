@@ -1,4 +1,4 @@
-package de.falkharnisch.web.karip.database;
+package de.falkharnisch.web.jupa.database;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

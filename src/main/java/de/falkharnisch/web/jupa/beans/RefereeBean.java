@@ -1,9 +1,9 @@
-package de.falkharnisch.web.karip.beans;
+package de.falkharnisch.web.jupa.beans;
 
-import de.falkharnisch.web.karip.constants.Roles;
-import de.falkharnisch.web.karip.database.Federation;
-import de.falkharnisch.web.karip.database.User;
-import de.falkharnisch.web.karip.services.RefereeService;
+import de.falkharnisch.web.jupa.constants.Roles;
+import de.falkharnisch.web.jupa.database.Federation;
+import de.falkharnisch.web.jupa.database.User;
+import de.falkharnisch.web.jupa.services.RefereeService;
 
 import javax.annotation.security.RolesAllowed;
 import javax.faces.bean.ManagedBean;

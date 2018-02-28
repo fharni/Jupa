@@ -1,10 +1,11 @@
-package de.falkharnisch.web.karip.beans;
+package de.falkharnisch.web.jupa.beans;
 
-import de.falkharnisch.web.karip.constants.Roles;
-import de.falkharnisch.web.karip.database.User;
-import de.falkharnisch.web.karip.services.UserService;
+import de.falkharnisch.web.jupa.constants.Roles;
+import de.falkharnisch.web.jupa.database.User;
+import de.falkharnisch.web.jupa.services.UserService;
 
 import javax.annotation.security.RolesAllowed;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * Managed bean for manipulating other user data.
  */
+@ManagedBean
 @SessionScoped
 public class UserEditBean {
 

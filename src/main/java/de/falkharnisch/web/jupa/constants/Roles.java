@@ -1,4 +1,4 @@
-package de.falkharnisch.web.karip.constants;
+package de.falkharnisch.web.jupa.constants;
 
 /**
  * Enumeration for holding Roles.
