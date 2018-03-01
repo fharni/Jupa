@@ -47,7 +47,7 @@ public class JuPaLoginModule implements LoginModule {
                     User user = userService.getUserByUsername(name);
                     if (password.equals(user.getPassword())) {
                         login = name;
-                        userGroups = new ArrayList<String>();
+                        userGroups = new ArrayList<>();
                         userGroups.add("useradmin");
                         userGroups.add("loginUser");
                         return true;
@@ -60,9 +60,7 @@ public class JuPaLoginModule implements LoginModule {
             // If credentials are NOT OK we throw a LoginException
             throw new LoginException("Authentication failed");
 
-        } catch (IOException e) {
-            throw new LoginException(e.getMessage());
-        } catch (UnsupportedCallbackException e) {
+        } catch (IOException | UnsupportedCallbackException e) {
             throw new LoginException(e.getMessage());
         }
     }

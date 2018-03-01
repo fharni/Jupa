@@ -6,7 +6,8 @@
 <html
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui">
+        xmlns:b="http://bootsfaces.net/ui"
+>
 
 <h:head>
     <h:outputStylesheet name="common-style.css" library="css"/>
@@ -18,11 +19,11 @@
             <ui:include src="/WEB-INF/templates/header.xhtml"/>
         </ui:insert>
     </div>
-    <div id="content" class="shadow-box">
+    <div id="content">
         <ui:insert name="content">
             <ui:include src="/WEB-INF/templates/content.xhtml"/>
         </ui:insert>
-        <p:messages/>
+        <b:messages/>
     </div>
     <div id="footer">
         <ui:insert name="footer">

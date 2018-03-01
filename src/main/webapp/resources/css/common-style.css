@@ -41,21 +41,6 @@ a {
     float: right;
 }
 
-#content {
-    background-color: white;
-    width: 90%;
-    position: relative;
-    margin: 10px auto;
-    min-height: 100px;
-}
-
-#login {
-    width: 350px;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%);
-}
-
 #logonError {
     width: 600px;
     position: relative;
