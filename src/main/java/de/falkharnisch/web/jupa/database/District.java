@@ -1,16 +1,9 @@
 package de.falkharnisch.web.jupa.database;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-/**
- * Entity class for holding the federation.
- */
+import javax.persistence.*;
 
 @Entity
-public class Federation {
+public class District {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,8 +12,15 @@ public class Federation {
     private String name;
     private int displayId;
 
+    @OneToOne
+    private Federation federation;
+
     public String getName() {
         return name;
+    }
+
+    public Federation getFederation() {
+        return federation;
     }
 
     @Override

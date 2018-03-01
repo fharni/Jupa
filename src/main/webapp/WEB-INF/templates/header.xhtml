@@ -2,28 +2,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui"
+        xmlns:b="http://bootsfaces.net/ui"
 >
 
 <ui:composition>
-    <h1 class="shadow-box">Ju-Jutsu Passverwaltung</h1>
-    <h:form styleClass="shadow-box">
-        <div id="menu">
-            <h:panelGroup rendered="#{accessBean.loggedIn}">
-                <p:commandLink action="index" value="Startseite"/>
-                <p:commandLink action="users" value="Benutzer" rendered="#{accessBean.userAdmin}"/>
-                <p:commandLink action="referees" value="Kampfrichter" rendered="#{accessBean.chiefReferee}"/>
-            </h:panelGroup>
-        </div>
-        <div id="userinfo">
-            <h:panelGroup rendered="#{accessBean.loggedIn}">
-                <p:outputLabel value="#{accessBean.currentUser}"/>
-                <p:commandLink action="userinfo" value="Benutzerkonto"/>
-                <p:commandLink action="#{accessBean.logout}" value="Abmelden"/>
-            </h:panelGroup>
-        </div>
-    </h:form>
+    <b:navBar brand="Ju-Jutsu Passverwaltung" brandHref="#" fixed="top" inverse="true">
+        <b:navbarLinks>
+            <b:navCommandLink value="Mein JJ Pass" href="index"/>
+            <b:navLink value="Home" href="index"/>
+            <b:navLink value="Benutzer" href="users"/>
+            <b:navLink value="Abmelden" href=""/>
+        </b:navbarLinks>
+    </b:navBar>
+
 </ui:composition>
 </html>

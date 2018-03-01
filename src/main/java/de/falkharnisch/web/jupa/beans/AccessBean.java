@@ -25,14 +25,14 @@ public class AccessBean implements Serializable {
 
     public User getCurrentUser() {
         if (isLoggedIn()) {
-            String username = getUserPrinzipal().getName();
+            String username = getUserPrincipal().getName();
             return userService.getUserByUsername(username);
         }
         return null;
     }
 
     public boolean isLoggedIn() {
-        return getUserPrinzipal() != null;
+        return getUserPrincipal() != null;
     }
 
     public boolean isUserAdmin() {
@@ -43,7 +43,7 @@ public class AccessBean implements Serializable {
         return getExternalContext().isUserInRole(Roles.CHIEF_REFEREE);
     }
 
-    private Principal getUserPrinzipal() {
+    private Principal getUserPrincipal() {
         return getExternalContext().getUserPrincipal();
     }
 

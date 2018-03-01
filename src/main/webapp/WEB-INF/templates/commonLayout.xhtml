@@ -13,17 +13,19 @@
     <h:outputStylesheet name="common-style.css" library="css"/>
     <title>Ju-Jutsu Passverwaltung - <ui:insert name="title">Startseite</ui:insert></title>
 </h:head>
-<h:body>
+<h:body style="padding: 60px">
     <div id="header">
         <ui:insert name="header">
             <ui:include src="/WEB-INF/templates/header.xhtml"/>
         </ui:insert>
     </div>
     <div id="content">
-        <ui:insert name="content">
-            <ui:include src="/WEB-INF/templates/content.xhtml"/>
-        </ui:insert>
-        <b:messages/>
+        <b:container>
+            <ui:insert name="content">
+                <ui:include src="/WEB-INF/templates/content.xhtml"/>
+            </ui:insert>
+            <b:messages/>
+        </b:container>
     </div>
     <div id="footer">
         <ui:insert name="footer">

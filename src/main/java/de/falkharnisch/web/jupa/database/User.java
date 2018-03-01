@@ -18,7 +18,7 @@ public class User {
     private String surname;
 
     @OneToOne
-    private Federation federation;
+    private Club club;
 
     public int getId() {
         return id;
@@ -60,8 +60,8 @@ public class User {
         this.surname = surname;
     }
 
-    public Federation getFederation() {
-        return federation;
+    public Club getClub() {
+        return club;
     }
 
     @Override
