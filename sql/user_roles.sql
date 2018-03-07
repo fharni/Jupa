@@ -6,8 +6,7 @@ CREATE TABLE user_roles (
   role     VARCHAR(255) NOT NULL
 );
 
-CREATE INDEX user_roles_username_idx
-  ON user_roles (username);
+INSERT INTO user_roles (username, role) VALUES ('admin', 'superadmin');
+INSERT INTO user_roles (username, role) VALUES ('0502001000022', 'club_chief');
+INSERT INTO user_roles (username, role) VALUES ('0504001000019', 'club_chief');
 
-INSERT INTO user_roles (username, role) VALUES ('admin', 'loginUser');
-INSERT INTO user_roles (username, role) VALUES ('admin', 'useradmin');

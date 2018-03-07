@@ -14,4 +14,6 @@ INSERT INTO user (username, password, forename, surname, club_id) VALUES ('admin
 
 INSERT INTO user (username, password, forename, surname, club_id)
 VALUES ('0502001000015', 'falk', 'Falk', 'Harnisch', 1);
+INSERT INTO user (username, password, forename, surname, club_id)
+VALUES ('0502001000022', 'juergen', 'Jürgen', 'Thieke', 1);
 INSERT INTO user (username, password, forename, surname, club_id) VALUES ('0504001000019', 'maike', 'Maike', 'John', 2);

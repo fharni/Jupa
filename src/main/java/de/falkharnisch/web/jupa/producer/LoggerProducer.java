@@ -1,10 +1,10 @@
-package de.falkharnisch.web.jupa.helper;
+package de.falkharnisch.web.jupa.producer;
 
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 import java.util.logging.Logger;
 
-public class CdiProducer {
+public class LoggerProducer {
 
     @Produces
     public Logger produceLogger(InjectionPoint injectionPoint) {

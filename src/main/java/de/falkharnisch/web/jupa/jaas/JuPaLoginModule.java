@@ -1,5 +1,7 @@
 package de.falkharnisch.web.jupa.jaas;
 
+import de.falkharnisch.web.jupa.database.Function;
+import de.falkharnisch.web.jupa.database.Role;
 import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.services.UserService;
 
@@ -9,6 +11,7 @@ import javax.security.auth.Subject;
 import javax.security.auth.callback.*;
 import javax.security.auth.login.LoginException;
 import javax.security.auth.spi.LoginModule;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,7 @@ public class JuPaLoginModule implements LoginModule {
         this.subject = subject;
     }
 
+    @Transactional(Transactional.TxType.REQUIRED)
     public boolean login() throws LoginException {
         Callback[] callbacks = new Callback[2];
         callbacks[0] = new NameCallback("login");
@@ -48,7 +52,11 @@ public class JuPaLoginModule implements LoginModule {
                     if (password.equals(user.getPassword())) {
                         login = name;
                         userGroups = new ArrayList<>();
-                        userGroups.add("useradmin");
+                        for (Role role : user.getRoles()) {
+                            for (Function function : role.getFunctions()) {
+                                userGroups.add(function.getFunction());
+                            }
+                        }
                         userGroups.add("loginUser");
                         return true;
                     }

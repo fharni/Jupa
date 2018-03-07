@@ -1,6 +1,7 @@
 package de.falkharnisch.web.jupa.database;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Entity class for holding the user object.
@@ -19,6 +20,13 @@ public class User {
 
     @OneToOne
     private Club club;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "USER_ROLE",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+    private Set<Role> roles;
 
     public int getId() {
         return id;
@@ -62,6 +70,10 @@ public class User {
 
     public Club getClub() {
         return club;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
     }
 
     @Override
