@@ -47,4 +47,17 @@ public class UserBean {
     public String getFederationName() {
         return user.getClub().getDistrict().getFederation().getName();
     }
+
+    public boolean isGrading() {
+        return false;
+    }
+
+    public boolean isCourses() {
+        return false;
+    }
+
+    public boolean isLicenses() {
+        return false;
+    }
+
 }

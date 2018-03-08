@@ -34,6 +34,9 @@ public class AccessBean implements Serializable {
         return getUserPrincipal() != null;
     }
 
+    public boolean isShowMenuMyClub() {
+        return getExternalContext().isUserInRole("menu.my_club");
+    }
     private Principal getUserPrincipal() {
         return getExternalContext().getUserPrincipal();
     }

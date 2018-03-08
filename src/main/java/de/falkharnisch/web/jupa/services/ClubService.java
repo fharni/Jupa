@@ -1,5 +1,7 @@
 package de.falkharnisch.web.jupa.services;
 
+
+import de.falkharnisch.web.jupa.database.Club;
 import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.database.User_;
 import de.falkharnisch.web.jupa.producer.qualifier.ApplicationManaged;
@@ -10,24 +12,29 @@ import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
+import java.util.List;
 
-/**
- * Service class for handling with the user object.
- */
 @ApplicationScoped
-public class UserService implements Serializable {
+public class ClubService {
 
     @Inject
     @ApplicationManaged
     private EntityManager em;
 
-    public User getUserByUsername(@NotNull String username) {
+    public Club getClubForUsername(String username) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);
         query.where(builder.equal(root.get(User_.username), username));
-        return em.createQuery(query).getSingleResult();
+        User user = em.createQuery(query).getSingleResult();
+        return user.getClub();
+    }
+
+    public List<User> getUsersForClub(Club club) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root<User> root = query.from(User.class);
+        query.where(builder.equal(root.get(User_.club), club));
+        return em.createQuery(query).getResultList();
     }
 }

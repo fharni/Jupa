@@ -17,6 +17,9 @@
                 <b:navLink value="Mein JJ Pass" update="contentForm"
                            onclick="ajax:navigationBean.setPage('passport/passport.xhtml')"
                            rendered="#{accessBean.loggedIn}"/>
+                <b:navLink value="Mein Verein" update="contentForm"
+                           onclick="ajax:navigationBean.setPage('club/myclub.xhtml')"
+                           rendered="#{accessBean.showMenuMyClub}"/>
                 <b:navCommandLink value="Abmelden"
                                   action="#{accessBean.logout}"
                                   rendered="#{accessBean.loggedIn}"/>
