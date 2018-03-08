@@ -1,6 +1,5 @@
 package de.falkharnisch.web.jupa.services;
 
-import de.falkharnisch.web.jupa.database.Role;
 import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.producer.qualifier.ApplicationManaged;
 
@@ -29,25 +28,13 @@ public class UserService implements Serializable {
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);
         query.where(builder.equal(root.get("username"), username));
-        User user = em.createQuery(query).getSingleResult();
-//        for(Role role: user.getRoles()){
-//            System.out.println(role.getRole());
-//        }
-        return user;
+        return em.createQuery(query).getSingleResult();
     }
 
     public List<User> getUsers() {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         query.from(User.class);
-        return em.createQuery(query).getResultList();
-    }
-
-    public List<Role> getFunctionsByUsername(String name) {
-        CriteriaBuilder builder = em.getCriteriaBuilder();
-        CriteriaQuery<Role> query = builder.createQuery(Role.class);
-        Root<Role> root = query.from(Role.class);
-        query.from(Role.class);
         return em.createQuery(query).getResultList();
     }
 }

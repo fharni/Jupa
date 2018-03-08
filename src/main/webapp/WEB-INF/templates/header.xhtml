@@ -4,17 +4,24 @@
 <html
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:b="http://bootsfaces.net/ui"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
 >
 
 <ui:composition>
-    <b:navBar brand="Ju-Jutsu Passverwaltung" brandHref="#" fixed="top" inverse="true">
-        <b:navbarLinks>
-            <b:navCommandLink value="Mein JJ Pass" href="index"/>
-            <b:navLink value="Home" href="index"/>
-            <b:navLink value="Benutzer" href="users"/>
-            <b:navLink value="Abmelden" href=""/>
-        </b:navbarLinks>
-    </b:navBar>
-
+    <h:form id="headerForm">
+        <b:navBar brand="Ju-Jutsu Passverwaltung" brandHref="#" fixed="top" inverse="true">
+            <b:navbarLinks>
+                <b:navLink value="Startseite" update="contentForm"
+                           onclick="ajax:navigationBean.setPage('start.xhtml')"
+                           rendered="#{accessBean.loggedIn}"/>
+                <b:navLink value="Mein JJ Pass" update="contentForm"
+                           onclick="ajax:navigationBean.setPage('passport/passport.xhtml')"
+                           rendered="#{accessBean.loggedIn}"/>
+                <b:navCommandLink value="Abmelden"
+                                  action="#{accessBean.logout}"
+                                  rendered="#{accessBean.loggedIn}"/>
+            </b:navbarLinks>
+        </b:navBar>
+    </h:form>
 </ui:composition>
 </html>

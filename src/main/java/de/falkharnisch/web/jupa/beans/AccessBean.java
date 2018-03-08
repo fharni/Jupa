@@ -1,7 +1,6 @@
 package de.falkharnisch.web.jupa.beans;
 
 
-import de.falkharnisch.web.jupa.constants.Roles;
 import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.services.UserService;
 
@@ -16,7 +15,7 @@ import java.security.Principal;
 /**
  * Managed Bean for handling with the user service.
  */
-@ManagedBean(name = "accessBean")
+@ManagedBean
 @SessionScoped
 public class AccessBean implements Serializable {
 
@@ -33,14 +32,6 @@ public class AccessBean implements Serializable {
 
     public boolean isLoggedIn() {
         return getUserPrincipal() != null;
-    }
-
-    public boolean isUserAdmin() {
-        return getExternalContext().isUserInRole(Roles.USERADMIN_ROLE);
-    }
-
-    public boolean isChiefReferee() {
-        return getExternalContext().isUserInRole(Roles.CHIEF_REFEREE);
     }
 
     private Principal getUserPrincipal() {
