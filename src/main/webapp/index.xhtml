@@ -4,56 +4,13 @@
 <html
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:b="http://bootsfaces.net/ui"
 >
 <h:body>
     <ui:composition template="WEB-INF/templates/commonLayout.xhtml">
         <ui:define name="content">
-            <b:jumbotron>
-                Willkommen bei der Ju-Jutsu Passverwaltung
-            </b:jumbotron>
-            <b:panel title="Mein JJ Pass">
-                <b:row>
-                    <b:column mediumScreen="1">
-                        <h:outputText value="Name:"/>
-                    </b:column>
-                    <b:column mediumScreen="2">
-                        <h:outputText value="#{userBean.name}"/>
-                    </b:column>
-                </b:row>
-                <b:row>
-                    <b:column mediumScreen="1">
-                        <h:outputText value="Pass ID:"/>
-                    </b:column>
-                    <b:column mediumScreen="2">
-                        <h:outputText value="#{userBean.username}"/>
-                    </b:column>
-                </b:row>
-                <b:row>
-                    <b:column mediumScreen="1">
-                        <h:outputText value="Verein:"/>
-                    </b:column>
-                    <b:column mediumScreen="2">
-                        <h:outputText value="#{userBean.clubName}"/>
-                    </b:column>
-                </b:row>
-                <b:row>
-                    <b:column mediumScreen="1">
-                        <h:outputText value="Bezirk:"/>
-                    </b:column>
-                    <b:column mediumScreen="2">
-                        <h:outputText value="#{userBean.districtName}"/>
-                    </b:column>
-                </b:row>
-                <b:row>
-                    <b:column mediumScreen="1">
-                        <h:outputText value="Verband:"/>
-                    </b:column>
-                    <b:column mediumScreen="2">
-                        <h:outputText value="#{userBean.federationName}"/>
-                    </b:column>
-                </b:row>
-            </b:panel>
+            <h:form id="contentForm">
+                <ui:include src="#{navigationBean.page}"/>
+            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>

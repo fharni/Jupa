@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:b="http://bootsfaces.net/ui">
+<f:view>
+    <b:panel title="Mein JJ Pass">
+        <b:row>
+            <b:column mediumScreen="1">
+                <h:outputText value="Name:"/>
+            </b:column>
+            <b:column mediumScreen="2">
+                <h:outputText value="#{userBean.name}"/>
+            </b:column>
+        </b:row>
+        <b:row>
+            <b:column mediumScreen="1">
+                <h:outputText value="Pass ID:"/>
+            </b:column>
+            <b:column mediumScreen="2">
+                <h:outputText value="#{userBean.username}"/>
+            </b:column>
+        </b:row>
+        <b:row>
+            <b:column mediumScreen="1">
+                <h:outputText value="Verein:"/>
+            </b:column>
+            <b:column mediumScreen="2">
+                <h:outputText value="#{userBean.clubName}"/>
+            </b:column>
+        </b:row>
+        <b:row>
+            <b:column mediumScreen="1">
+                <h:outputText value="Bezirk:"/>
+            </b:column>
+            <b:column mediumScreen="2">
+                <h:outputText value="#{userBean.districtName}"/>
+            </b:column>
+        </b:row>
+        <b:row>
+            <b:column mediumScreen="1">
+                <h:outputText value="Verband:"/>
+            </b:column>
+            <b:column mediumScreen="2">
+                <h:outputText value="#{userBean.federationName}"/>
+            </b:column>
+        </b:row>
+    </b:panel>
+</f:view>
+</html>
