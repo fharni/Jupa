@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:b="http://bootsfaces.net/ui">
+<f:view>
+    <b:panel title="Lehrgänge" col-sm="12">
+        <b:dataTable value="#{courseBean.courses}" var="course"
+                     paginated="false" searching="false" info="false">
+            <b:dataTableColumn label="Datum" value="#{course.startDate}"/>
+            <b:dataTableColumn label="Thema" value="#{course.topic}"/>
+            <b:dataTableColumn label="Club" value="#{course.club.name}"/>
+            <b:dataTableColumn label="Referent" value="#{course.place}"/>
+            <b:dataTableColumn label="Referent" value="#{course.instructor}"/>
+        </b:dataTable>
+    </b:panel>
+</f:view>
+</html>

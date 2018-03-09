@@ -20,6 +20,9 @@
                 <b:navLink value="Mein Verein" update="contentForm"
                            onclick="ajax:navigationBean.setPage('club/myclub.xhtml')"
                            rendered="#{accessBean.showMenuMyClub}"/>
+                <b:navLink value="Lehrgänge" update="contentForm"
+                           onclick="ajax:navigationBean.setPage('courses/courses.xhtml')"
+                           rendered="#{accessBean.showMenuCourses}"/>
                 <b:navCommandLink value="Abmelden"
                                   action="#{accessBean.logout}"
                                   rendered="#{accessBean.loggedIn}"/>
