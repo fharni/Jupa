@@ -27,6 +27,14 @@ public class AccessBean implements Serializable {
         return isUserInRole("menu.courses");
     }
 
+    public boolean isShowCourseListForDistrict() {
+        return isUserInRole("course.list.district");
+    }
+
+    public boolean isShowCourseListForFederation() {
+        return isUserInRole("course.list.federation");
+    }
+
     private boolean isUserInRole(String role) {
         return getExternalContext().isUserInRole(role);
     }

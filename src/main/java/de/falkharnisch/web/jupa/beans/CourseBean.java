@@ -33,7 +33,11 @@ public class CourseBean {
         user = userService.getUserByUsername(username);
     }
 
-    public List<Course> getCourses() {
+    public List<Course> getCoursesForDistrict() {
         return courseService.getCoursesForDistrict(user.getClub().getDistrict());
+    }
+
+    public List<Course> getCoursesForFederation() {
+        return courseService.getCoursesForFederation(user.getClub().getDistrict().getFederation());
     }
 }

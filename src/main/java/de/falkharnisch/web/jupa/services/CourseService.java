@@ -29,4 +29,14 @@ public class CourseService implements Serializable {
         query.where(builder.equal(clubJoin.get(Club_.district), district));
         return em.createQuery(query).getResultList();
     }
+
+    public List<Course> getCoursesForFederation(Federation federation) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Course> query = builder.createQuery(Course.class);
+        Root<Course> course = query.from(Course.class);
+        Join<Course, Club> clubJoin = course.join(Course_.club);
+        Join<Club, District> districtJoin = clubJoin.join(Club_.district);
+        query.where(builder.equal(districtJoin.get(District_.federation), federation));
+        return em.createQuery(query).getResultList();
+    }
 }
