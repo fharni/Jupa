@@ -1,4 +1,4 @@
-package de.falkharnisch.web.jupa.beans;
+package de.falkharnisch.web.jupa.beans.access;
 
 
 import javax.faces.bean.ManagedBean;
@@ -19,23 +19,7 @@ public class AccessBean implements Serializable {
         return getUserPrincipal() != null;
     }
 
-    public boolean isShowMenuMyClub() {
-        return isUserInRole("menu.my_club");
-    }
-
-    public boolean isShowMenuCourses() {
-        return isUserInRole("menu.courses");
-    }
-
-    public boolean isShowCourseListForDistrict() {
-        return isUserInRole("course.list.district");
-    }
-
-    public boolean isShowCourseListForFederation() {
-        return isUserInRole("course.list.federation");
-    }
-
-    private boolean isUserInRole(String role) {
+    boolean isUserInRole(String role) {
         return getExternalContext().isUserInRole(role);
     }
 
@@ -48,8 +32,7 @@ public class AccessBean implements Serializable {
         return fc.getExternalContext();
     }
 
-    public String logout() {
+    public void logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "/login";
     }
 }

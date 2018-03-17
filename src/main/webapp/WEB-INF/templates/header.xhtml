@@ -19,11 +19,11 @@
                            rendered="#{accessBean.loggedIn}"/>
                 <b:navLink value="Mein Verein" update="contentForm"
                            onclick="ajax:navigationBean.setPage('club/myclub.xhtml')"
-                           rendered="#{accessBean.showMenuMyClub}"/>
+                           rendered="#{menuAccessBean.showMenuMyClub}"/>
                 <b:navLink value="Lehrgänge" update="contentForm"
                            onclick="ajax:navigationBean.setPage('courses/courses.xhtml')"
-                           rendered="#{accessBean.showMenuCourses}"/>
-                <b:navCommandLink value="Abmelden"
+                           rendered="#{menuAccessBean.showMenuCourses}"/>
+                <b:navCommandLink value="Abmelden" oncomplete="window.location.reload()"
                                   action="#{accessBean.logout}"
                                   rendered="#{accessBean.loggedIn}"/>
             </b:navbarLinks>

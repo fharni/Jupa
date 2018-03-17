@@ -3,27 +3,20 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html
         xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns:b="http://bootsfaces.net/ui">
+        xmlns:b="http://bootsfaces.net/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html">
 <f:view>
-    <b:panel title="Lehrgänge" col-sm="12">
-        <b:dataTable value="#{courseBean.coursesForDistrict}" var="course"
-                     paginated="false" searching="false" info="false"
-                     rendered="#{accessBean.showCourseListForDistrict}">
-            <b:dataTableColumn label="Datum" value="#{course.startDate}"/>
-            <b:dataTableColumn label="Thema" value="#{course.topic}"/>
-            <b:dataTableColumn label="Club" value="#{course.club.name}"/>
-            <b:dataTableColumn label="Referent" value="#{course.place}"/>
-            <b:dataTableColumn label="Referent" value="#{course.instructor}"/>
-        </b:dataTable>
-        <b:dataTable value="#{courseBean.coursesForFederation}" var="course"
-                     paginated="false" searching="false" info="false"
-                     rendered="#{accessBean.showCourseListForFederation}">
-            <b:dataTableColumn label="Datum" value="#{course.startDate}"/>
-            <b:dataTableColumn label="Thema" value="#{course.topic}"/>
-            <b:dataTableColumn label="Club" value="#{course.club.name}"/>
-            <b:dataTableColumn label="Referent" value="#{course.place}"/>
-            <b:dataTableColumn label="Referent" value="#{course.instructor}"/>
-        </b:dataTable>
+    <b:panel id="coursePanel" title="Lehrgänge" col-sm="12" rendered="#{not courseBean.showCreateCourse}">
+        <h:panelGroup rendered="#{courseAccessBean.showCourseListForDistrict}">
+            <ui:include src="districtManager.xhtml"/>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{courseAccessBean.showCourseListForFederation}">
+            <ui:include src="federationManager.xhtml"/>
+        </h:panelGroup>
     </b:panel>
+    <h:panelGroup id="createCoursePanel" rendered="#{courseBean.showCreateCourse}">
+        <ui:include src="createCourse.xhtml"/>
+    </h:panelGroup>
 </f:view>
 </html>
