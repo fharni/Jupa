@@ -4,11 +4,11 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Role {
+public class Role implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     private String role;
 
@@ -18,6 +18,10 @@ public class Role {
             joinColumns = @JoinColumn(name = "ROLE_ID"),
             inverseJoinColumns = @JoinColumn(name = "FUNCTION_ID"))
     private Set<Function> functions;
+
+    public Integer getId() {
+        return id;
+    }
 
     public String getRole() {
         return role;

@@ -3,17 +3,21 @@ package de.falkharnisch.web.jupa.database;
 import javax.persistence.*;
 
 @Entity
-public class Club {
+public class Club implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     private String name;
     private int displayId;
 
     @OneToOne
     private District district;
+
+    public Integer getId() {
+        return id;
+    }
 
     public String getName() {
         return name;

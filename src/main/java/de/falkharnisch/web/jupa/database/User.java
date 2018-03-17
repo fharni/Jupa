@@ -7,11 +7,11 @@ import java.util.Set;
  * Entity class for holding the user object.
  */
 @Entity
-public class User {
+public class User implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     private String username;
     private String password;
@@ -28,7 +28,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
     private Set<Role> roles;
 
-    public int getId() {
+    @Override
+    public Integer getId() {
         return id;
     }
 

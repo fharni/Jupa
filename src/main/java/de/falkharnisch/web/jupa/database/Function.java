@@ -6,13 +6,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Function {
+public class Function implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     private String function;
+
+    public Integer getId() {
+        return id;
+    }
 
     public String getFunction() {
         return function;

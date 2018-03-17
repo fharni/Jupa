@@ -9,8 +9,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="jupa-web" />
         <module name="Krip" />
+      </profile>
+      <profile name="Annotation profile for jupa-web" enabled="true">
+        <sourceOutputDir name="target/generated-sources/apt" />
+        <sourceTestOutputDir name="target/generated-sources/apt-test" />
+        <outputRelativeToContentRoot value="true" />
+        <processor name="org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor" />
+        <module name="jupa-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">

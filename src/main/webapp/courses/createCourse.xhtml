@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+        xmlns:b="http://bootsfaces.net/ui"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <b:panelGrid title="Neuer Lehrgang" colSpans="2,10">
+        <p:outputLabel value="Datum:" for="startdate"/>
+        <p:calendar id="startdate" value="#{courseBean.selectedCourse.startDate}"
+                    required="true"/>
+
+        <p:outputLabel value="Enddatum:" for="enddate"/>
+        <p:calendar id="enddate" value="#{courseBean.selectedCourse.endDate}"
+                    required="true"/>
+
+        <p:outputLabel value="Thema:" for="topic"/>
+        <p:inputText id="topic" value="#{courseBean.selectedCourse.topic}"/>
+
+        <p:outputLabel value="Verein" for="clubInput"/>
+        <p:autoComplete id="clubInput" value="#{courseBean.selectedCourse.club}"
+                        minQueryLenygth="3" completeMethod="#{courseBean.autoCompleteClubs}"/>
+
+        <p:outputLabel value="Ort" for="place"/>
+        <p:inputText id="place" value="#{courseBean.selectedCourse.place}"/>
+
+        <p:outputLabel value="Referent" for="instructorInput"/>
+        <p:autoComplete id="instructorInput" value="#{courseBean.selectedCourse.instructor}"
+                        minQueryLength="3" completeMethod="#{courseBean.autoCompleteInstructor}"/>
+
+        <b:commandButton value="Lehrgang erstellen" action="#{courseBean.saveCourse}"
+                         update="contentForm" look="primary"/>
+        <b:commandButton value="Abbrechen" action="#{courseBean.abort}"
+                         update="contentForm" immediate="true"/>
+    </b:panelGrid>
+</f:view>
+</html>

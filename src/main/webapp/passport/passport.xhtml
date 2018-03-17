@@ -4,47 +4,59 @@
 <html
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns:b="http://bootsfaces.net/ui">
+        xmlns:b="http://bootsfaces.net/ui"
+        xmlns:p="http://primefaces.org/ui">
 <f:view>
     <b:panel title="Mein Ju-Jutsu Pass" col-sm="6">
         <b:row>
             <b:column col-sm="3">
-                <h:outputText value="Name:"/>
+                <b:image col-sm="12"
+                         value="http://jujutsu-paderborn.de/images/mitglieder/falk_harnisch_s.jpg"/>
             </b:column>
-            <b:column col-sm="9">
-                <h:outputText value="#{userBean.name}"/>
+            <b:column col-sm="6">
+                <b:row>
+                    <b:column col-sm="4">
+                        <h:outputText value="Name:"/>
+                    </b:column>
+                    <b:column col-sm="8">
+                        <h:outputText value="#{userBean.name}"/>
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column col-sm="4">
+                        <h:outputText value="Pass ID:"/>
+                    </b:column>
+                    <b:column col-sm="8">
+                        <h:outputText value="#{userBean.username}"/>
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column col-sm="4">
+                        <h:outputText value="Verein:"/>
+                    </b:column>
+                    <b:column col-sm="8">
+                        <h:outputText value="#{userBean.clubName}"/>
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column col-sm="4">
+                        <h:outputText value="Bezirk:"/>
+                    </b:column>
+                    <b:column col-sm="8">
+                        <h:outputText value="#{userBean.districtName}"/>
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column col-sm="4">
+                        <h:outputText value="Verband:"/>
+                    </b:column>
+                    <b:column col-sm="8">
+                        <h:outputText value="#{userBean.federationName}"/>
+                    </b:column>
+                </b:row>
             </b:column>
-        </b:row>
-        <b:row>
             <b:column col-sm="3">
-                <h:outputText value="Pass ID:"/>
-            </b:column>
-            <b:column col-sm="9">
-                <h:outputText value="#{userBean.username}"/>
-            </b:column>
-        </b:row>
-        <b:row>
-            <b:column col-sm="3">
-                <h:outputText value="Verein:"/>
-            </b:column>
-            <b:column col-sm="9">
-                <h:outputText value="#{userBean.clubName}"/>
-            </b:column>
-        </b:row>
-        <b:row>
-            <b:column col-sm="3">
-                <h:outputText value="Bezirk:"/>
-            </b:column>
-            <b:column col-sm="9">
-                <h:outputText value="#{userBean.districtName}"/>
-            </b:column>
-        </b:row>
-        <b:row>
-            <b:column col-sm="3">
-                <h:outputText value="Verband:"/>
-            </b:column>
-            <b:column col-sm="9">
-                <h:outputText value="#{userBean.federationName}"/>
+                <p:barcode type="ean13" value="#{userBean.username}"/>
             </b:column>
         </b:row>
     </b:panel>

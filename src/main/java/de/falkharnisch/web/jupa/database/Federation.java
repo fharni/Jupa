@@ -10,14 +10,18 @@ import javax.persistence.Id;
  */
 
 @Entity
-public class Federation {
+public class Federation implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     private String name;
     private int displayId;
+
+    public Integer getId() {
+        return id;
+    }
 
     public String getName() {
         return name;

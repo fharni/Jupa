@@ -1,25 +1,19 @@
 package de.falkharnisch.web.jupa.services;
 
 import de.falkharnisch.web.jupa.database.*;
-import de.falkharnisch.web.jupa.producer.qualifier.ApplicationManaged;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.List;
 
+@Transactional
 @ApplicationScoped
-public class CourseService implements Serializable {
-
-    @Inject
-    @ApplicationManaged
-    private EntityManager em;
+public class CourseService extends BaseService<Course> {
 
     public List<Course> getCoursesForDistrict(@NotNull District district) {
         CriteriaBuilder builder = em.getCriteriaBuilder();

@@ -2,24 +2,18 @@ package de.falkharnisch.web.jupa.services;
 
 
 import de.falkharnisch.web.jupa.database.Club;
+import de.falkharnisch.web.jupa.database.Club_;
 import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.database.User_;
-import de.falkharnisch.web.jupa.producer.qualifier.ApplicationManaged;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
 @ApplicationScoped
-public class ClubService {
-
-    @Inject
-    @ApplicationManaged
-    private EntityManager em;
+public class ClubService extends BaseService<Club> {
 
     public Club getClubForUsername(String username) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
@@ -35,6 +29,15 @@ public class ClubService {
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);
         query.where(builder.equal(root.get(User_.club), club));
+        return em.createQuery(query).getResultList();
+    }
+
+    public List<Club> getClubByNamepart(String namePart) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Club> query = builder.createQuery(Club.class);
+        Root<Club> root = query.from(Club.class);
+        query.where(builder.like(builder.upper(root.get(Club_.name)),
+                "%" + namePart.toUpperCase() + "%"));
         return em.createQuery(query).getResultList();
     }
 }
