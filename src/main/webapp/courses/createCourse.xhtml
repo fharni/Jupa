@@ -19,8 +19,10 @@
         <p:inputText id="topic" value="#{courseBean.selectedCourse.topic}"/>
 
         <p:outputLabel value="Verein" for="clubInput"/>
-        <p:autoComplete id="clubInput" value="#{courseBean.selectedCourse.club}"
-                        minQueryLenygth="3" completeMethod="#{courseBean.autoCompleteClubs}"/>
+        <p:autoComplete id="clubInput" value="#{courseBean.selectedCourse.club}" required="true"
+                        minQueryLenygth="3" completeMethod="#{courseBean.autoCompleteClubs}"
+                        var="club" itemLabel="#{club.name}" itemValue="#{club}"
+                        converter="#{clubConverter}" validator="clubValidator"/>
 
         <p:outputLabel value="Ort" for="place"/>
         <p:inputText id="place" value="#{courseBean.selectedCourse.place}"/>

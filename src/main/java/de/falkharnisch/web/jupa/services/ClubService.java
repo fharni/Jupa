@@ -7,6 +7,7 @@ import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.database.User_;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -39,5 +40,13 @@ public class ClubService extends BaseService<Club> {
         query.where(builder.like(builder.upper(root.get(Club_.name)),
                 "%" + namePart.toUpperCase() + "%"));
         return em.createQuery(query).getResultList();
+    }
+
+    public Club getClubByName(String name) throws NoResultException {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Club> query = builder.createQuery(Club.class);
+        Root<Club> root = query.from(Club.class);
+        query.where(builder.like(root.get(Club_.name), name));
+        return em.createQuery(query).getSingleResult();
     }
 }
