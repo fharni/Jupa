@@ -3,9 +3,9 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html
         xmlns:b="http://bootsfaces.net/ui"
-        xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns:p="http://primefaces.org/ui">
-<f:view>
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition>
     <b:panelGrid title="Neuer Lehrgang" colSpans="2,10">
         <p:outputLabel value="Datum:" for="startdate"/>
         <p:calendar id="startdate" value="#{courseBean.selectedCourse.startDate}"
@@ -29,12 +29,14 @@
 
         <p:outputLabel value="Referent" for="instructorInput"/>
         <p:autoComplete id="instructorInput" value="#{courseBean.selectedCourse.instructor}"
-                        minQueryLength="3" completeMethod="#{courseBean.autoCompleteInstructor}"/>
+                        minQueryLength="3" completeMethod="#{courseBean.autoCompleteInstructor}"
+                        var="instructor" itemLabel="#{instructor}" itemValue="#{instructor}"
+                        converter="#{userConverter}" validator="userValidator"/>
 
         <b:commandButton value="Lehrgang erstellen" action="#{courseBean.saveCourse}"
                          update="contentForm" look="primary"/>
         <b:commandButton value="Abbrechen" action="#{courseBean.abort}"
                          update="contentForm" immediate="true"/>
     </b:panelGrid>
-</f:view>
+</ui:composition>
 </html>

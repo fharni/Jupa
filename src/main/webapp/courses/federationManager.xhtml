@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html
-        xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns:b="http://bootsfaces.net/ui">
-<f:view>
+        xmlns:b="http://bootsfaces.net/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition>
     <b:commandButton value="Lehrgang erstellen" update="contentForm"
                      action="#{courseBean.newCourse}"/>
     <b:dataTable value="#{courseBean.coursesForFederation}" var="course"
@@ -15,5 +15,5 @@
         <b:dataTableColumn label="Ort" value="#{course.place}"/>
         <b:dataTableColumn label="Referent" value="#{course.instructor}"/>
     </b:dataTable>
-</f:view>
+</ui:composition>
 </html>
