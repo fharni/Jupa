@@ -3,82 +3,84 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html
         xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:b="http://bootsfaces.net/ui"
         xmlns:p="http://primefaces.org/ui">
-<f:view>
-    <b:panel title="Mein Ju-Jutsu Pass" col-sm="6">
-        <b:row>
-            <b:column col-sm="3">
-                <b:image col-sm="12"
-                         value="http://jujutsu-paderborn.de/images/mitglieder/falk_harnisch_s.jpg"/>
-            </b:column>
-            <b:column col-sm="6">
-                <b:row>
-                    <b:column col-sm="4">
-                        <h:outputText value="Name:"/>
-                    </b:column>
-                    <b:column col-sm="8">
-                        <h:outputText value="#{userBean.name}"/>
-                    </b:column>
-                </b:row>
-                <b:row>
-                    <b:column col-sm="4">
-                        <h:outputText value="Pass ID:"/>
-                    </b:column>
-                    <b:column col-sm="8">
-                        <h:outputText value="#{userBean.username}"/>
-                    </b:column>
-                </b:row>
-                <b:row>
-                    <b:column col-sm="4">
-                        <h:outputText value="Verein:"/>
-                    </b:column>
-                    <b:column col-sm="8">
-                        <h:outputText value="#{userBean.clubName}"/>
-                    </b:column>
-                </b:row>
-                <b:row>
-                    <b:column col-sm="4">
-                        <h:outputText value="Bezirk:"/>
-                    </b:column>
-                    <b:column col-sm="8">
-                        <h:outputText value="#{userBean.districtName}"/>
-                    </b:column>
-                </b:row>
-                <b:row>
-                    <b:column col-sm="4">
-                        <h:outputText value="Verband:"/>
-                    </b:column>
-                    <b:column col-sm="8">
-                        <h:outputText value="#{userBean.federationName}"/>
-                    </b:column>
-                </b:row>
-            </b:column>
-            <b:column col-sm="3">
-                <p:barcode type="ean13" value="#{userBean.username}"/>
-            </b:column>
-        </b:row>
-    </b:panel>
-    <b:panel title="Lizenzen" col-sm="6" rendered="#{userBean.licenses}">
-        <b:dataTable searching="false" paginated="false" info="false">
-            <b:dataTableColumn label="Name"/>
-            <b:dataTableColumn label="Gültig bis"/>
-        </b:dataTable>
-    </b:panel>
-    <b:panel title="Lehrgänge" col-sm="8" rendered="#{userBean.courses}">
-        <b:dataTable searching="false" paginated="false" info="false">
-            <b:dataTableColumn label="Datum" order="desc"/>
-            <b:dataTableColumn label="Name"/>
-            <b:dataTableColumn label="Referent"/>
-            <b:dataTableColumn label="Ort"/>
-        </b:dataTable>
-    </b:panel>
-    <b:panel title="Graduierungen" col-sm="4" rendered="#{userBean.grading}">
-        <b:dataTable searching="false" paginated="false" info="false">
-            <b:dataTableColumn label="Graduierung"/>
-            <b:dataTableColumn label="Datum"/>
-        </b:dataTable>
-    </b:panel>
-</f:view>
+<ui:composition template="/WEB-INF/templates/commonLayout.xhtml">
+    <ui:define name="content">
+        <b:panel title="Mein Ju-Jutsu Pass" col-sm="6">
+            <b:row>
+                <b:column col-sm="3">
+                    <b:image col-sm="12"
+                             value="http://jujutsu-paderborn.de/images/mitglieder/falk_harnisch_s.jpg"/>
+                </b:column>
+                <b:column col-sm="6">
+                    <b:row>
+                        <b:column col-sm="4">
+                            <h:outputText value="Name:"/>
+                        </b:column>
+                        <b:column col-sm="8">
+                            <h:outputText value="#{userBean.name}"/>
+                        </b:column>
+                    </b:row>
+                    <b:row>
+                        <b:column col-sm="4">
+                            <h:outputText value="Pass ID:"/>
+                        </b:column>
+                        <b:column col-sm="8">
+                            <h:outputText value="#{userBean.username}"/>
+                        </b:column>
+                    </b:row>
+                    <b:row>
+                        <b:column col-sm="4">
+                            <h:outputText value="Verein:"/>
+                        </b:column>
+                        <b:column col-sm="8">
+                            <h:outputText value="#{userBean.clubName}"/>
+                        </b:column>
+                    </b:row>
+                    <b:row>
+                        <b:column col-sm="4">
+                            <h:outputText value="Bezirk:"/>
+                        </b:column>
+                        <b:column col-sm="8">
+                            <h:outputText value="#{userBean.districtName}"/>
+                        </b:column>
+                    </b:row>
+                    <b:row>
+                        <b:column col-sm="4">
+                            <h:outputText value="Verband:"/>
+                        </b:column>
+                        <b:column col-sm="8">
+                            <h:outputText value="#{userBean.federationName}"/>
+                        </b:column>
+                    </b:row>
+                </b:column>
+                <b:column col-sm="3">
+                    <p:barcode type="ean13" value="#{userBean.username}"/>
+                </b:column>
+            </b:row>
+        </b:panel>
+        <b:panel title="Lizenzen" col-sm="6" rendered="#{userBean.licenses}">
+            <b:dataTable searching="false" paginated="false" info="false">
+                <b:dataTableColumn label="Name"/>
+                <b:dataTableColumn label="Gültig bis"/>
+            </b:dataTable>
+        </b:panel>
+        <b:panel title="Lehrgänge" col-sm="8" rendered="#{userBean.courses}">
+            <b:dataTable searching="false" paginated="false" info="false">
+                <b:dataTableColumn label="Datum" order="desc"/>
+                <b:dataTableColumn label="Name"/>
+                <b:dataTableColumn label="Referent"/>
+                <b:dataTableColumn label="Ort"/>
+            </b:dataTable>
+        </b:panel>
+        <b:panel title="Graduierungen" col-sm="4" rendered="#{userBean.grading}">
+            <b:dataTable searching="false" paginated="false" info="false">
+                <b:dataTableColumn label="Graduierung"/>
+                <b:dataTableColumn label="Datum"/>
+            </b:dataTable>
+        </b:panel>
+    </ui:define>
+</ui:composition>
 </html>

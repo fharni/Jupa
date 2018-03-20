@@ -4,13 +4,14 @@
 <html
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:b="http://bootsfaces.net/ui"
 >
 <h:body>
     <ui:composition template="WEB-INF/templates/commonLayout.xhtml">
         <ui:define name="content">
-            <h:form id="contentForm">
-                <ui:include src="#{navigationBean.page}"/>
-            </h:form>
+            <b:jumbotron>
+                Willkommen bei der Ju-Jutsu Passverwaltung
+            </b:jumbotron>
         </ui:define>
     </ui:composition>
 </h:body>

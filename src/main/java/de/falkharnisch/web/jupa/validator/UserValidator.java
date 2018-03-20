@@ -14,7 +14,7 @@ public class UserValidator implements Validator {
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-        if (!(value instanceof User)) {
+        if (value != null && !(value instanceof User)) {
             FacesMessage msg = new FacesMessage("Benutzer existiert nicht.", "Diesr Benutzer existiert nicht.");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);

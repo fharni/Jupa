@@ -5,6 +5,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import java.io.IOException;
 import java.io.Serializable;
 import java.security.Principal;
 
@@ -32,7 +33,9 @@ public class AccessBean implements Serializable {
         return fc.getExternalContext();
     }
 
-    public void logout() {
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+    public void logout() throws IOException {
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        externalContext.invalidateSession();
+        externalContext.redirect(externalContext.getApplicationContextPath() + "/index.xhtml");
     }
 }

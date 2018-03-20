@@ -11,20 +11,15 @@
     <h:form id="headerForm">
         <b:navBar brand="Ju-Jutsu Passverwaltung" brandHref="#" fixed="top" inverse="true">
             <b:navbarLinks>
-                <b:navLink value="Startseite" update="contentForm"
-                           onclick="ajax:navigationBean.setPage('start.xhtml')"
+                <b:navLink value="Startseite" outcome="home"
                            rendered="#{accessBean.loggedIn}"/>
-                <b:navLink value="Mein JJ Pass" update="contentForm"
-                           onclick="ajax:navigationBean.setPage('passport/passport.xhtml')"
+                <b:navLink value="Mein JJ Pass" outcome="passport"
                            rendered="#{accessBean.loggedIn}"/>
-                <b:navLink value="Mein Verein" update="contentForm"
-                           onclick="ajax:navigationBean.setPage('club/myclub.xhtml')"
+                <b:navLink value="Mein Verein" outcome="myclub"
                            rendered="#{menuAccessBean.showMenuMyClub}"/>
-                <b:navLink value="Lehrgänge" update="contentForm"
-                           onclick="ajax:navigationBean.setPage('courses/courses.xhtml')"
+                <b:navLink value="Lehrgänge" outcome="courses"
                            rendered="#{menuAccessBean.showMenuCourses}"/>
-                <b:navCommandLink value="Abmelden" oncomplete="window.location.reload()"
-                                  action="#{accessBean.logout}"
+                <b:navCommandLink value="Abmelden" action="#{accessBean.logout}"
                                   rendered="#{accessBean.loggedIn}"/>
             </b:navbarLinks>
         </b:navBar>
