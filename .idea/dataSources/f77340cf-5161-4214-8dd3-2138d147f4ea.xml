@@ -14,41 +14,44 @@
     <schema id="5" parent="2" name="SYSTEM_LOBS"/>
     <table id="6" parent="4" name="CLUB"/>
     <table id="7" parent="4" name="COURSE"/>
-    <table id="8" parent="4" name="DISTRICT"/>
-    <table id="9" parent="4" name="FEDERATION"/>
-    <table id="10" parent="4" name="FUNCTION"/>
-    <table id="11" parent="4" name="OPENJPA_SEQUENCE_TABLE"/>
-    <table id="12" parent="4" name="ROLE"/>
-    <table id="13" parent="4" name="ROLE_FUNCTION"/>
-    <table id="14" parent="4" name="USER"/>
-    <table id="15" parent="4" name="USER_ROLE"/>
-    <column id="16" parent="6" name="ID">
+    <table id="8" parent="4" name="DISCIPLINE"/>
+    <table id="9" parent="4" name="DISTRICT"/>
+    <table id="10" parent="4" name="FEDERATION"/>
+    <table id="11" parent="4" name="FUNCTION"/>
+    <table id="12" parent="4" name="GRADING"/>
+    <table id="13" parent="4" name="OPENJPA_SEQUENCE_TABLE"/>
+    <table id="14" parent="4" name="ROLE"/>
+    <table id="15" parent="4" name="ROLE_FUNCTION"/>
+    <table id="16" parent="4" name="USER"/>
+    <table id="17" parent="4" name="USER_GRADING"/>
+    <table id="18" parent="4" name="USER_ROLE"/>
+    <column id="19" parent="6" name="ID">
       <Position>1</Position>
       <DataType>INTEGER(32)|4</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="17" parent="6" name="NAME">
+    <column id="20" parent="6" name="NAME">
       <Position>2</Position>
       <DataType>VARCHAR(100)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="18" parent="6" name="DISTRICT_ID">
+    <column id="21" parent="6" name="DISTRICT_ID">
       <Position>3</Position>
       <DataType>INTEGER(32)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="19" parent="6" name="DISPLAYID">
+    <column id="22" parent="6" name="DISPLAYID">
       <Position>4</Position>
       <DataType>INTEGER(32)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="20" parent="6" name="SYS_PK_10113">
+    <key id="23" parent="6" name="SYS_PK_10113">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="21" parent="6" name="SYS_FK_10117">
+    <foreign-key id="24" parent="6" name="SYS_FK_10117">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>DISTRICT_ID</ColNames>
       <RefSchemaName>PUBLIC</RefSchemaName>
@@ -56,91 +59,74 @@
       <RefKeyName>SYS_PK_10102</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="22" parent="7" name="ID">
+    <column id="25" parent="7" name="ID">
       <Position>1</Position>
       <DataType>INTEGER(32)|4</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="23" parent="7" name="STARTDATE">
+    <column id="26" parent="7" name="STARTDATE">
       <Position>2</Position>
       <DataType>TIMESTAMP(26)|93</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="24" parent="7" name="ENDDATE">
+    <column id="27" parent="7" name="ENDDATE">
       <Position>3</Position>
       <DataType>TIMESTAMP(26)|93</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="25" parent="7" name="TOPIC">
+    <column id="28" parent="7" name="TOPIC">
       <Position>4</Position>
       <DataType>VARCHAR(255)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="26" parent="7" name="PLACE">
+    <column id="29" parent="7" name="PLACE">
       <Position>5</Position>
       <DataType>VARCHAR(255)|12</DataType>
     </column>
-    <column id="27" parent="7" name="CLUB_ID">
+    <column id="30" parent="7" name="CLUB_ID">
       <Position>6</Position>
       <DataType>INTEGER(32)|4</DataType>
     </column>
-    <column id="28" parent="7" name="INSTRUCTOR_ID">
+    <column id="31" parent="7" name="INSTRUCTOR_ID">
       <Position>7</Position>
       <DataType>INTEGER(32)|4</DataType>
     </column>
-    <key id="29" parent="7" name="SYS_PK_10176">
+    <key id="32" parent="7" name="SYS_PK_10177">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="30" parent="7" name="COURSE_CLUB_ID_FK">
+    <foreign-key id="33" parent="7" name="COURSE_CLUB_ID_FK">
       <ColNames>CLUB_ID</ColNames>
       <RefSchemaName>PUBLIC</RefSchemaName>
       <RefTableName>CLUB</RefTableName>
       <RefKeyName>SYS_PK_10113</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="31" parent="7" name="COURSE_USER_ID_FK">
+    <foreign-key id="34" parent="7" name="COURSE_USER_ID_FK">
       <ColNames>INSTRUCTOR_ID</ColNames>
       <RefSchemaName>PUBLIC</RefSchemaName>
       <RefTableName>USER</RefTableName>
       <RefKeyName>SYS_PK_10126</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="32" parent="8" name="ID">
+    <column id="35" parent="8" name="ID">
       <Position>1</Position>
       <DataType>INTEGER(32)|4</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="33" parent="8" name="NAME">
+    <column id="36" parent="8" name="NAME">
       <Position>2</Position>
-      <DataType>VARCHAR(100)|12</DataType>
+      <DataType>VARCHAR(25)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="34" parent="8" name="FEDERATION_ID">
-      <Position>3</Position>
-      <DataType>INTEGER(32)|4</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="35" parent="8" name="DISPLAYID">
-      <Position>4</Position>
-      <DataType>INTEGER(32)|4</DataType>
-    </column>
-    <key id="36" parent="8" name="SYS_PK_10102">
+    <key id="37" parent="8" name="SYS_PK_10281">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="37" parent="8" name="SYS_FK_10105">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>FEDERATION_ID</ColNames>
-      <RefSchemaName>PUBLIC</RefSchemaName>
-      <RefTableName>FEDERATION</RefTableName>
-      <RefKeyName>SYS_PK_10096</RefKeyName>
-      <RefColNames>ID</RefColNames>
-    </foreign-key>
     <column id="38" parent="9" name="ID">
       <Position>1</Position>
       <DataType>INTEGER(32)|4</DataType>
@@ -152,176 +138,278 @@
       <DataType>VARCHAR(100)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="40" parent="9" name="DISPLAYID">
+    <column id="40" parent="9" name="FEDERATION_ID">
       <Position>3</Position>
       <DataType>INTEGER(32)|4</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <key id="41" parent="9" name="SYS_PK_10096">
+    <column id="41" parent="9" name="DISPLAYID">
+      <Position>4</Position>
+      <DataType>INTEGER(32)|4</DataType>
+    </column>
+    <key id="42" parent="9" name="SYS_PK_10102">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="42" parent="10" name="ID">
+    <foreign-key id="43" parent="9" name="SYS_FK_10105">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>FEDERATION_ID</ColNames>
+      <RefSchemaName>PUBLIC</RefSchemaName>
+      <RefTableName>FEDERATION</RefTableName>
+      <RefKeyName>SYS_PK_10096</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="44" parent="10" name="ID">
       <Position>1</Position>
       <DataType>INTEGER(32)|4</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="43" parent="10" name="FUNCTION">
+    <column id="45" parent="10" name="NAME">
       <Position>2</Position>
       <DataType>VARCHAR(100)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="44" parent="10" name="FUNCTION_FUNCTION_UINDEX">
-      <ColNames>FUNCTION</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="45" parent="10" name="SYS_PK_10147">
+    <column id="46" parent="10" name="DISPLAYID">
+      <Position>3</Position>
+      <DataType>INTEGER(32)|4</DataType>
+    </column>
+    <key id="47" parent="10" name="SYS_PK_10096">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="46" parent="11" name="ID">
+    <column id="48" parent="11" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER(32)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="49" parent="11" name="FUNCTION">
+      <Position>2</Position>
+      <DataType>VARCHAR(100)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="50" parent="11" name="FUNCTION_FUNCTION_UINDEX">
+      <ColNames>FUNCTION</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="51" parent="11" name="SYS_PK_10147">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="52" parent="12" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER(32)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="53" parent="12" name="DISCIPLINE_ID">
+      <Position>2</Position>
+      <DataType>INTEGER(32)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="54" parent="12" name="NAME">
+      <Position>3</Position>
+      <DataType>VARCHAR(25)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="55" parent="12" name="SORTORDER">
+      <Position>4</Position>
+      <DataType>INTEGER(32)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="56" parent="12" name="GRADING_PK">
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="57" parent="12" name="GRADING_DISCIPLINE_ID_FK">
+      <ColNames>DISCIPLINE_ID</ColNames>
+      <RefSchemaName>PUBLIC</RefSchemaName>
+      <RefTableName>DISCIPLINE</RefTableName>
+      <RefKeyName>SYS_PK_10281</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="58" parent="13" name="ID">
       <Position>1</Position>
       <DataType>TINYINT(8)|-6</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="47" parent="11" name="SEQUENCE_VALUE">
+    <column id="59" parent="13" name="SEQUENCE_VALUE">
       <Position>2</Position>
       <DataType>BIGINT(64)|-5</DataType>
     </column>
-    <key id="48" parent="11" name="SYS_PK_10092">
+    <key id="60" parent="13" name="SYS_PK_10092">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="49" parent="12" name="ID">
+    <column id="61" parent="14" name="ID">
       <Position>1</Position>
       <DataType>INTEGER(32)|4</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="50" parent="12" name="ROLE">
+    <column id="62" parent="14" name="ROLE">
       <Position>2</Position>
       <DataType>VARCHAR(100)|12</DataType>
     </column>
-    <key id="51" parent="12" name="SYS_PK_10143">
+    <key id="63" parent="14" name="SYS_PK_10143">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="52" parent="13" name="ID">
+    <column id="64" parent="15" name="ID">
       <Position>1</Position>
       <DataType>INTEGER(32)|4</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="53" parent="13" name="ROLE_ID">
+    <column id="65" parent="15" name="ROLE_ID">
       <Position>2</Position>
       <DataType>INTEGER(32)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="54" parent="13" name="FUNCTION_ID">
+    <column id="66" parent="15" name="FUNCTION_ID">
       <Position>3</Position>
       <DataType>INTEGER(32)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="55" parent="13" name="SYS_PK_10165">
+    <key id="67" parent="15" name="SYS_PK_10165">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="56" parent="13" name="ROLE_TO_FUNCTION_ROLE_ID_FK">
+    <foreign-key id="68" parent="15" name="ROLE_TO_FUNCTION_ROLE_ID_FK">
       <ColNames>ROLE_ID</ColNames>
       <RefSchemaName>PUBLIC</RefSchemaName>
       <RefTableName>ROLE</RefTableName>
       <RefKeyName>SYS_PK_10143</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="57" parent="13" name="ROLE_TO_FUNCTION_FUNCTION_ID_FK">
+    <foreign-key id="69" parent="15" name="ROLE_TO_FUNCTION_FUNCTION_ID_FK">
       <ColNames>FUNCTION_ID</ColNames>
       <RefSchemaName>PUBLIC</RefSchemaName>
       <RefTableName>FUNCTION</RefTableName>
       <RefKeyName>SYS_PK_10147</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="58" parent="14" name="ID">
+    <column id="70" parent="16" name="ID">
       <Position>1</Position>
       <DataType>INTEGER(32)|4</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="59" parent="14" name="USERNAME">
+    <column id="71" parent="16" name="USERNAME">
       <Position>2</Position>
       <DataType>VARCHAR(255)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="60" parent="14" name="PASSWORD">
+    <column id="72" parent="16" name="PASSWORD">
       <Position>3</Position>
       <DataType>VARCHAR(255)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="61" parent="14" name="FORENAME">
+    <column id="73" parent="16" name="FORENAME">
       <Position>4</Position>
       <DataType>VARCHAR(255)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="62" parent="14" name="SURNAME">
+    <column id="74" parent="16" name="SURNAME">
       <Position>5</Position>
       <DataType>VARCHAR(255)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="63" parent="14" name="CLUB_ID">
+    <column id="75" parent="16" name="CLUB_ID">
       <Position>6</Position>
       <DataType>INTEGER(32)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="64" parent="14" name="USER_USERNAME_UINDEX">
+    <index id="76" parent="16" name="USER_USERNAME_UINDEX">
       <ColNames>USERNAME</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="65" parent="14" name="SYS_PK_10126">
+    <key id="77" parent="16" name="SYS_PK_10126">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="66" parent="14" name="SYS_FK_10132">
-      <NameSurrogate>1</NameSurrogate>
+    <foreign-key id="78" parent="16" name="CLUB_FK">
       <ColNames>CLUB_ID</ColNames>
       <RefSchemaName>PUBLIC</RefSchemaName>
       <RefTableName>CLUB</RefTableName>
       <RefKeyName>SYS_PK_10113</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="67" parent="15" name="ID">
+    <column id="79" parent="17" name="ID">
       <Position>1</Position>
       <DataType>INTEGER(32)|4</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="68" parent="15" name="USER_ID">
+    <column id="80" parent="17" name="USER_ID">
       <Position>2</Position>
       <DataType>INTEGER(32)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="69" parent="15" name="ROLE_ID">
+    <column id="81" parent="17" name="GRADING_ID">
       <Position>3</Position>
       <DataType>INTEGER(32)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="70" parent="15" name="SYS_PK_10153">
-      <NameSurrogate>1</NameSurrogate>
+    <column id="82" parent="17" name="DATE">
+      <Position>4</Position>
+      <DataType>DATE(10)|91</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="83" parent="17" name="USER_GRADING_PK">
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="71" parent="15" name="USER_TO_ROLE_USER_ID_FK">
+    <foreign-key id="84" parent="17" name="USER_GRADING_USER_ID_FK">
       <ColNames>USER_ID</ColNames>
       <RefSchemaName>PUBLIC</RefSchemaName>
       <RefTableName>USER</RefTableName>
       <RefKeyName>SYS_PK_10126</RefKeyName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="72" parent="15" name="USER_TO_ROLE_ROLE_ID_FK">
+    <foreign-key id="85" parent="17" name="USER_GRADING_FK">
+      <ColNames>GRADING_ID</ColNames>
+      <RefSchemaName>PUBLIC</RefSchemaName>
+      <RefTableName>GRADING</RefTableName>
+      <RefKeyName>GRADING_PK</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="86" parent="18" name="ID">
+      <Position>1</Position>
+      <DataType>INTEGER(32)|4</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="87" parent="18" name="USER_ID">
+      <Position>2</Position>
+      <DataType>INTEGER(32)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="88" parent="18" name="ROLE_ID">
+      <Position>3</Position>
+      <DataType>INTEGER(32)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="89" parent="18" name="USER_ROLE_PK">
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="90" parent="18" name="USER_TO_ROLE_USER_ID_FK">
+      <ColNames>USER_ID</ColNames>
+      <RefSchemaName>PUBLIC</RefSchemaName>
+      <RefTableName>USER</RefTableName>
+      <RefKeyName>SYS_PK_10126</RefKeyName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="91" parent="18" name="USER_TO_ROLE_ROLE_ID_FK">
       <ColNames>ROLE_ID</ColNames>
       <RefSchemaName>PUBLIC</RefSchemaName>
       <RefTableName>ROLE</RefTableName>
