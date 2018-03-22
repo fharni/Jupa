@@ -4,6 +4,7 @@ import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.database.User_;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.PersistenceException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -31,5 +32,21 @@ public class UserService extends BaseService<User> {
         query.where(builder.like(builder.upper(root.get(User_.surname)),
                 "%" + namePart.toUpperCase() + "%"));
         return em.createQuery(query).getResultList();
+    }
+
+    public boolean login(String username, String password) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root<User> root = query.from(User.class);
+        query.where(builder.and(
+                builder.equal(root.get(User_.username), username),
+                builder.equal(root.get(User_.password), password)
+        ));
+        try {
+            em.createQuery(query).getSingleResult();
+            return true;
+        } catch (PersistenceException e) {
+            return false;
+        }
     }
 }

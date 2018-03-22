@@ -4,14 +4,13 @@ package de.falkharnisch.web.jupa.beans;
 import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.services.ConfigurationService;
 import de.falkharnisch.web.jupa.services.UserService;
+import de.falkharnisch.web.jupa.util.Util;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
@@ -42,9 +41,7 @@ public class UserBean {
 
     @PostConstruct
     private void initUser() {
-        FacesContext fc = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = fc.getExternalContext();
-        String username = externalContext.getUserPrincipal().getName();
+        String username = Util.getUserName();
         user = userService.getUserByUsername(username);
     }
 

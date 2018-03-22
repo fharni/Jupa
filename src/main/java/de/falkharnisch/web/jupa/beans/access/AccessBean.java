@@ -5,9 +5,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Serializable;
-import java.security.Principal;
+import java.util.Set;
 
 /**
  * Managed Bean for handling with the user service.
@@ -17,20 +18,20 @@ import java.security.Principal;
 public class AccessBean implements Serializable {
 
     public boolean isLoggedIn() {
-        return getUserPrincipal() != null;
+        return getSession().getAttribute("username") != null;
     }
 
     boolean isUserInRole(String role) {
-        return getExternalContext().isUserInRole(role);
+        Object usergroups = getSession().getAttribute("usergroups");
+        return usergroups instanceof Set && ((Set) usergroups).contains(role);
     }
 
-    private Principal getUserPrincipal() {
-        return getExternalContext().getUserPrincipal();
-    }
-
-    private ExternalContext getExternalContext() {
-        FacesContext fc = FacesContext.getCurrentInstance();
-        return fc.getExternalContext();
+    private HttpSession getSession() {
+        return (HttpSession)
+                FacesContext.
+                        getCurrentInstance().
+                        getExternalContext().
+                        getSession(false);
     }
 
     public void logout() throws IOException {

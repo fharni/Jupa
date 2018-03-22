@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="krip@localhost" uuid="f77340cf-5161-4214-8dd3-2138d147f4ea">
+    <data-source name="jupa@localhost" uuid="f77340cf-5161-4214-8dd3-2138d147f4ea">
       <database-info product="HSQL Database Engine" version="2.3.2" jdbc-version="4.0" driver-name="HSQL Database Engine Driver" driver-version="2.3.2">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
