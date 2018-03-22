@@ -14,6 +14,10 @@
         <b:dataTableColumn label="Club" value="#{course.club.name}"/>
         <b:dataTableColumn label="Ort" value="#{course.place}"/>
         <b:dataTableColumn label="Referent" value="#{course.instructor}"/>
+        <b:dataTableColumn label="">
+            <b:commandButton value="Bearbeiten" icon="edit" ajax="true" update="contentForm"
+                             onclick="ajax:courseBean.editCourse(course)"/>
+        </b:dataTableColumn>
     </b:dataTable>
 </ui:composition>
 </html>

@@ -7,12 +7,14 @@ import de.falkharnisch.web.jupa.services.ClubService;
 import de.falkharnisch.web.jupa.services.CourseService;
 import de.falkharnisch.web.jupa.services.UserService;
 import de.falkharnisch.web.jupa.util.Util;
+import org.primefaces.event.SelectEvent;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @ManagedBean
@@ -54,13 +56,27 @@ public class CourseBean {
     }
 
     public void abort() {
+        selectedCourse.setStartDate(null);
+        selectedCourse.setEndDate(null);
+        selectedCourse.setTopic("");
+        selectedCourse.setClub(null);
+        selectedCourse.setPlace("");
+        selectedCourse.setInstructor(null);
         this.selectedCourse = null;
     }
 
     @Transactional
     public void saveCourse() {
-        courseService.persist(selectedCourse);
+        if (selectedCourse.getId() == null) {
+            courseService.persist(selectedCourse);
+        } else {
+            courseService.merge(selectedCourse);
+        }
         this.selectedCourse = null;
+    }
+
+    public void editCourse(Course course) {
+        this.selectedCourse = course;
     }
 
     public Course getSelectedCourse() {
@@ -73,5 +89,9 @@ public class CourseBean {
 
     public List<User> autoCompleteInstructor(String query) {
         return userService.getUserByNamepart(query);
+    }
+
+    public void onDateSelect(SelectEvent event) {
+        this.selectedCourse.setEndDate((Date) event.getObject());
     }
 }

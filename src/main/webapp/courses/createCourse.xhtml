@@ -9,11 +9,13 @@
     <b:panelGrid title="Neuer Lehrgang" colSpans="2,10">
         <p:outputLabel value="Datum:" for="startdate"/>
         <p:calendar id="startdate" value="#{courseBean.selectedCourse.startDate}"
-                    required="true"/>
+                    pattern="dd-MM-yyyy HH:00" required="true">
+            <p:ajax event="dateSelect" listener="#{courseBean.onDateSelect}" update="enddate"/>
+        </p:calendar>
 
         <p:outputLabel value="Enddatum:" for="enddate"/>
         <p:calendar id="enddate" value="#{courseBean.selectedCourse.endDate}"
-                    required="true"/>
+                    pattern="dd-MM-yyyy HH:00" required="true"/>
 
         <p:outputLabel value="Thema:" for="topic"/>
         <p:inputText id="topic" value="#{courseBean.selectedCourse.topic}"/>
