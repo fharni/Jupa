@@ -9,57 +9,28 @@
 <ui:composition template="/WEB-INF/templates/commonLayout.xhtml">
     <ui:define name="content">
         <b:panel title="Mein Ju-Jutsu Pass" col-sm="6">
-            <b:row>
-                <b:column col-sm="3">
-                    <b:image col-sm="12"
-                             value="http://jujutsu-paderborn.de/images/mitglieder/falk_harnisch_s.jpg"/>
-                </b:column>
-                <b:column col-sm="6">
-                    <b:row>
-                        <b:column col-sm="4">
-                            <h:outputText value="Name:"/>
-                        </b:column>
-                        <b:column col-sm="8">
-                            <h:outputText value="#{userBean.name}"/>
-                        </b:column>
-                    </b:row>
-                    <b:row>
-                        <b:column col-sm="4">
-                            <h:outputText value="Pass ID:"/>
-                        </b:column>
-                        <b:column col-sm="8">
-                            <h:outputText value="#{userBean.username}"/>
-                        </b:column>
-                    </b:row>
-                    <b:row>
-                        <b:column col-sm="4">
-                            <h:outputText value="Verein:"/>
-                        </b:column>
-                        <b:column col-sm="8">
-                            <h:outputText value="#{userBean.clubName}"/>
-                        </b:column>
-                    </b:row>
-                    <b:row>
-                        <b:column col-sm="4">
-                            <h:outputText value="Bezirk:"/>
-                        </b:column>
-                        <b:column col-sm="8">
-                            <h:outputText value="#{userBean.districtName}"/>
-                        </b:column>
-                    </b:row>
-                    <b:row>
-                        <b:column col-sm="4">
-                            <h:outputText value="Verband:"/>
-                        </b:column>
-                        <b:column col-sm="8">
-                            <h:outputText value="#{userBean.federationName}"/>
-                        </b:column>
-                    </b:row>
-                </b:column>
-                <b:column col-sm="3">
-                    <p:barcode type="ean13" value="#{userBean.username}"/>
-                </b:column>
-            </b:row>
+            <b:panelGrid colSpans="3,5,4">
+                <p:graphicImage value="#{userBean.image}" height="#{userBean.getImageHeight()}"
+                                width="#{userBean.getImageWidth()}"/>
+                <b:panelGrid columns="2" colSpans="3,9">
+
+                    <h:outputText value="Name:"/>
+                    <h:outputText value="#{userBean.name}"/>
+
+                    <h:outputText value="PassID:"/>
+                    <h:outputText value="#{userBean.username}"/>
+
+                    <h:outputText value="Verein:"/>
+                    <h:outputText value="#{userBean.clubName}"/>
+
+                    <h:outputText value="Bezirk:"/>
+                    <h:outputText value="#{userBean.districtName}"/>
+
+                    <h:outputText value="Verband:"/>
+                    <h:outputText value="#{userBean.federationName}"/>
+                </b:panelGrid>
+                <p:barcode type="ean13" value="#{userBean.username}" width="150"/>
+            </b:panelGrid>
         </b:panel>
         <b:panel title="Lizenzen" col-sm="6" rendered="#{userBean.licenses}">
             <b:dataTable searching="false" paginated="false" info="false">
