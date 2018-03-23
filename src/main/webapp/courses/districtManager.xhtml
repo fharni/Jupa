@@ -12,6 +12,10 @@
         <b:dataTableColumn label="Club" value="#{course.club.name}"/>
         <b:dataTableColumn label="Ort" value="#{course.place}"/>
         <b:dataTableColumn label="Referent" value="#{course.instructor}"/>
+        <b:dataTableColumn label="Teilnehmer">
+            <b:commandButton value="Teilnehmer" icon="user" ajax="true" update="contentForm"
+                             onclick="ajax:courseBean.loadCourseParticipants(course)"/>
+        </b:dataTableColumn>
     </b:dataTable>
 </ui:composition>
 </html>

@@ -33,4 +33,12 @@ public class CourseService extends BaseService<Course> {
         query.where(builder.equal(districtJoin.get(District_.federation), federation));
         return em.createQuery(query).getResultList();
     }
+
+    public List<CourseParticipant> getParticipantsForCourse(Course course) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<CourseParticipant> query = builder.createQuery(CourseParticipant.class);
+        Root<CourseParticipant> courseParticipantRoot = query.from(CourseParticipant.class);
+        query.where(builder.equal(courseParticipantRoot.get(CourseParticipant_.course), course));
+        return em.createQuery(query).getResultList();
+    }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+        xmlns:b="http://bootsfaces.net/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition>
+    <b:commandButton ajax="true" update="contentForm" action="#{courseBean.backToCourseList}" value="Zurück"/>
+    <b:dataTable value="#{courseBean.courseParticipants}" var="participants"
+                 paginated="false" searching="false" info="false">
+        <b:dataTableColumn label="Nachname" value="#{participants.user.surname}"/>
+        <b:dataTableColumn label="Vorname" value="#{participants.user.forename}"/>
+        <b:dataTableColumn label="PassId" value="#{participants.user.username}"/>
+        <b:dataTableColumn label="Vermerk" value="#{participants.annotation.name}"/>
+    </b:dataTable>
+</ui:composition>
+</html>

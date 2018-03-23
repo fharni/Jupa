@@ -2,6 +2,7 @@ package de.falkharnisch.web.jupa.beans;
 
 import de.falkharnisch.web.jupa.database.Club;
 import de.falkharnisch.web.jupa.database.Course;
+import de.falkharnisch.web.jupa.database.CourseParticipant;
 import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.services.ClubService;
 import de.falkharnisch.web.jupa.services.CourseService;
@@ -31,6 +32,7 @@ public class CourseBean {
     private UserService userService;
 
     private Course selectedCourse;
+    private List<CourseParticipant> courseParticipants;
     private User user;
 
     @PostConstruct
@@ -52,7 +54,15 @@ public class CourseBean {
     }
 
     public boolean isShowCreateCourse() {
-        return this.selectedCourse != null;
+        return this.selectedCourse != null && courseParticipants == null;
+    }
+
+    public boolean isShowParticipantsList() {
+        return this.selectedCourse != null && courseParticipants != null;
+    }
+
+    public boolean isShowCourseList() {
+        return !isShowCreateCourse() && !isShowParticipantsList();
     }
 
     public void abort() {
@@ -62,7 +72,7 @@ public class CourseBean {
         selectedCourse.setClub(null);
         selectedCourse.setPlace("");
         selectedCourse.setInstructor(null);
-        this.selectedCourse = null;
+        selectedCourse = null;
     }
 
     @Transactional
@@ -76,7 +86,7 @@ public class CourseBean {
     }
 
     public void editCourse(Course course) {
-        this.selectedCourse = course;
+        selectedCourse = course;
     }
 
     public Course getSelectedCourse() {
@@ -92,6 +102,20 @@ public class CourseBean {
     }
 
     public void onDateSelect(SelectEvent event) {
-        this.selectedCourse.setEndDate((Date) event.getObject());
+        selectedCourse.setEndDate((Date) event.getObject());
+    }
+
+    public void loadCourseParticipants(Course course) {
+        selectedCourse = course;
+        courseParticipants = courseService.getParticipantsForCourse(course);
+    }
+
+    public List<CourseParticipant> getCourseParticipants() {
+        return courseParticipants;
+    }
+
+    public void backToCourseList() {
+        selectedCourse = null;
+        courseParticipants = null;
     }
 }

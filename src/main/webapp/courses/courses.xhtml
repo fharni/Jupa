@@ -2,22 +2,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html
-        xmlns:b="http://bootsfaces.net/ui"
         xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:h="http://xmlns.jcp.org/jsf/html">
 <ui:composition template="/WEB-INF/templates/commonLayout.xhtml">
     <ui:define name="content">
         <h:form id="contentForm">
-            <b:panel id="coursePanel" title="Lehrgänge" col-sm="12" rendered="#{not courseBean.showCreateCourse}">
+            <h:panelGroup rendered="#{courseBean.showCourseList}">
+                <h1>Lehrgänge</h1>
                 <h:panelGroup rendered="#{courseAccessBean.showCourseListForDistrict}">
                     <ui:include src="districtManager.xhtml"/>
                 </h:panelGroup>
                 <h:panelGroup rendered="#{courseAccessBean.showCourseListForFederation}">
                     <ui:include src="federationManager.xhtml"/>
                 </h:panelGroup>
-            </b:panel>
+            </h:panelGroup>
             <h:panelGroup id="createCoursePanel" rendered="#{courseBean.showCreateCourse}">
                 <ui:include src="createCourse.xhtml"/>
+            </h:panelGroup>
+            <h:panelGroup id="courseParticipantsPanel" rendered="#{courseBean.showParticipantsList}">
+                <ui:include src="courseParticipants.xhtml"/>
             </h:panelGroup>
         </h:form>
     </ui:define>
