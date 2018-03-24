@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class CourseParticipant implements BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @OneToOne
@@ -24,11 +24,23 @@ public class CourseParticipant implements BaseEntity {
         return id;
     }
 
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
     public User getUser() {
         return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Annotation getAnnotation() {
         return annotation;
+    }
+
+    public void setAnnotation(Annotation annotation) {
+        this.annotation = annotation;
     }
 }

@@ -6,7 +6,6 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -26,7 +25,7 @@ public class ConfigurationService extends BaseService {
     private List<Configuration> getConfiguration() {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Configuration> query = builder.createQuery(Configuration.class);
-        Root<Configuration> root = query.from(Configuration.class);
+        query.from(Configuration.class);
         return em.createQuery(query).getResultList();
     }
 

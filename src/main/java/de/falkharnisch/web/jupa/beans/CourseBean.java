@@ -1,9 +1,6 @@
 package de.falkharnisch.web.jupa.beans;
 
-import de.falkharnisch.web.jupa.database.Club;
-import de.falkharnisch.web.jupa.database.Course;
-import de.falkharnisch.web.jupa.database.CourseParticipant;
-import de.falkharnisch.web.jupa.database.User;
+import de.falkharnisch.web.jupa.database.*;
 import de.falkharnisch.web.jupa.services.ClubService;
 import de.falkharnisch.web.jupa.services.CourseService;
 import de.falkharnisch.web.jupa.services.UserService;
@@ -33,6 +30,9 @@ public class CourseBean {
 
     private Course selectedCourse;
     private List<CourseParticipant> courseParticipants;
+    private User newCourseParticipant;
+    private Annotation selectedAnnotation;
+
     private User user;
 
     @PostConstruct
@@ -101,6 +101,10 @@ public class CourseBean {
         return userService.getUserByNamepart(query);
     }
 
+    public List<User> autoCompleteUser(String query) {
+        return userService.getUserByIdPart(query);
+    }
+
     public void onDateSelect(SelectEvent event) {
         selectedCourse.setEndDate((Date) event.getObject());
     }
@@ -108,6 +112,7 @@ public class CourseBean {
     public void loadCourseParticipants(Course course) {
         selectedCourse = course;
         courseParticipants = courseService.getParticipantsForCourse(course);
+        newCourseParticipant = new User();
     }
 
     public List<CourseParticipant> getCourseParticipants() {
@@ -117,5 +122,36 @@ public class CourseBean {
     public void backToCourseList() {
         selectedCourse = null;
         courseParticipants = null;
+    }
+
+    public User getNewCourseParticipant() {
+        return newCourseParticipant;
+    }
+
+    public void setNewCourseParticipant(User newCourseParticipant) {
+        this.newCourseParticipant = newCourseParticipant;
+    }
+
+    public void addUserToCourse() {
+        CourseParticipant participant = new CourseParticipant();
+        participant.setCourse(selectedCourse);
+        participant.setUser(newCourseParticipant);
+        participant.setAnnotation(selectedAnnotation);
+        courseService.persistParticipant(participant);
+
+        newCourseParticipant = new User();
+        courseParticipants.add(participant);
+    }
+
+    public List<Annotation> getAnnotations() {
+        return courseService.getAnnotations();
+    }
+
+    public Annotation getSelectedAnnotation() {
+        return selectedAnnotation;
+    }
+
+    public void setSelectedAnnotation(Annotation selectedAnnotation) {
+        this.selectedAnnotation = selectedAnnotation;
     }
 }

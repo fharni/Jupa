@@ -2,6 +2,7 @@ package de.falkharnisch.web.jupa.services;
 
 import de.falkharnisch.web.jupa.database.*;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -10,10 +11,32 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Transactional
 @ApplicationScoped
 public class CourseService extends BaseService<Course> {
+
+    private List<Annotation> annotations;
+    private Map<String, Annotation> annotationMap;
+
+    @PostConstruct
+    private void initAnnotations() {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Annotation> query = builder.createQuery(Annotation.class);
+        query.from(Annotation.class);
+        annotations = em.createQuery(query).getResultList();
+        annotationMap = annotations.stream().collect(Collectors.toMap(Annotation::getName, a -> a));
+    }
+
+    public List<Annotation> getAnnotations() {
+        return annotations;
+    }
+
+    public Annotation getAnnotationByName(String name) {
+        return annotationMap.get(name);
+    }
 
     public List<Course> getCoursesForDistrict(@NotNull District district) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
@@ -40,5 +63,9 @@ public class CourseService extends BaseService<Course> {
         Root<CourseParticipant> courseParticipantRoot = query.from(CourseParticipant.class);
         query.where(builder.equal(courseParticipantRoot.get(CourseParticipant_.course), course));
         return em.createQuery(query).getResultList();
+    }
+
+    public void persistParticipant(BaseEntity entity) {
+        super.persistOther(entity);
     }
 }
