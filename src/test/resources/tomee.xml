@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+    <Resource id="jdbc/arquillian" type="javax.sql.DataSource">
+        jdbcUrl = jdbc:hsqldb:mem:.
+        jdbcDriver = org.hsqldb.jdbcDriver
+    </Resource>
+</tomee>

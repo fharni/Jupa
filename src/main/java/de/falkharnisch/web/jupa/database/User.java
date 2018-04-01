@@ -13,9 +13,15 @@ public class User implements BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(nullable = false)
     private String username;
+
     private String password;
+
+    @Column(nullable = false)
     private String forename;
+
+    @Column(nullable = false)
     private String surname;
 
     @OneToOne
@@ -28,6 +34,14 @@ public class User implements BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
     private Set<Role> roles;
 
+    public User() {
+    }
+
+    public User(String username, String forename, String surname) {
+        this.username = username;
+        this.forename = forename;
+        this.surname = surname;
+    }
     @Override
     public Integer getId() {
         return id;
