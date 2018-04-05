@@ -10,12 +10,13 @@ import java.util.Set;
 public class User implements BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
     private String username;
 
+    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
@@ -37,8 +38,9 @@ public class User implements BaseEntity {
     public User() {
     }
 
-    public User(String username, String forename, String surname) {
+    public User(String username, String password, String forename, String surname) {
         this.username = username;
+        this.password = password;
         this.forename = forename;
         this.surname = surname;
     }
