@@ -10,16 +10,16 @@
 <ui:composition>
     <h:form id="headerForm">
         <b:navBar brand="Ju-Jutsu Passverwaltung" brandHref="#" fixed="top" inverse="true">
-            <b:navbarLinks>
-                <b:navLink value="Startseite" outcome="home"
+            <b:navbarLinks id="menu-links">
+                <b:navLink value="Startseite" outcome="home" id="home"
                            rendered="#{accessBean.loggedIn}"/>
-                <b:navLink value="Mein JJ Pass" outcome="passport"
+                <b:navLink value="Mein JJ Pass" outcome="passport" id="passport"
                            rendered="#{accessBean.loggedIn}"/>
-                <b:navLink value="Mein Verein" outcome="myclub"
+                <b:navLink value="Mein Verein" outcome="myclub" id="myclub"
                            rendered="#{menuAccessBean.showMenuMyClub}"/>
-                <b:navLink value="Lehrgänge" outcome="courses"
+                <b:navLink value="Lehrgänge" outcome="courses" id="courses"
                            rendered="#{menuAccessBean.showMenuCourses}"/>
-                <b:navCommandLink value="Abmelden" action="#{accessBean.logout}"
+                <b:navCommandLink value="Abmelden" action="#{accessBean.logout}" id="logout"
                                   rendered="#{accessBean.loggedIn}"/>
             </b:navbarLinks>
         </b:navBar>

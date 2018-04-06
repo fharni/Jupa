@@ -16,10 +16,12 @@ import java.io.File;
 import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
+import static org.testng.AssertJUnit.assertEquals;
 
 public class UserServiceTest extends Arquillian {
 
     private static final String WEBAPP_SRC = "src/main/webapp";
+
     @Inject
     private UserService userService;
 
@@ -40,16 +42,15 @@ public class UserServiceTest extends Arquillian {
     public void testSelectAll() {
         List<User> users = userService.getUserByNamepart("");
         assertNotNull(users);
-//        assertEquals("Falsche Anzahl an Benutzern", 1, users.size());
+        assertEquals("Falsche Anzahl an Benutzern", 1, users.size());
     }
 
-    @Test
+    @Test(dependsOnMethods = "testSelectAll")
     @Transactional
     public void testInsert() {
         User user = new User("1234", "TestPw", "Michael", "Schneider");
         userService.persist(user);
-//        List<User> users = userService.getUserByNamepart("");
-//        assertEquals("Falsche Anzahl an Benutzern", 3, users.size());
+        List<User> users = userService.getUserByNamepart("");
+        assertEquals("Falsche Anzahl an Benutzern", 2, users.size());
     }
-
 }

@@ -2,7 +2,7 @@ package de.falkharnisch.web.jupa.test;
 
 import de.falkharnisch.web.jupa.page.LoginPage;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.graphene.page.InitialPage;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.Filters;
@@ -13,17 +13,14 @@ import org.jboss.shrinkwrap.api.importer.ExplodedImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.jboss.shrinkwrap.resolver.api.maven.PomEquippedResolveStage;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
 import java.io.File;
 
+@RunAsClient
 public class LoginTest extends Arquillian {
 
     private static final String WEBAPP_SRC = "src/main/webapp";
-
-    @Drone
-    private WebDriver driver;
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
@@ -42,9 +39,15 @@ public class LoginTest extends Arquillian {
                 .addAsWebInfResource(new File(WEBAPP_SRC, "WEB-INF/faces-config.xml"));
     }
 
+//    @Page
+//    private LoginPage loginPage;
+
+//    @Page
+//    private HomePage homePage;
+
     @Test(dataProvider = Arquillian.ARQUILLIAN_DATA_PROVIDER)
+//    @Test()
     public void should_login_successfully(@InitialPage LoginPage loginPage) {
         loginPage.login("0502001000015", "falk");
-        loginPage.checkLogin();
     }
 }
