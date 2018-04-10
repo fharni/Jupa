@@ -2,7 +2,9 @@ package de.falkharnisch.web.jupa.beans;
 
 
 import de.falkharnisch.web.jupa.database.User;
+import de.falkharnisch.web.jupa.database.UserGrading;
 import de.falkharnisch.web.jupa.services.ConfigurationService;
+import de.falkharnisch.web.jupa.services.GradingService;
 import de.falkharnisch.web.jupa.services.UserService;
 import de.falkharnisch.web.jupa.util.Util;
 import org.primefaces.model.DefaultStreamedContent;
@@ -20,6 +22,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @ManagedBean
 @SessionScoped
@@ -32,17 +35,28 @@ public class UserBean {
     private UserService userService;
 
     @Inject
+    private GradingService gradingService;
+
+    @Inject
     private ConfigurationService configurationService;
 
     @Inject
     private ServletContext context;
 
     private User user;
+    private List<UserGrading> gradings;
 
     @PostConstruct
     private void initUser() {
         String username = Util.getUserName();
         user = userService.getUserByUsername(username);
+        gradings = gradingService.getGradingsByUser(user);
+        gradings.sort((o1, o2) -> {
+            if (o1.getGrading().getDiscipline().equals(o2.getGrading().getDiscipline())) {
+                return o2.getGrading().getSortOrder().compareTo(o1.getGrading().getSortOrder());
+            }
+            return o1.getGrading().getDiscipline().getId().compareTo(o2.getGrading().getDiscipline().getId());
+        });
     }
 
     public String getName() {
@@ -65,7 +79,7 @@ public class UserBean {
         return user.getClub().getDistrict().getFederation().getName();
     }
 
-    public static int getImageWidth() {
+    public int getImageWidth() {
         return IMAGE_WIDTH;
     }
 
@@ -100,7 +114,11 @@ public class UserBean {
     }
 
     public boolean isGrading() {
-        return false;
+        return !gradings.isEmpty();
+    }
+
+    public List<UserGrading> getGradings() {
+        return gradings;
     }
 
     public boolean isCourses() {

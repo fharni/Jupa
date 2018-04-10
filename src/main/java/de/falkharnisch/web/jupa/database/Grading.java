@@ -9,9 +9,11 @@ public class Grading implements BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(nullable = false)
     private String name;
 
-    private int sortOrder;
+    @Column(nullable = false)
+    private Integer sortOrder;
 
     @OneToOne
     private Discipline discipline;
@@ -19,5 +21,17 @@ public class Grading implements BaseEntity {
     @Override
     public Integer getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Discipline getDiscipline() {
+        return discipline;
+    }
+
+    public Integer getSortOrder() {
+        return sortOrder;
     }
 }

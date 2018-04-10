@@ -5,7 +5,8 @@
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:b="http://bootsfaces.net/ui"
-        xmlns:p="http://primefaces.org/ui">
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="/WEB-INF/templates/commonLayout.xhtml">
     <ui:define name="content">
         <b:panel title="Mein Ju-Jutsu Pass" col-sm="6">
@@ -47,9 +48,14 @@
             </b:dataTable>
         </b:panel>
         <b:panel title="Graduierungen" col-sm="4" rendered="#{userBean.grading}">
-            <b:dataTable searching="false" paginated="false" info="false">
-                <b:dataTableColumn label="Graduierung"/>
-                <b:dataTableColumn label="Datum"/>
+            <b:dataTable searching="false" paginated="false" info="false"
+                         value="#{userBean.gradings}" var="grading">
+                <b:dataTableColumn label="Graduierung" value="#{grading.grading.name}"/>
+                <b:dataTableColumn label="Datum">
+                    <h:outputText value="#{grading.date}">
+                        <f:convertDateTime pattern="dd-MM-yyyy"/>
+                    </h:outputText>
+                </b:dataTableColumn>
             </b:dataTable>
         </b:panel>
     </ui:define>

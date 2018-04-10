@@ -12,6 +12,9 @@ public class UserGrading implements BaseEntity {
     private Integer id;
 
     @OneToOne
+    private User user;
+
+    @OneToOne
     private Grading grading;
 
     private Date date;
@@ -19,5 +22,13 @@ public class UserGrading implements BaseEntity {
     @Override
     public Integer getId() {
         return id;
+    }
+
+    public Grading getGrading() {
+        return grading;
+    }
+
+    public Date getDate() {
+        return date;
     }
 }
