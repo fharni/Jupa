@@ -17,7 +17,7 @@ import java.util.List;
 @ApplicationScoped
 public class UserService extends BaseService<User> {
 
-    public User getUserById(@NotNull String id) {
+    public User getUserById(@NotNull Integer id) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);
@@ -38,7 +38,7 @@ public class UserService extends BaseService<User> {
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);
         query.where(builder.like(builder.upper(root.get(User_.surname)),
-                "%" + namePart.toUpperCase() + "%"));
+                namePart.toUpperCase() + "%"));
         return em.createQuery(query).getResultList();
     }
 
@@ -58,13 +58,11 @@ public class UserService extends BaseService<User> {
         }
     }
 
-    public List<User> getUserByIdPart(String idpart) {
+    public List<User> getUserByUsernamePart(String idpart) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);
         query.where(builder.like(root.get(User_.username), idpart + "%"));
         return em.createQuery(query).getResultList();
     }
-
-
 }

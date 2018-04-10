@@ -18,7 +18,7 @@ import org.testng.annotations.Test;
 import java.io.File;
 
 @RunAsClient
-public class LoginTest extends Arquillian {
+public class LoginIT extends Arquillian {
 
     private static final String WEBAPP_SRC = "src/main/webapp";
 

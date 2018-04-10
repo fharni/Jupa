@@ -16,7 +16,7 @@ import java.io.File;
 import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
-import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.*;
 
 public class UserServiceTest extends Arquillian {
 
@@ -42,15 +42,53 @@ public class UserServiceTest extends Arquillian {
     public void testSelectAll() {
         List<User> users = userService.getUserByNamepart("");
         assertNotNull(users);
-        assertEquals("Falsche Anzahl an Benutzern", 1, users.size());
+        assertEquals("Falsche Anzahl an Benutzern", 11, users.size());
     }
 
     @Test(dependsOnMethods = "testSelectAll")
     @Transactional
     public void testInsert() {
+        List<User> users = userService.getUserByNamepart("");
+        int countBefore = users.size();
+
         User user = new User("1234", "TestPw", "Michael", "Schneider");
         userService.persist(user);
-        List<User> users = userService.getUserByNamepart("");
-        assertEquals("Falsche Anzahl an Benutzern", 2, users.size());
+
+        users = userService.getUserByNamepart("");
+        int countAfter = users.size();
+
+        assertEquals("Falsche Anzahl an Benutzern", countBefore+1, countAfter);
+    }
+
+    @Test
+    public void testSelectById(){
+        User user = userService.getUserById(4);
+        assertEquals("Referent", user.getForename());
+        assertEquals("desBezirkes", user.getSurname());
+    }
+
+    @Test
+    public void testSelectByUsername(){
+        User user = userService.getUserByUsername("0504001000019");
+        assertEquals(user.getForename(), "Chefin");
+        assertEquals(user.getSurname(), "desVereins");
+    }
+
+    @Test
+    public void testSelectByUsernamePart(){
+        List<User> users = userService.getUserByUsernamePart("0502001");
+        assertEquals("Falsche Anzahl an Benutzern", 8, users.size());
+    }
+
+    @Test
+    public void testLogin(){
+        boolean login = userService.login("0503001000012", "test");
+        assertTrue("Sollte erfolgreich angemeldet werden", login);
+
+        login = userService.login("0503001000012", "test12");
+        assertFalse("Sollte nicht angemeldet werden", login);
+
+        login = userService.login("0503001000013", "test");
+        assertFalse("Sollte nicht angemeldet werden", login);
     }
 }

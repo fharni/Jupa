@@ -10,6 +10,7 @@ public class Role implements BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(nullable = false)
     private String role;
 
     @OneToMany(cascade = CascadeType.ALL)

@@ -24,7 +24,7 @@ public class UserIdConverter implements Converter {
     public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
         if (value != null && value.trim().length() > 0) {
             try {
-                return userService.getUserById(value);
+                return userService.getUserById(Integer.parseInt(value));
             } catch (NoResultException e) {
                 logger.log(Level.INFO, "Benutzer nicht gefunden", e);
             }

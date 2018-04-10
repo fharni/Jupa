@@ -21,6 +21,7 @@
           <element id="library" level="project" name="Maven: org.primefaces:primefaces:6.1" />
           <element id="library" level="project" name="Maven: net.sf.barcode4j:barcode4j-light:2.1" />
           <element id="library" level="project" name="Maven: net.bootsfaces:bootsfaces:1.2.0" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -102,7 +102,7 @@ public class CourseBean {
     }
 
     public List<User> autoCompleteUser(String query) {
-        return userService.getUserByIdPart(query);
+        return userService.getUserByUsernamePart(query);
     }
 
     public void onDateSelect(SelectEvent event) {

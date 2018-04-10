@@ -13,7 +13,7 @@ import javax.faces.validator.ValidatorException;
 public class ClubValidator implements Validator {
 
     @Override
-    public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+    public void validate(FacesContext context, UIComponent component, Object value) {
         if (!(value instanceof Club)) {
             FacesMessage msg = new FacesMessage("Verein existiert nicht.", "Diesr Verein existiert nicht.");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
