@@ -15,6 +15,10 @@ public class MenuHeader {
     @FindBy(id = "headerForm:logout")
     private WebElement logout;
 
+    public void goToPassport() {
+    	Graphene.guardHttp(passport).click();
+    }
+
     public void logout() {
         Graphene.guardHttp(logout).click();
     }

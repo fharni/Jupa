@@ -9,37 +9,37 @@
         xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="/WEB-INF/templates/commonLayout.xhtml">
     <ui:define name="content">
-        <b:panel title="Mein Ju-Jutsu Pass" col-sm="6">
+        <b:panel id="passPanel" title="Mein Ju-Jutsu Pass" col-sm="6">
             <b:panelGrid colSpans="3,5,4">
                 <p:graphicImage value="#{userBean.image}" height="#{userBean.getImageHeight()}"
                                 width="#{userBean.getImageWidth()}"/>
                 <b:panelGrid columns="2" colSpans="3,9">
 
                     <h:outputText value="Name:"/>
-                    <h:outputText value="#{userBean.name}"/>
+                    <h:outputText id="name" value="#{userBean.name}"/>
 
                     <h:outputText value="PassID:"/>
-                    <h:outputText value="#{userBean.username}"/>
+                    <h:outputText id="username" value="#{userBean.username}"/>
 
                     <h:outputText value="Verein:"/>
-                    <h:outputText value="#{userBean.clubName}"/>
+                    <h:outputText id="clubName" value="#{userBean.clubName}"/>
 
                     <h:outputText value="Bezirk:"/>
-                    <h:outputText value="#{userBean.districtName}"/>
+                    <h:outputText id="districtName" value="#{userBean.districtName}"/>
 
                     <h:outputText value="Verband:"/>
-                    <h:outputText value="#{userBean.federationName}"/>
+                    <h:outputText id="federationName" value="#{userBean.federationName}"/>
                 </b:panelGrid>
                 <p:barcode type="ean13" value="#{userBean.username}" width="150"/>
             </b:panelGrid>
         </b:panel>
-        <b:panel title="Lizenzen" col-sm="6" rendered="#{userBean.licenses}">
+        <b:panel id="licensesTable" title="Lizenzen" col-sm="6" rendered="#{userBean.licenses}">
             <b:dataTable searching="false" paginated="false" info="false">
                 <b:dataTableColumn label="Name"/>
                 <b:dataTableColumn label="Gültig bis"/>
             </b:dataTable>
         </b:panel>
-        <b:panel title="Lehrgänge" col-sm="8" rendered="#{userBean.courses}">
+        <b:panel id="courseTable" title="Lehrgänge" col-sm="8" rendered="#{userBean.courses}">
             <b:dataTable searching="false" paginated="false" info="false">
                 <b:dataTableColumn label="Datum" order="desc"/>
                 <b:dataTableColumn label="Name"/>
@@ -47,7 +47,7 @@
                 <b:dataTableColumn label="Ort"/>
             </b:dataTable>
         </b:panel>
-        <b:panel title="Graduierungen" col-sm="4" rendered="#{userBean.grading}">
+        <b:panel id="gradingTable" title="Graduierungen" col-sm="4" rendered="#{userBean.grading}">
             <b:dataTable searching="false" paginated="false" info="false"
                          value="#{userBean.gradings}" var="grading">
                 <b:dataTableColumn label="Graduierung" value="#{grading.grading.name}"/>
