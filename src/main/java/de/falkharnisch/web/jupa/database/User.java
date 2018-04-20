@@ -1,7 +1,17 @@
 package de.falkharnisch.web.jupa.database;
 
-import javax.persistence.*;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 /**
  * Entity class for holding the user object.
@@ -28,11 +38,12 @@ public class User implements BaseEntity {
     @OneToOne
     private Club club;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "USER_ROLE",
             joinColumns = @JoinColumn(name = "USER_ID"),
-            inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
+            )
     private Set<Role> roles;
 
     public User() {
