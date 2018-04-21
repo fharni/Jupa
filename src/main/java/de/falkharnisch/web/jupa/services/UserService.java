@@ -1,19 +1,24 @@
 package de.falkharnisch.web.jupa.services;
 
+import de.falkharnisch.web.jupa.database.Club;
 import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.database.User_;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.PersistenceException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
  * Service class for handling with the user object.
  */
+@Transactional
 @ApplicationScoped
 public class UserService extends BaseService<User> {
 
@@ -44,15 +49,13 @@ public class UserService extends BaseService<User> {
 
     public boolean login(String username, String password) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
-        CriteriaQuery<User> query = builder.createQuery(User.class);
+        CriteriaQuery<String> query = builder.createQuery(String.class);
         Root<User> root = query.from(User.class);
-        query.where(builder.and(
-                builder.equal(root.get(User_.username), username),
-                builder.equal(root.get(User_.password), password)
-        ));
+        query.select(root.get(User_.password));
+        query.where(builder.equal(root.get(User_.username), username));
         try {
-            em.createQuery(query).getSingleResult();
-            return true;
+            String passwordHash = em.createQuery(query).getSingleResult();
+            return BCrypt.checkpw(password, passwordHash);
         } catch (PersistenceException e) {
             return false;
         }
@@ -64,5 +67,20 @@ public class UserService extends BaseService<User> {
         Root<User> root = query.from(User.class);
         query.where(builder.like(root.get(User_.username), idpart + "%"));
         return em.createQuery(query).getResultList();
+    }
+
+    public String getMaxIdForClub(Club club) {
+        // 0502001%
+        DecimalFormat format = new DecimalFormat("0000000");
+        int id=club.getDisplayId()
+                +club.getDistrict().getDisplayId()*1000
+                +club.getDistrict().getFederation().getDisplayId()*100000;
+
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<String> query = builder.createQuery(String.class);
+        Root<User> root = query.from(User.class);
+        query.select(builder.greatest(root.get(User_.username)));
+        query.where(builder.like(root.get(User_.username), format.format(id) + "%"));
+        return em.createQuery(query).getSingleResult();
     }
 }

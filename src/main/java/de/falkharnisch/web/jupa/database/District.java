@@ -26,6 +26,10 @@ public class District implements BaseEntity {
         return name;
     }
 
+    public int getDisplayId() {
+        return displayId;
+    }
+
     public Federation getFederation() {
         return federation;
     }

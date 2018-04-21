@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+        xmlns:b="http://bootsfaces.net/ui"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition>
+    <h2>Neues Mitglied</h2>
+    <b:panelGrid colSpans="2,10">
+        <p:outputLabel value="Vorname:" for="forename"/>
+        <p:inputText id="forename" value="#{userEditBean.selectedUser.forename}"
+                     required="true">
+        </p:inputText>
+        <p:outputLabel value="Nachname:" for="surname"/>
+        <p:inputText id="surname" value="#{userEditBean.selectedUser.surname}"
+                     required="true">
+        </p:inputText>
+
+        <p:outputLabel value="E-Mail:" for="email"/>
+        <p:inputText id="email" value="#{userEditBean.selectedUser.email}"
+                     required="true">
+        </p:inputText>
+
+        <b:commandButton value="Mitglied anlegen" action="#{userEditBean.saveMember}"
+                         update="contentForm" look="primary"/>
+        <b:commandButton value="Abbrechen" action="#{userEditBean.abort}"
+                         update="contentForm" immediate="true"/>
+    </b:panelGrid>
+</ui:composition>
+</html>

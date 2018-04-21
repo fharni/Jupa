@@ -3,21 +3,19 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html
         xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:b="http://bootsfaces.net/ui"
         xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="/WEB-INF/templates/commonLayout.xhtml">
     <ui:define name="content">
-        <b:panel title="Mein Verein" col-sm="12">
+        <h:form id="contentForm">
+            <h1>Mein Verein</h1>
             <h:outputLabel value="#{clubBean.clubName}"/>
-        </b:panel>
-        <b:panel title="Mitglieder" col-sm="12">
-            <b:dataTable value="#{clubBean.clubMembers}" var="member"
-                         paginated="false" searching="false" info="false">
-                <b:dataTableColumn label="Name" value="#{member.surname}"/>
-                <b:dataTableColumn label="Vorname" value="#{member.forename}"/>
-                <b:dataTableColumn label="ID" value="#{member.username}"/>
-            </b:dataTable>
-        </b:panel>
+            <h:panelGroup id="createMemberPanel" rendered="#{userEditBean.showCreateMember}">
+                <ui:include src="createMember.xhtml"/>
+            </h:panelGroup>
+            <h:panelGroup id="membersPanel" rendered="#{!userEditBean.showCreateMember}">
+                <ui:include src="clubMembers.xhtml"/>
+            </h:panelGroup>
+        </h:form>
     </ui:define>
 </ui:composition>
 </html>

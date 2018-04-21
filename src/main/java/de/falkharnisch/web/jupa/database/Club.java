@@ -26,6 +26,10 @@ public class Club implements BaseEntity {
         return name;
     }
 
+    public int getDisplayId() {
+        return displayId;
+    }
+
     public District getDistrict() {
         return district;
     }

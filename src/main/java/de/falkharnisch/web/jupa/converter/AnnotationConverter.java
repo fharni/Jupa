@@ -2,6 +2,7 @@ package de.falkharnisch.web.jupa.converter;
 
 import de.falkharnisch.web.jupa.database.Annotation;
 import de.falkharnisch.web.jupa.services.CourseService;
+import org.slf4j.Logger;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -9,8 +10,6 @@ import javax.faces.convert.Converter;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.NoResultException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Named
 public class AnnotationConverter implements Converter {
@@ -26,7 +25,7 @@ public class AnnotationConverter implements Converter {
             try {
                 return courseService.getAnnotationByName(value);
             } catch (NoResultException e) {
-                logger.log(Level.INFO, "Vermerk nicht gefunden", e);
+                logger.info("Vermerk %s nicht gefunden", value, e);
             }
         }
         return null;

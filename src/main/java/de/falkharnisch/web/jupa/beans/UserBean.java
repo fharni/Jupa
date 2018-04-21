@@ -128,5 +128,4 @@ public class UserBean {
     public boolean isLicenses() {
         return false;
     }
-
 }

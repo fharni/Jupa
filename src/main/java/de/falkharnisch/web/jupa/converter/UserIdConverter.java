@@ -2,6 +2,7 @@ package de.falkharnisch.web.jupa.converter;
 
 import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.services.UserService;
+import org.slf4j.Logger;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -9,8 +10,6 @@ import javax.faces.convert.Converter;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.NoResultException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Named
 public class UserIdConverter implements Converter {
@@ -26,7 +25,7 @@ public class UserIdConverter implements Converter {
             try {
                 return userService.getUserById(Integer.parseInt(value));
             } catch (NoResultException e) {
-                logger.log(Level.INFO, "Benutzer nicht gefunden", e);
+                logger.info("Benutzer %s nicht gefunden", value, e);
             }
         }
         return null;

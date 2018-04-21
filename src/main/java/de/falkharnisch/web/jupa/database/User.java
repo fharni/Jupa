@@ -1,17 +1,7 @@
 package de.falkharnisch.web.jupa.database;
 
+import javax.persistence.*;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 
 /**
  * Entity class for holding the user object.
@@ -34,6 +24,9 @@ public class User implements BaseEntity {
 
     @Column(nullable = false)
     private String surname;
+
+    @Column
+    private String email;
 
     @OneToOne
     private Club club;
@@ -96,8 +89,20 @@ public class User implements BaseEntity {
         this.surname = surname;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Club getClub() {
         return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
     }
 
     public Set<Role> getRoles() {

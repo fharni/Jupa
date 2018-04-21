@@ -27,6 +27,10 @@ public class Federation implements BaseEntity {
         return name;
     }
 
+    public int getDisplayId() {
+        return displayId;
+    }
+
     @Override
     public String toString() {
         return name + " (" + displayId + ")";
