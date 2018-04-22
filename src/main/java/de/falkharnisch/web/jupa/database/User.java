@@ -28,15 +28,16 @@ public class User implements BaseEntity {
     @Column
     private String email;
 
-    @OneToOne
-    private Club club;
+    @OneToMany
+    @JoinColumn(name = "USER_ID")
+    private Set<Membership> memberships;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "USER_ROLE",
-            joinColumns = @JoinColumn(name = "USER_ID"),
-            inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
-            )
+            joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
+    )
     private Set<Role> roles;
 
     public User() {
@@ -48,6 +49,7 @@ public class User implements BaseEntity {
         this.forename = forename;
         this.surname = surname;
     }
+
     @Override
     public Integer getId() {
         return id;
@@ -98,11 +100,16 @@ public class User implements BaseEntity {
     }
 
     public Club getClub() {
-        return club;
+        for (Membership m : memberships) {
+            if (m.getMainClub()) {
+                return m.getClub();
+            }
+        }
+        return new Club();
     }
 
-    public void setClub(Club club) {
-        this.club = club;
+    public Set<Membership> getMemberships() {
+        return memberships;
     }
 
     public Set<Role> getRoles() {

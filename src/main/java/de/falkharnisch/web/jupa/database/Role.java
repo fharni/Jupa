@@ -13,11 +13,12 @@ public class Role implements BaseEntity {
     @Column(nullable = false)
     private String role;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "ROLE_FUNCTION",
-            joinColumns = @JoinColumn(name = "ROLE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "FUNCTION_ID"))
+            joinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "FUNCTION_ID", referencedColumnName = "ID")
+    )
     private Set<Function> functions;
 
     public Integer getId() {

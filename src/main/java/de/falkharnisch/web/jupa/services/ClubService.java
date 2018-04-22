@@ -1,18 +1,18 @@
 package de.falkharnisch.web.jupa.services;
 
 
-import de.falkharnisch.web.jupa.database.Club;
-import de.falkharnisch.web.jupa.database.Club_;
-import de.falkharnisch.web.jupa.database.User;
-import de.falkharnisch.web.jupa.database.User_;
+import de.falkharnisch.web.jupa.database.*;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
+@Transactional
 @ApplicationScoped
 public class ClubService extends BaseService<Club> {
 
@@ -28,8 +28,12 @@ public class ClubService extends BaseService<Club> {
     public List<User> getUsersForClub(Club club) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
-        Root<User> root = query.from(User.class);
-        query.where(builder.equal(root.get(User_.club), club));
+        Root<Membership> root = query.from(Membership.class);
+        query.select(root.get(Membership_.user));
+        query.where(builder.and(
+                builder.equal(root.get(Membership_.club), club)),
+                builder.isNull(root.<Date>get(Membership_.endDate))
+        );
         return em.createQuery(query).getResultList();
     }
 

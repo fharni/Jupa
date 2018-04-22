@@ -1,5 +1,6 @@
 package de.falkharnisch.web.jupa.beans;
 
+import de.falkharnisch.web.jupa.database.Membership;
 import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.services.UserService;
 import de.falkharnisch.web.jupa.util.RandomString;
@@ -12,6 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.text.DecimalFormat;
+import java.util.Date;
 
 /**
  * Managed bean for manipulating other user data.
@@ -63,14 +65,19 @@ public class UserEditBean {
         if (selectedUser.getId() == null) {
             String userId = getNextUserId();
             selectedUser.setUsername(userId);
-            selectedUser.setClub(user.getClub());
 
             String password = randomString.nextString();
-
             selectedUser.setPassword(generateHashedPassword(password));
-            mailPasswordToUser(password);
 
             userService.persist(selectedUser);
+
+            Membership membership = new Membership();
+            membership.setUser(selectedUser);
+            membership.setClub(user.getClub());
+            membership.setBeginDate(new Date());
+            userService.persistOther(membership);
+
+            mailPasswordToUser(password);
         } else {
             userService.merge(selectedUser);
         }
@@ -95,6 +102,6 @@ public class UserEditBean {
     }
 
     private void mailPasswordToUser(String password){
-
+        // TODO Mail versenden
     }
 }

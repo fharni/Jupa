@@ -21,7 +21,7 @@ abstract class BaseService<T extends BaseEntity> implements Serializable {
         return em.merge(entity);
     }
 
-    protected void persistOther(BaseEntity entity) {
+    public void persistOther(BaseEntity entity) {
         em.persist(entity);
     }
 }
