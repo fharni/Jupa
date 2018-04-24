@@ -22,6 +22,8 @@ import java.util.Date;
 @SessionScoped
 public class UserEditBean {
 
+    private static final int CLUB_PREFIX_END_INDEX = 7;
+    private static final int USERID_WIFHTOUT_CHECKSUM_LENGTH = 12;
     private RandomString randomString = new RandomString();
 
     @Inject
@@ -71,10 +73,7 @@ public class UserEditBean {
 
             userService.persist(selectedUser);
 
-            Membership membership = new Membership();
-            membership.setUser(selectedUser);
-            membership.setClub(user.getClub());
-            membership.setBeginDate(new Date());
+            Membership membership = new Membership(selectedUser, user.getClub(), new Date());
             userService.persistOther(membership);
 
             mailPasswordToUser(password);
@@ -87,8 +86,8 @@ public class UserEditBean {
     private String getNextUserId() {
         String maxId = userService.getMaxIdForClub(user.getClub());
         // cut last check number
-        String prefix = maxId.substring(0, 7);
-        Integer nextId = Integer.parseInt(maxId.substring(7,12)) + 1;
+        String prefix = maxId.substring(0, CLUB_PREFIX_END_INDEX);
+        Integer nextId = Integer.parseInt(maxId.substring(CLUB_PREFIX_END_INDEX, USERID_WIFHTOUT_CHECKSUM_LENGTH)) + 1;
 
         DecimalFormat idFormat = new DecimalFormat("00000");
         String idWithoutCheckNumber = prefix + idFormat.format(nextId);
@@ -101,7 +100,7 @@ public class UserEditBean {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
-    private void mailPasswordToUser(String password){
+    private void mailPasswordToUser(String password) {
         // TODO Mail versenden
     }
 }

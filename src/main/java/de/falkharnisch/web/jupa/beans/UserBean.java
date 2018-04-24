@@ -67,16 +67,32 @@ public class UserBean {
         return user.getUsername();
     }
 
+    private boolean hasClub() {
+        return user.getClub() != null;
+    }
+
     public String getClubName() {
-        return user.getClub().getName();
+        if (hasClub()) {
+            return user.getClub().getName();
+        } else {
+            return "";
+        }
     }
 
     public String getDistrictName() {
-        return user.getClub().getDistrict().getName();
+        if (hasClub()) {
+            return user.getClub().getDistrict().getName();
+        } else {
+            return "";
+        }
     }
 
     public String getFederationName() {
-        return user.getClub().getDistrict().getFederation().getName();
+        if (hasClub()) {
+            return user.getClub().getDistrict().getFederation().getName();
+        } else {
+            return "";
+        }
     }
 
     public int getImageWidth() {

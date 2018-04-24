@@ -22,6 +22,9 @@ import java.util.List;
 @ApplicationScoped
 public class UserService extends BaseService<User> {
 
+    public static final int FEDERATION_MULTIPLIKATOR = 100000;
+    public static final int DISTRICT_MULTIPLIKATOR = 1000;
+
     public User getUserById(@NotNull Integer id) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
@@ -72,9 +75,9 @@ public class UserService extends BaseService<User> {
     public String getMaxIdForClub(Club club) {
         // 0502001%
         DecimalFormat format = new DecimalFormat("0000000");
-        int id=club.getDisplayId()
-                +club.getDistrict().getDisplayId()*1000
-                +club.getDistrict().getFederation().getDisplayId()*100000;
+        int id = club.getDisplayId()
+                + club.getDistrict().getDisplayId() * DISTRICT_MULTIPLIKATOR
+                + club.getDistrict().getFederation().getDisplayId() * FEDERATION_MULTIPLIKATOR;
 
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<String> query = builder.createQuery(String.class);

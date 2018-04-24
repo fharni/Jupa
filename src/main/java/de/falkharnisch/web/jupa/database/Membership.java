@@ -15,7 +15,7 @@ public class Membership implements BaseEntity {
     private User user;
 
     @OneToOne
-    @JoinColumn(name = "CLUB_UD")
+    @JoinColumn(name = "CLUB_ID")
     private Club club;
 
     @Temporal(TemporalType.DATE)
@@ -26,6 +26,15 @@ public class Membership implements BaseEntity {
 
     @Column(nullable = false)
     private Boolean mainClub = Boolean.TRUE;
+
+    public Membership() {
+    }
+
+    public Membership(User user, Club club, Date beginDate) {
+        this.user = user;
+        this.club = club;
+        this.beginDate = beginDate;
+    }
 
     @Override
     public Integer getId() {

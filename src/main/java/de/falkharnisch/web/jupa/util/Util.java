@@ -11,26 +11,34 @@ public class Util {
     }
 
     public static String calculateEan13(String input) {
+        if (input.length() < 11 || input.length() > 12) {
+            throw new IllegalArgumentException("Input must be a 11 or 12 long digit string.");
+        }
         if (input.length() == 11) {
             input = "0" + input;
         }
-        int evens = 0; //initialize evens variable
-        int odds = 0; //initialize odds variable
-        int checkSum; //initialize the checkSum
+        int evens = 0;
+        int odds = 0;
+        int checkSum;
         for (int i = 0; i < input.length(); i++) {
-            //check if number is odd or even
-            if (i % 2 == 0) { // check that the character at position "i" is divisible by 2 which means it's even
-                evens += Integer.parseInt(String.valueOf(input.charAt(i)));// then add it to the evens
+            char c = input.charAt(i);
+            if (Character.isDigit(c)) {
+                //check if number is odd or even
+                if (i % 2 == 0) {
+                    evens += Integer.parseInt(String.valueOf(c));
+                } else {
+                    odds += Integer.parseInt(String.valueOf(input.charAt(i)));
+                }
             } else {
-                odds += Integer.parseInt(String.valueOf(input.charAt(i))); // else add it to the odds
+                throw new IllegalArgumentException("Input must be a 11 or 12 long digit string.");
             }
         }
-        odds = odds * 3; //multiply odds by three
-        int total = odds + evens; //sum odds and evens
-        if (total % 10 == 0) { //if total is divisible by ten, special case
-            checkSum = 0;//checksum is zero
-        } else { //total is not divisible by ten
-            checkSum = 10 - (total % 10); //subtract the ones digit from 10 to find the checksum
+        odds = odds * 3;
+        int total = odds + evens;
+        if (total % 10 == 0) {
+            checkSum = 0;
+        } else {
+            checkSum = 10 - (total % 10);
         }
         return input + String.valueOf(checkSum);
     }
