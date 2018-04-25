@@ -1,7 +1,10 @@
 package de.falkharnisch.web.jupa.beans;
 
-import de.falkharnisch.web.jupa.database.Membership;
+import de.falkharnisch.web.jupa.database.Discipline;
+import de.falkharnisch.web.jupa.database.Grading;
 import de.falkharnisch.web.jupa.database.User;
+import de.falkharnisch.web.jupa.services.GradingService;
+import de.falkharnisch.web.jupa.services.MembershipService;
 import de.falkharnisch.web.jupa.services.UserService;
 import de.falkharnisch.web.jupa.util.RandomString;
 import de.falkharnisch.web.jupa.util.Util;
@@ -32,7 +35,17 @@ public class UserEditBean {
     @Inject
     private UserService userService;
 
+    @Inject
+    private MembershipService membershipService;
+
+    @Inject
+    private GradingService gradingService;
+
     private User selectedUser;
+    private Date selectedBeginDate;
+    private Discipline selectedDiscipline;
+    private Grading selectedGrading;
+    private Date selectedGradingDate;
 
     private User user;
 
@@ -50,6 +63,37 @@ public class UserEditBean {
         this.selectedUser = selectedUser;
     }
 
+    public Date getSelectedBeginDate() {
+        return selectedBeginDate;
+    }
+
+    public void setSelectedBeginDate(Date selectedBeginDate) {
+        this.selectedBeginDate = selectedBeginDate;
+    }
+
+    public Discipline getSelectedDiscipline() {
+        return selectedDiscipline;
+    }
+
+    public void setSelectedDiscipline(Discipline selectedDiscipline) {
+        this.selectedDiscipline = selectedDiscipline;
+    }
+
+    public Grading getSelectedGrading() {
+        return selectedGrading;
+    }
+
+    public void setSelectedGrading(Grading selectedGrading) {
+        this.selectedGrading = selectedGrading;
+    }
+
+    public Date getSelectedGradingDate() {
+        return selectedGradingDate;
+    }
+
+    public void setSelectedGradingDate(Date selectedGradingDate) {
+        this.selectedGradingDate = selectedGradingDate;
+    }
 
     public boolean isShowCreateMember() {
         return selectedUser != null;
@@ -72,11 +116,13 @@ public class UserEditBean {
             selectedUser.setPassword(generateHashedPassword(password));
 
             userService.persist(selectedUser);
-
-            Membership membership = new Membership(selectedUser, user.getClub(), new Date());
-            userService.persistOther(membership);
-
             mailPasswordToUser(password);
+
+            membershipService.beginMembership(selectedUser, user.getClub(), selectedBeginDate);
+
+            if (selectedGrading != null) {
+                gradingService.addGradingForUser(selectedUser, selectedGrading, selectedGradingDate);
+            }
         } else {
             userService.merge(selectedUser);
         }
@@ -102,5 +148,13 @@ public class UserEditBean {
 
     private void mailPasswordToUser(String password) {
         // TODO Mail versenden
+    }
+
+    public Object getDisciplines() {
+        return gradingService.getDisciplines();
+    }
+
+    public Object getGradings() {
+        return gradingService.getGradingsByDiscipline(selectedDiscipline);
     }
 }

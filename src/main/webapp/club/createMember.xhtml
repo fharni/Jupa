@@ -4,23 +4,46 @@
 <html
         xmlns:b="http://bootsfaces.net/ui"
         xmlns:p="http://primefaces.org/ui"
-        xmlns:ui="http://java.sun.com/jsf/facelets">
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition>
     <h2>Neues Mitglied</h2>
     <b:panelGrid colSpans="2,10">
         <p:outputLabel value="Vorname:" for="forename"/>
         <p:inputText id="forename" value="#{userEditBean.selectedUser.forename}"
-                     required="true">
-        </p:inputText>
+                     required="true"/>
         <p:outputLabel value="Nachname:" for="surname"/>
         <p:inputText id="surname" value="#{userEditBean.selectedUser.surname}"
-                     required="true">
-        </p:inputText>
+                     required="true"/>
 
         <p:outputLabel value="E-Mail:" for="email"/>
         <p:inputText id="email" value="#{userEditBean.selectedUser.email}"
-                     required="true">
-        </p:inputText>
+                     required="true"/>
+        <p:outputLabel value="Eintrittsdatum:" for="beginDate"/>
+        <p:calendar id="beginDate" value="#{userEditBean.selectedBeginDate}"
+                    required="true"/>
+    </b:panelGrid>
+    <h3>Eventuell bestehende höchste Graduierung</h3>
+    <b:panelGrid colSpans="2,10">
+        <p:outputLabel value="Disziplin:" for="discipline"/>
+        <p:selectOneMenu id="discipline" style="width: 200px"
+                         value="#{userEditBean.selectedDiscipline}" converter="#{disciplineConverter}">
+            <p:ajax update="grading"/>
+            <f:selectItem itemLabel="Bitte auswählen" noSelectionOption="true"/>
+            <f:selectItems value="#{userEditBean.disciplines}"
+                           var="discipline" itemLabel="#{discipline.name}" itemValue="#{discipline}"/>
+        </p:selectOneMenu>
+
+        <p:outputLabel value="Graduierung:" for="grading"/>
+        <p:selectOneMenu id="grading" style="width: 200px" converter="#{gradingConverter}"
+                         value="#{userEditBean.selectedGrading}">
+            <f:selectItem itemLabel="Bitte auswählen" noSelectionOption="true"/>
+            <f:selectItems value="#{userEditBean.gradings}"
+                           var="grading" itemLabel="#{grading.name}" itemValue="#{grading}"/>
+        </p:selectOneMenu>
+
+        <p:outputLabel value="Datum:" for="gradingDate"/>
+        <p:calendar id="gradingDate" value="#{userEditBean.selectedGradingDate}"/>
 
         <b:commandButton value="Mitglied anlegen" action="#{userEditBean.saveMember}"
                          update="contentForm" look="primary"/>

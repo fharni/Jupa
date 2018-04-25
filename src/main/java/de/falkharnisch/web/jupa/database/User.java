@@ -1,7 +1,5 @@
 package de.falkharnisch.web.jupa.database;
 
-import com.sun.istack.internal.Nullable;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -101,7 +99,6 @@ public class User implements BaseEntity {
         this.email = email;
     }
 
-    @Nullable
     public Club getClub() {
         for (Membership m : memberships) {
             if (m.getMainClub()) {

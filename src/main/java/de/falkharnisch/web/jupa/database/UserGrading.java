@@ -8,7 +8,7 @@ import java.util.Date;
 public class UserGrading implements BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @OneToOne
@@ -31,6 +31,10 @@ public class UserGrading implements BaseEntity {
 
     public Grading getGrading() {
         return grading;
+    }
+
+    public void setGrading(Grading grading) {
+        this.grading = grading;
     }
 
     public Date getDate() {

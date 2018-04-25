@@ -35,4 +35,9 @@ public class Discipline implements BaseEntity {
     public int hashCode() {
         return id.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

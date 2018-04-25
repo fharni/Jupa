@@ -20,4 +20,9 @@ public class Annotation implements BaseEntity {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
