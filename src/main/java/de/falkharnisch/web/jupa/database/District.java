@@ -12,8 +12,8 @@ public class District implements BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private int displayId;
+    @Column(nullable = false, length = 4, columnDefinition = "CHAR")
+    private String displayId;
 
     @OneToOne
     private Federation federation;
@@ -26,7 +26,7 @@ public class District implements BaseEntity {
         return name;
     }
 
-    public int getDisplayId() {
+    public String getDisplayId() {
         return displayId;
     }
 

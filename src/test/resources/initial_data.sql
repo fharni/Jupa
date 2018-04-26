@@ -72,11 +72,14 @@ INSERT INTO ANNOTATION (ID, NAME) VALUES (2, 'Referent');
 INSERT INTO ANNOTATION (ID, NAME) VALUES (3, 'Vorstand');
 
 INSERT INTO CONFIGURATION (ID, KEY, VALUE) VALUES (1, 'profile_pic.path', 'c:/jupa/profilepics/');
+INSERT INTO CONFIGURATION VALUES(1,'sendmail.enabled','true');
+INSERT INTO CONFIGURATION VALUES(2,'sendmail.newuser.subject','Herzlich willkommen beim DJJV!');
+INSERT INTO CONFIGURATION VALUES(3,'sendmail.newuser.body','Hallo %s,\ndu wurdest von deinem Vereinsvertreter als neues Mitglied im DJJV angelegt. Dadurch erhälst du Zugriff zu deinem Digitalem Mitgliedsausweises. Du kannst auf das Portal zugreifen, indem du auf <a href="https://www.djjv.de/jupa">JuPa</a> gehst.\n\nDeine Zugangsdaten lauten:\\n Benutzername: %s\n Passwort: %s\n\nViele Grüße\nDein DJJV');
 
-INSERT INTO CLUB (ID, NAME, DISTRICT_ID, DISPLAYID) VALUES (1, 'TV 1875 Paderborn e.V.', 6, 1);
-INSERT INTO CLUB (ID, NAME, DISTRICT_ID, DISPLAYID) VALUES (2, 'SG Erfstadt 1970 e.V.', 8, 1);
-INSERT INTO CLUB (ID, NAME, DISTRICT_ID, DISPLAYID) VALUES (3, 'TV "Jahn" Bad Driburg e.V.', 6, 2);
-INSERT INTO CLUB (ID, NAME, DISTRICT_ID, DISPLAYID) VALUES (4, 'TV Eichen 1888 e.V.', 7, 1);
+INSERT INTO CLUB (ID, NAME, DISTRICT_ID, DISPLAYID) VALUES (1, 'TV 1875 Paderborn e.V.', 6, '0502001');
+INSERT INTO CLUB (ID, NAME, DISTRICT_ID, DISPLAYID) VALUES (2, 'SG Erfstadt 1970 e.V.', 8, '0504001');
+INSERT INTO CLUB (ID, NAME, DISTRICT_ID, DISPLAYID) VALUES (3, 'TV "Jahn" Bad Driburg e.V.', 6, '0502002');
+INSERT INTO CLUB (ID, NAME, DISTRICT_ID, DISPLAYID) VALUES (4, 'TV Eichen 1888 e.V.', 7, '0503001');
 
 INSERT INTO USER (ID, USERNAME, PASSWORD, FORENAME, SURNAME) VALUES (1,  '0502001000015', '$2a$10$xXJyLb2V3OV9wucqMeoQc.U82OggalhkcNzBclrhX8tyhm6LXcZ7K', 'Schüler', 'Eins');
 INSERT INTO USER (ID, USERNAME, PASSWORD, FORENAME, SURNAME) VALUES (2,  '0504001000019', '$2a$10$xXJyLb2V3OV9wucqMeoQc.U82OggalhkcNzBclrhX8tyhm6LXcZ7K', 'Chefin', 'desVereins');

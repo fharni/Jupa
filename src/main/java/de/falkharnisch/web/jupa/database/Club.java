@@ -12,8 +12,8 @@ public class Club implements BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private int displayId;
+    @Column(nullable = false, length = 6, columnDefinition = "CHAR")
+    private String displayId;
 
     @OneToOne
     private District district;
@@ -26,7 +26,7 @@ public class Club implements BaseEntity {
         return name;
     }
 
-    public int getDisplayId() {
+    public String getDisplayId() {
         return displayId;
     }
 

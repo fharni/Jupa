@@ -12,7 +12,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
-import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -73,17 +72,11 @@ public class UserService extends BaseService<User> {
     }
 
     public String getMaxIdForClub(Club club) {
-        // 0502001%
-        DecimalFormat format = new DecimalFormat("0000000");
-        int id = club.getDisplayId()
-                + club.getDistrict().getDisplayId() * DISTRICT_MULTIPLIKATOR
-                + club.getDistrict().getFederation().getDisplayId() * FEDERATION_MULTIPLIKATOR;
-
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<String> query = builder.createQuery(String.class);
         Root<User> root = query.from(User.class);
         query.select(builder.greatest(root.get(User_.username)));
-        query.where(builder.like(root.get(User_.username), format.format(id) + "%"));
+        query.where(builder.like(root.get(User_.username), club.getDisplayId() + "%"));
         return em.createQuery(query).getSingleResult();
     }
 }
