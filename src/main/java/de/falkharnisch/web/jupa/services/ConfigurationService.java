@@ -32,4 +32,12 @@ public class ConfigurationService extends BaseService {
     public String getConfigurationValue(String key) {
         return configurationMap.get(key);
     }
+
+    public int getConfigurationIntValue(String key) {
+        return Integer.parseInt(configurationMap.get(key));
+    }
+
+    public boolean getConfigurationBooleanValue(String key) {
+        return Boolean.valueOf(configurationMap.get(key));
+    }
 }

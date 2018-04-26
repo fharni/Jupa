@@ -10,6 +10,16 @@ Dieses Tool soll alle Einträge des elektronischen Mitgliedsausweises verwalten.
     jdbcDriver = org.hsqldb.jdbcDriver
   </Resource>
 </tomee>
+
+<Resource id="tomee/mail/MailSession" type="javax.mail.Session">
+  mail.smtp.host=localhost
+  mail.smtp.port=2500
+  mail.smtp.starttls.enable=false
+  mail.transport.protocol=smtp
+  mail.smtp.auth=false
+  mail.smtp.user=
+  password=
+</Resource>
 ```
 Hier kann natürlich auch jede andere Datenquelle eingebunden werden, in der das JuPa Schema vorhanden ist. Zusätzlich sollte dann aber auch noch der JDBC Treiber im lib Ordner des TomEE liegen.
 

@@ -4,4 +4,14 @@
         jdbcUrl = jdbc:hsqldb:mem:.;encoding=UTF-8
         jdbcDriver = org.hsqldb.jdbcDriver
     </Resource>
+
+    <Resource id="tomee/mail/MailSession" type="javax.mail.Session">
+        mail.smtp.host=localhost
+        mail.smtp.port=2500
+        mail.smtp.starttls.enable=false
+        mail.transport.protocol=smtp
+        mail.smtp.auth=false
+        mail.smtp.user=
+        password=
+    </Resource>
 </tomee>
