@@ -20,7 +20,7 @@
           <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
           <element id="library" level="project" name="Maven: org.hibernate.common:hibernate-commons-annotations:5.0.1.Final" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-jpamodelgen:5.2.15.Final" />
-          <element id="library" level="project" name="Maven: org.primefaces:primefaces:6.1" />
+          <element id="library" level="project" name="Maven: org.primefaces:primefaces:6.2" />
           <element id="library" level="project" name="Maven: net.sf.barcode4j:barcode4j-light:2.1" />
           <element id="library" level="project" name="Maven: net.bootsfaces:bootsfaces:1.2.0" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />

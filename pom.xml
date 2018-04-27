@@ -12,6 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <hibernate.version>5.2.15.Final</hibernate.version>
+        <primefaces.version>6.2</primefaces.version>
 
         <version.org.jboss.arquillian>1.4.0.Final</version.org.jboss.arquillian>
         <version.org.jboss.arquillian.drone>2.5.1</version.org.jboss.arquillian.drone>
@@ -61,7 +62,7 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>6.1</version>
+            <version>${primefaces.version}</version>
         </dependency>
         <dependency>
             <groupId>net.sf.barcode4j</groupId>

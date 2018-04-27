@@ -6,14 +6,15 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:b="http://bootsfaces.net/ui"
         xmlns:p="http://primefaces.org/ui"
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
+>
 <ui:composition template="/WEB-INF/templates/commonLayout.xhtml">
     <ui:define name="content">
-        <b:panel id="passPanel" title="Mein Ju-Jutsu Pass" col-sm="6">
-            <b:panelGrid colSpans="3,5,4">
+        <b:panel id="passPanel" title="Mein Ju-Jutsu Pass"
+                 smallScreen="12" mediumScreen="9" largeScreen="7">
+            <b:panelGrid colSpans="3,5,4" size="sm">
                 <p:graphicImage value="#{userBean.image}" height="#{userBean.getImageHeight()}"
                                 width="#{userBean.getImageWidth()}"/>
-                <b:panelGrid columns="2" colSpans="3,9">
+                <b:panelGrid columns="2" colSpans="3,9" size="sm">
 
                     <h:outputText value="Name:"/>
                     <h:outputText id="name" value="#{userBean.name}"/>
@@ -47,16 +48,9 @@
                 <b:dataTableColumn label="Ort"/>
             </b:dataTable>
         </b:panel>
-        <b:panel id="gradingTable" title="Graduierungen" col-sm="4" rendered="#{userBean.grading}">
-            <b:dataTable searching="false" paginated="false" info="false"
-                         value="#{userBean.gradings}" var="grading">
-                <b:dataTableColumn label="Graduierung" value="#{grading.grading.name}"/>
-                <b:dataTableColumn label="Datum">
-                    <h:outputText value="#{grading.date}">
-                        <f:convertDateTime pattern="dd-MM-yyyy"/>
-                    </h:outputText>
-                </b:dataTableColumn>
-            </b:dataTable>
+        <b:panel id="gradingTable" title="Graduierungen" rendered="#{userBean.grading}"
+                 smallScreen="6" mediumScreen="5" largeScreen="4">
+            <ui:include src="gradings.xhtml"/>
         </b:panel>
     </ui:define>
 </ui:composition>

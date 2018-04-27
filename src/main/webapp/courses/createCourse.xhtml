@@ -6,16 +6,17 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition>
-    <b:panelGrid title="Neuer Lehrgang" colSpans="2,10">
+    <h2>Neuer Lehrgang</h2>
+    <b:panelGrid title="Neuer Lehrgang" colSpans="2,10" size="sm">
         <p:outputLabel value="Datum:" for="startdate"/>
         <p:calendar id="startdate" value="#{courseBean.selectedCourse.startDate}"
-                    pattern="dd-MM-yyyy HH:00" required="true">
+                    pattern="dd-MM-yyyy HH:00" locale="de" required="true">
             <p:ajax event="dateSelect" listener="#{courseBean.onDateSelect}" update="enddate"/>
         </p:calendar>
 
         <p:outputLabel value="Enddatum:" for="enddate"/>
         <p:calendar id="enddate" value="#{courseBean.selectedCourse.endDate}"
-                    pattern="dd-MM-yyyy HH:00" required="true"/>
+                    pattern="dd-MM-yyyy HH:00" locale="de" required="true"/>
 
         <p:outputLabel value="Thema:" for="topic"/>
         <p:inputText id="topic" value="#{courseBean.selectedCourse.topic}"/>

@@ -8,7 +8,7 @@
         xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition>
     <h2>Neues Mitglied</h2>
-    <b:panelGrid colSpans="2,10">
+    <b:panelGrid colSpans="2,10" size="sm">
         <p:outputLabel value="Vorname:" for="forename"/>
         <p:inputText id="forename" value="#{userEditBean.selectedUser.forename}"
                      required="true"/>
@@ -16,19 +16,19 @@
         <p:inputText id="surname" value="#{userEditBean.selectedUser.surname}"
                      required="true"/>
 
-        <p:outputLabel value="Geburtsdatum" for="birthday"/>
+        <p:outputLabel value="Geburtsdatum:" for="birthday"/>
         <p:calendar id="birthday" value="#{userEditBean.selectedUser.birthday}"
-                    required="true" navigator="true" />
+                    required="true" locale="de" navigator="true" />
 
         <p:outputLabel value="E-Mail:" for="email"/>
         <p:inputText id="email" value="#{userEditBean.selectedUser.email}"
                      required="true"/>
         <p:outputLabel value="Eintrittsdatum:" for="beginDate"/>
         <p:calendar id="beginDate" value="#{userEditBean.selectedBeginDate}"
-                    required="true" navigator="true"/>
+                    required="true" locale="de" navigator="true"/>
     </b:panelGrid>
     <h3>Eventuell bestehende höchste Graduierung</h3>
-    <b:panelGrid colSpans="2,10">
+    <b:panelGrid colSpans="2,10" size="sm">
         <p:outputLabel value="Disziplin:" for="discipline"/>
         <p:selectOneMenu id="discipline" style="width: 200px"
                          value="#{userEditBean.selectedDiscipline}" converter="#{disciplineConverter}">
@@ -47,7 +47,8 @@
         </p:selectOneMenu>
 
         <p:outputLabel value="Datum:" for="gradingDate"/>
-        <p:calendar id="gradingDate" value="#{userEditBean.selectedGradingDate}" navigator="true"/>
+        <p:calendar id="gradingDate" value="#{userEditBean.selectedGradingDate}"
+                    locale="de" navigator="true"/>
 
         <b:commandButton value="Mitglied anlegen" action="#{userEditBean.saveMember}"
                          update="contentForm" look="primary"/>

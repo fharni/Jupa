@@ -5,7 +5,8 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns:b="http://bootsfaces.net/ui" xmlns:p="http://primefaces.org/ui"
+        xmlns:b="http://bootsfaces.net/ui"
+        xmlns:p="http://primefaces.org/ui"
 >
 <ui:composition template="WEB-INF/templates/commonLayout.xhtml">
     <ui:define name="title">Anmeldung</ui:define>
@@ -13,12 +14,15 @@
     <ui:define name="content">
         <h:form id="loginForm">
             <b:messages/>
-            <b:panel title="Bitte melden Sie sich an" look="primary">
+            <b:panel title="Bitte melden Sie sich an" look="primary"
+                     smallScreen="10"
+                     mediumScreen="8"
+                     largeScreen="6">
                 <b:row>
-                    <b:column mediumScreen="2">
+                    <b:column smallScreen="3">
                         <h:outputText value="Benutzername:" for="username"/>
                     </b:column>
-                    <b:column mediumScreen="4">
+                    <b:column smallScreen="9">
                         <b:inputText id="username" placeholder="Benutzername" value="#{loginBean.uname}">
                             <f:facet name="prepend">
                                 <b:icon name="user"/>
@@ -27,10 +31,10 @@
                     </b:column>
                 </b:row>
                 <b:row>
-                    <b:column medium-screen="2">
+                    <b:column smallScreen="3">
                         <h:outputText value="Passwort:" for="password"/>
                     </b:column>
-                    <b:column medium-screen="4">
+                    <b:column smallScreen="9">
                         <b:inputSecret id="password" placeholder="Passwort" value="#{loginBean.password}">
                             <f:facet name="prepend">
                                 <b:iconAwesome name="key"/>
@@ -39,9 +43,13 @@
                     </b:column>
                 </b:row>
                 <b:row>
-                    <b:column span="2" offset="2">
-                        <p:commandButton id="loginButton" value="Anmelden" update="loginForm" ajax="true"
-                                         action="#{loginBean.loginProject}" style="width:100%"/>
+                    <b:column smallScreen="6">
+                        <p:commandButton id="loginButton" value="Anmelden" update="loginForm"
+                                         ajax="true" action="#{loginBean.loginProject}" style="width:100%"/>
+                    </b:column>
+                    <b:column smallScreen="6">
+                        <p:commandButton id="forgettPasswordButton" value="Passwort vergessen"
+                                         style="width: 100%"/>
                     </b:column>
                 </b:row>
             </b:panel>
