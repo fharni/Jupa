@@ -12,7 +12,7 @@ public class District implements BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, length = 4, columnDefinition = "CHAR")
+    @Column(nullable = false, length = 4, columnDefinition = "CHAR(4)")
     private String displayId;
 
     @OneToOne

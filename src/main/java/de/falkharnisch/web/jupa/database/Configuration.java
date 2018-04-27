@@ -12,7 +12,7 @@ public class Configuration implements BaseEntity {
     @Column(nullable = false)
     private String key;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1024)
     private String value;
 
     @Override

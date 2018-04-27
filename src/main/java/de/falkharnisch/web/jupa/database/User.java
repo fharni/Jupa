@@ -1,6 +1,7 @@
 package de.falkharnisch.web.jupa.database;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -25,8 +26,12 @@ public class User implements BaseEntity {
     @Column(nullable = false)
     private String surname;
 
-    @Column
+    @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date birthday;
 
     @OneToMany
     @JoinColumn(name = "USER_ID")
@@ -97,6 +102,14 @@ public class User implements BaseEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public Club getClub() {

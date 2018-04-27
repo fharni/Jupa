@@ -12,7 +12,7 @@ public class Club implements BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, length = 6, columnDefinition = "CHAR")
+    @Column(nullable = false, length = 7, columnDefinition = "CHAR(7)")
     private String displayId;
 
     @OneToOne

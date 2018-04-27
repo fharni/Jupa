@@ -16,12 +16,16 @@
         <p:inputText id="surname" value="#{userEditBean.selectedUser.surname}"
                      required="true"/>
 
+        <p:outputLabel value="Geburtsdatum" for="birthday"/>
+        <p:calendar id="birthday" value="#{userEditBean.selectedUser.birthday}"
+                    required="true" navigator="true" />
+
         <p:outputLabel value="E-Mail:" for="email"/>
         <p:inputText id="email" value="#{userEditBean.selectedUser.email}"
                      required="true"/>
         <p:outputLabel value="Eintrittsdatum:" for="beginDate"/>
         <p:calendar id="beginDate" value="#{userEditBean.selectedBeginDate}"
-                    required="true"/>
+                    required="true" navigator="true"/>
     </b:panelGrid>
     <h3>Eventuell bestehende höchste Graduierung</h3>
     <b:panelGrid colSpans="2,10">
@@ -43,7 +47,7 @@
         </p:selectOneMenu>
 
         <p:outputLabel value="Datum:" for="gradingDate"/>
-        <p:calendar id="gradingDate" value="#{userEditBean.selectedGradingDate}"/>
+        <p:calendar id="gradingDate" value="#{userEditBean.selectedGradingDate}" navigator="true"/>
 
         <b:commandButton value="Mitglied anlegen" action="#{userEditBean.saveMember}"
                          update="contentForm" look="primary"/>

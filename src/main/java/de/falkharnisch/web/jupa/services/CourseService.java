@@ -65,7 +65,7 @@ public class CourseService extends BaseService<Course> {
         return em.createQuery(query).getResultList();
     }
 
-    public void persistParticipant(BaseEntity entity) {
+    public void persistParticipant(CourseParticipant entity) {
         super.persistOther(entity);
     }
 }
