@@ -20,14 +20,13 @@ public class PassportPageIT extends AbstractArquillianTest {
 	private PassportPage passportPage;
 
 	@Test(dataProvider = Arquillian.ARQUILLIAN_DATA_PROVIDER)
-	public void testPassport(@InitialPage LoginPage loginPage) throws InterruptedException {
+	public void testPassport(@InitialPage LoginPage loginPage) {
 		loginPage.login("0502001000015", "test");
 
 		menuHeader.goToPassport();
 
 		assertEquals(passportPage.getUsername(), "0502001000015", "Username doesn't match");
-		// Wenn Encoding Problem gelöst ist die nachfolgende Zeile reaktivieren
-//		assertEquals(passportPage.getName(), "Schüler Eins", "Name doesn't match");
+		assertEquals(passportPage.getName(), "Schüler Eins", "Name doesn't match");
 		assertEquals(passportPage.getClubName(), "TV 1875 Paderborn e.V.", "Clubname doesn't match");
 		assertEquals(passportPage.getDistrictName(), "Bielefeld", "Districtname doesn't match");
 		assertEquals(passportPage.getFederationName(), "Nordrhein-Westfalen", "Federationname doesn't match");
