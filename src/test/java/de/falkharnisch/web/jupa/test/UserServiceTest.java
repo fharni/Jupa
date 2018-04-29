@@ -1,19 +1,19 @@
 package de.falkharnisch.web.jupa.test;
 
+import de.falkharnisch.web.jupa.database.User;
+import de.falkharnisch.web.jupa.services.UserService;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
+import org.testng.annotations.Test;
+
+import javax.inject.Inject;
+
+import java.time.LocalDate;
+import java.util.List;
+
 import static org.junit.Assert.assertNotNull;
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
-
-import java.util.List;
-
-import javax.inject.Inject;
-
-import org.jboss.arquillian.transaction.api.annotation.Transactional;
-import org.testng.annotations.Test;
-
-import de.falkharnisch.web.jupa.database.User;
-import de.falkharnisch.web.jupa.services.UserService;
 
 public class UserServiceTest extends AbstractArquillianTest {
 
@@ -33,7 +33,7 @@ public class UserServiceTest extends AbstractArquillianTest {
         List<User> users = userService.getUserByNamepart("");
         int countBefore = users.size();
 
-        User user = new User("1234", "TestPw", "Michael", "Schneider");
+        User user = new User("1234", "TestPw", "Michael", "Schneider", "michael@schneider.de", LocalDate.now());
         userService.persist(user);
 
         users = userService.getUserByNamepart("");

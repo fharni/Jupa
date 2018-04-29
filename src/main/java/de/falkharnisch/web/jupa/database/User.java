@@ -1,7 +1,17 @@
 package de.falkharnisch.web.jupa.database;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import java.time.LocalDate;
 import java.util.Set;
 
 /**
@@ -30,8 +40,7 @@ public class User implements BaseEntity {
     private String email;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date birthday;
+    private LocalDate birthday;
 
     @OneToMany
     @JoinColumn(name = "USER_ID")
@@ -48,11 +57,13 @@ public class User implements BaseEntity {
     public User() {
     }
 
-    public User(String username, String password, String forename, String surname) {
+    public User(String username, String password, String forename, String surname, String email, LocalDate birthday) {
         this.username = username;
         this.password = password;
         this.forename = forename;
         this.surname = surname;
+        this.email = email;
+        this.birthday = birthday;
     }
 
     @Override
@@ -104,11 +115,11 @@ public class User implements BaseEntity {
         this.email = email;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
