@@ -1,5 +1,5 @@
 # JuPa - Ju-Jutsu Passverwaltung
-Dieses Tool soll alle Einträge des elektronischen Mitgliedsausweises verwalten. Es ist entwickelt, um auf TomEE 7.0.3 zu laufen.
+Dieses Tool soll alle Einträge des elektronischen Mitgliedsausweises verwalten. Es ist entwickelt, um auf TomEE 7.0.4 zu laufen.
 
 ## tomee.xml
 ```

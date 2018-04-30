@@ -111,7 +111,7 @@ public class UserBean {
     public StreamedContent getImage() throws IOException {
         BufferedImage originalImage;
         File file = new File(
-                configurationService.getConfigurationValue("profile_pic.path") + getUsername() + ".jpg");
+                configurationService.getConfigurationValue(ConfigurationService.PROFILE_PIC_PATH) + getUsername());
         if (file.exists()) {
             originalImage = ImageIO.read(file);
         } else {

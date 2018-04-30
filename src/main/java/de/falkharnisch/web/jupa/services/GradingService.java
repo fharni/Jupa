@@ -8,21 +8,17 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Transactional
 @ApplicationScoped
 public class GradingService extends BaseService<UserGrading> {
 
-    private List<Discipline> disciplines;
     private Map<Discipline, List<Grading>> disciplineGradingMap;
 
     @PostConstruct
     private void init() {
-        disciplines = loadDisciplines();
+        List<Discipline> disciplines = loadDisciplines();
         disciplineGradingMap = new HashMap<>();
         for (Discipline discipline : disciplines) {
             disciplineGradingMap.put(discipline, loadGradingForDiscipline(discipline));
@@ -52,8 +48,8 @@ public class GradingService extends BaseService<UserGrading> {
         return em.createQuery(query).getResultList();
     }
 
-    public List<Discipline> getDisciplines() {
-        return disciplines;
+    public Set<Discipline> getDisciplines() {
+        return disciplineGradingMap.keySet();
     }
 
     public List<Grading> getGradingsByDiscipline(Discipline discipline) {

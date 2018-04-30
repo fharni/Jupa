@@ -6,7 +6,7 @@
         xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="/WEB-INF/templates/commonLayout.xhtml">
     <ui:define name="content">
-        <h:form id="contentForm">
+        <h:form id="contentForm" enctype="multipart/form-data">
             <h1>Mein Verein</h1>
             <h:outputLabel value="#{clubBean.clubName}"/>
             <h:panelGroup id="createMemberPanel" rendered="#{userEditBean.showCreateMember}">

@@ -10,6 +10,7 @@ import de.falkharnisch.web.jupa.services.UserService;
 import de.falkharnisch.web.jupa.util.RandomString;
 import de.falkharnisch.web.jupa.util.Util;
 import org.mindrot.jbcrypt.BCrypt;
+import org.primefaces.model.UploadedFile;
 import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
@@ -23,8 +24,14 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.text.DecimalFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Managed bean for manipulating other user data.
@@ -34,7 +41,7 @@ import java.util.Date;
 public class UserEditBean {
 
     private static final int CLUB_PREFIX_END_INDEX = 7;
-    private static final int USERID_WIFHTOUT_CHECKSUM_LENGTH = 12;
+    private static final int USERID_WITHOUT_CHECKSUM_LENGTH = 12;
     private RandomString randomString = new RandomString();
 
     @Resource(mappedName = "java:comp/env/tomee/mail/MailSession")
@@ -60,6 +67,7 @@ public class UserEditBean {
     private Discipline selectedDiscipline;
     private Grading selectedGrading;
     private Date selectedGradingDate;
+    private UploadedFile profilePic;
 
     private User user;
 
@@ -109,6 +117,14 @@ public class UserEditBean {
         this.selectedGradingDate = selectedGradingDate;
     }
 
+    public UploadedFile getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(UploadedFile profilePic) {
+        this.profilePic = profilePic;
+    }
+
     public boolean isShowCreateMember() {
         return selectedUser != null;
     }
@@ -137,17 +153,28 @@ public class UserEditBean {
             if (selectedGrading != null) {
                 gradingService.addGradingForUser(selectedUser, selectedGrading, selectedGradingDate);
             }
+
+            uploadProfilePic();
         } else {
             userService.merge(selectedUser);
         }
         abort();
     }
 
+    private void uploadProfilePic() {
+        String profilePicPath = configurationService.getConfigurationValue(ConfigurationService.PROFILE_PIC_PATH);
+        try (InputStream is = profilePic.getInputstream()) {
+            Files.copy(is, new File(profilePicPath, selectedUser.getUsername()).toPath());
+        } catch (IOException e) {
+            logger.error("Fehler beim schreiben des Profilbildes");
+        }
+    }
+
     private String getNextUserId() {
         String maxId = userService.getMaxIdForClub(user.getClub());
         // cut last check number
         String prefix = maxId.substring(0, CLUB_PREFIX_END_INDEX);
-        Integer nextId = Integer.parseInt(maxId.substring(CLUB_PREFIX_END_INDEX, USERID_WIFHTOUT_CHECKSUM_LENGTH)) + 1;
+        Integer nextId = Integer.parseInt(maxId.substring(CLUB_PREFIX_END_INDEX, USERID_WITHOUT_CHECKSUM_LENGTH)) + 1;
 
         DecimalFormat idFormat = new DecimalFormat("00000");
         String idWithoutCheckNumber = prefix + idFormat.format(nextId);
@@ -193,11 +220,11 @@ public class UserEditBean {
         }
     }
 
-    public Object getDisciplines() {
+    public Set<Discipline> getDisciplines() {
         return gradingService.getDisciplines();
     }
 
-    public Object getGradings() {
+    public List<Grading> getGradings() {
         return gradingService.getGradingsByDiscipline(selectedDiscipline);
     }
 }

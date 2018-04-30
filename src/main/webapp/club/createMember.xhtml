@@ -23,9 +23,14 @@
         <p:outputLabel value="E-Mail:" for="email"/>
         <p:inputText id="email" value="#{userEditBean.selectedUser.email}"
                      required="true"/>
+
         <p:outputLabel value="Eintrittsdatum:" for="beginDate"/>
         <p:calendar id="beginDate" value="#{userEditBean.selectedBeginDate}"
                     required="true" locale="de" navigator="true"/>
+
+        <p:outputLabel value="Profilbild" for="profilepic"/>
+        <p:fileUpload id="profilepic" value="#{userEditBean.profilePic}" mode="simple"
+                      skinSimple="true" />
     </b:panelGrid>
     <h3>Eventuell bestehende höchste Graduierung</h3>
     <b:panelGrid colSpans="2,10" size="sm">

@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class ConfigurationService extends BaseService {
 
+    public static final String PROFILE_PIC_PATH = "profile_pic.path";
     private Map<String, String> configurationMap;
 
     @PostConstruct
