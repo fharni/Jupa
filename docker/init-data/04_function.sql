@@ -1,0 +1,9 @@
+CREATE TABLE `FUNCTION` (
+  ID         INTEGER      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `FUNCTION` VARCHAR(100) NOT NULL
+);
+
+INSERT INTO `FUNCTION` VALUES (1, 'menu.my_club');
+INSERT INTO `FUNCTION` VALUES (2, 'menu.courses');
+INSERT INTO `FUNCTION` VALUES (3, 'course.list.district');
+INSERT INTO `FUNCTION` VALUES (4, 'course.list.federation');
