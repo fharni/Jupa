@@ -33,4 +33,12 @@ public class ClubBean {
     public List<User> getClubMembers() {
         return clubService.getUsersForClub(club);
     }
+
+    public String getDistrict() {
+        return club.getDistrict().getName();
+    }
+
+    public String getFederation() {
+        return club.getDistrict().getFederation().getName();
+    }
 }

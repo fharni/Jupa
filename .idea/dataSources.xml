@@ -7,5 +7,20 @@
       <jdbc-driver>org.hsqldb.jdbcDriver</jdbc-driver>
       <jdbc-url>jdbc:hsqldb:hsql://localhost:9001/jupa;encoding=UTF-8</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="jupa@localhost [2]" uuid="769539aa-7d17-44ce-af59-9a54e91f45aa">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/jupa</jdbc-url>
+      <default-dialect>MySQL</default-dialect>
+      <driver-properties>
+        <property name="autoReconnect" value="true" />
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+        <property name="characterEncoding" value="utf8" />
+        <property name="characterSetResults" value="utf8" />
+        <property name="yearIsDateType" value="false" />
+      </driver-properties>
+    </data-source>
   </component>
 </project>
