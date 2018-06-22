@@ -3,7 +3,9 @@ CREATE TABLE `FUNCTION` (
   `FUNCTION` VARCHAR(100) NOT NULL
 );
 
-INSERT INTO `FUNCTION` VALUES (1, 'menu.my_club');
-INSERT INTO `FUNCTION` VALUES (2, 'menu.courses');
-INSERT INTO `FUNCTION` VALUES (3, 'course.list.district');
-INSERT INTO `FUNCTION` VALUES (4, 'course.list.federation');
+INSERT INTO `FUNCTION` (ID, FUNCTION) VALUES (1, 'menu.my_club');
+INSERT INTO `FUNCTION` (ID, FUNCTION) VALUES (2, 'menu.courses');
+INSERT INTO `FUNCTION` (ID, FUNCTION) VALUES (3, 'course.list.district');
+INSERT INTO `FUNCTION` (ID, FUNCTION) VALUES (4, 'course.list.federation');
+INSERT INTO `FUNCTION` (ID, FUNCTION) VALUES (5, 'club.list');
+INSERT INTO `FUNCTION` (ID, FUNCTION) VALUES (6, 'club.create_modify_delete');

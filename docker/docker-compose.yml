@@ -3,6 +3,7 @@ version: '3.1'
 services:
   web:
     image: tomee:8-jre-7.0.4-webprofile
+    container_name: jupa-app
     restart: always
     depends_on:
       - db
@@ -13,6 +14,7 @@ services:
       - ./tomee-conf:/ust/local/tomee/conf
   db:
     image: mariadb:10.3
+    container_name: jupa-db
     restart: always
     ports:
       - 13306:3306
@@ -27,6 +29,7 @@ services:
 
   adminer:
     image: adminer
+    container_name: jupa-adminer
     restart: always
     ports:
       - 18080:8080
