@@ -8,8 +8,8 @@
       <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
       <introspection-schemas>PUBLIC:PUBLIC</introspection-schemas>
     </data-source>
-    <data-source name="jupa@localhost [2]" uuid="769539aa-7d17-44ce-af59-9a54e91f45aa">
-      <database-info product="MySQL" version="5.5.5-10.3.7-MariaDB-1:10.3.7+maria~jessie" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
+    <data-source name="jdbc:mariadb://localhost:3306/jupa" uuid="769539aa-7d17-44ce-af59-9a54e91f45aa">
+      <database-info product="MySQL" version="10.3.7-MariaDB-1:10.3.7+maria~jessie" jdbc-version="4.2" driver-name="MariaDB connector/J" driver-version="2.2.1">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>

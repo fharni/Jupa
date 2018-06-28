@@ -24,15 +24,19 @@
 
                 </h:panelGroup>
                 <h:panelGroup>
-                <h2>Aufgaben</h2>
-                    <b:commandButton value="Vereinsprüfung beantragen" update="contentForm" />
+                    <h2>Aufgaben</h2>
+                    <b:commandButton value="Vereinsprüfung beantragen" update="contentForm"
+                                     action="#{auditBean.newAudit}"/>
                 </h:panelGroup>
             </b:panelGrid>
-            <h:panelGroup id="createMemberPanel" rendered="#{userEditBean.showCreateMember}">
+            <h:panelGroup id="createMemberPanel" rendered="#{clubBean.showCreateMember}">
                 <ui:include src="createMember.xhtml"/>
             </h:panelGroup>
-            <h:panelGroup id="membersPanel" rendered="#{!userEditBean.showCreateMember}">
+            <h:panelGroup id="membersPanel" rendered="#{clubBean.showMembers}">
                 <ui:include src="clubMembers.xhtml"/>
+            </h:panelGroup>
+            <h:panelGroup id="createAuditPanel" rendered="#{clubBean.showCreateAudit}">
+                <ui:include src="../audit/createAudit.xhtml"/>
             </h:panelGroup>
         </h:form>
     </ui:define>

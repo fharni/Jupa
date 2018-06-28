@@ -7,6 +7,7 @@ import de.falkharnisch.web.jupa.util.Util;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.util.List;
@@ -17,6 +18,28 @@ public class ClubBean {
 
     @Inject
     private ClubService clubService;
+
+    @ManagedProperty(value = "#{userEditBean}")
+    private UserEditBean userEditBean;
+
+    @ManagedProperty(value = "#{auditBean}")
+    private AuditBean auditBean;
+
+    public UserEditBean getUserEditBean() {
+        return userEditBean;
+    }
+
+    public void setUserEditBean(UserEditBean userEditBean) {
+        this.userEditBean = userEditBean;
+    }
+
+    public AuditBean getAuditBean() {
+        return auditBean;
+    }
+
+    public void setAuditBean(AuditBean auditBean) {
+        this.auditBean = auditBean;
+    }
 
     private Club club;
 
@@ -40,5 +63,17 @@ public class ClubBean {
 
     public String getFederation() {
         return club.getDistrict().getFederation().getName();
+    }
+
+    public boolean isShowCreateMember() {
+        return userEditBean.isShowCreateMember() && !isShowCreateAudit();
+    }
+
+    public boolean isShowMembers() {
+        return !userEditBean.isShowCreateMember() && !isShowCreateAudit();
+    }
+
+    public boolean isShowCreateAudit() {
+        return auditBean.isShowCreateAudit();
     }
 }

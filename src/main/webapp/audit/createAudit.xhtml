@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition>
+    <h2>Neue Prüfung</h2>
+    <b:panelGrid colSpans="2,10" size="sm">
+        <p:outputLabel value="Datum:" for="auditBeginDate"/>
+        <p:calendar id="auditBeginDate" value="#{auditBean.selectedAudit.startDate}"
+                    pattern="dd-MM-yyyy HH:00" locale="de" required="true" navigator="true"/>
+
+        <p:outputLabel value="Prüfer" for="auditorInput"/>
+        <p:autoComplete id="auditorInput" value="#{auditBean.selectedAudit.auditor}"
+                        minQueryLength="3" completeMethod="#{auditBean.autoCompleteInstructor}"
+                        var="auditor" itemLabel="#{auditor}" itemValue="#{auditor}"
+                        converter="#{userConverter}" validator="userValidator"/>
+
+        <b:commandButton value="Prüfung beantragen" action="#{auditBean.createAudit}"
+                         update="contentForm" look="primary"/>
+        <b:commandButton value="Abbrechen" action="#{auditBean.abort}"
+                         update="contentForm" immediate="true"/>
+    </b:panelGrid>
+</ui:composition>
+</html>
