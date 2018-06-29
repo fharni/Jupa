@@ -61,4 +61,12 @@ public class AuditBean {
     public List<Audit> getClubAudits() {
         return auditService.getAuditsForClub(user.getClub());
     }
+
+    public List<Audit> getFederationAudits() {
+        return auditService.getAuditsForFederation(user.getClub().getDistrict().getFederation());
+    }
+
+    public void approveAudit(Audit audit){
+        auditService.approveAudit(audit);
+    }
 }

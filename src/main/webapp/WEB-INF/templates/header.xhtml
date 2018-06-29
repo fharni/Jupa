@@ -19,6 +19,8 @@
                            rendered="#{menuAccessBean.showMenuMyClub}"/>
                 <b:navLink value="Lehrgänge" outcome="courses" id="courses"
                            rendered="#{menuAccessBean.showMenuCourses}"/>
+                <b:navLink value="Verband" outcome="federation" id="federation"
+                           rendered="#{menuAccessBean.showMenuFederation}"/>
                 <b:navCommandLink value="Abmelden" action="#{accessBean.logout}" id="logout"
                                   rendered="#{accessBean.loggedIn}"/>
             </b:navbarLinks>

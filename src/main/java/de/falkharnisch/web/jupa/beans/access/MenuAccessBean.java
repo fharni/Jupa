@@ -15,4 +15,7 @@ public class MenuAccessBean extends AccessBean implements Serializable {
     public boolean isShowMenuCourses() {
         return isUserInRole("menu.courses");
     }
+    public boolean isShowMenuFederation() {
+        return isUserInRole("menu.federation");
+    }
 }
