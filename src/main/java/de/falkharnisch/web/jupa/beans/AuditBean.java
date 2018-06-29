@@ -40,7 +40,7 @@ public class AuditBean {
         this.selectedAudit = new Audit();
     }
 
-    public boolean isShowCreateAudit() {
+    boolean isShowCreateAudit() {
         return selectedAudit != null;
     }
 
@@ -56,5 +56,9 @@ public class AuditBean {
 
     public List<User> autoCompleteInstructor(String query) {
         return userService.getUserByNamepart(query);
+    }
+
+    public List<Audit> getClubAudits() {
+        return auditService.getAuditsForClub(user.getClub());
     }
 }

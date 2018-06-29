@@ -6,13 +6,12 @@
         xmlns:b="http://bootsfaces.net/ui"
         xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition>
-    <b:commandButton value="Mitglied erstellen" update="contentForm"
-                     action="#{userEditBean.newMember}"/>
-    <b:dataTable value="#{clubBean.clubMembers}" var="member"
+    <b:commandButton value="Vereinsprüfung beantragen" update="contentForm"
+                     action="#{auditBean.newAudit}"/>
+    <b:dataTable value="#{auditBean.clubAudits}" var="audit"
                  paginated="false" searching="false" info="false">
-        <b:dataTableColumn label="Name" value="#{member.surname}"/>
-        <b:dataTableColumn label="Vorname" value="#{member.forename}"/>
-        <b:dataTableColumn label="ID" value="#{member.username}"/>
+        <b:dataTableColumn label="Date" value="#{audit.startDate}" order="desc"/>
+        <b:dataTableColumn label="Vorname" value="#{audit.auditor}"/>
     </b:dataTable>
 </ui:composition>
 </html>

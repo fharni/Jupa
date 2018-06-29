@@ -66,14 +66,18 @@ public class ClubBean {
     }
 
     public boolean isShowCreateMember() {
-        return userEditBean.isShowCreateMember() && !isShowCreateAudit();
+        return userEditBean.isShowCreateMember();
     }
 
     public boolean isShowMembers() {
-        return !userEditBean.isShowCreateMember() && !isShowCreateAudit();
+        return !userEditBean.isShowCreateMember();
     }
 
     public boolean isShowCreateAudit() {
         return auditBean.isShowCreateAudit();
+    }
+
+    public boolean isShowAudits() {
+        return !auditBean.isShowCreateAudit();
     }
 }

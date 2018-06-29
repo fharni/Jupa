@@ -25,19 +25,27 @@
                 </h:panelGroup>
                 <h:panelGroup>
                     <h2>Aufgaben</h2>
-                    <b:commandButton value="Vereinsprüfung beantragen" update="contentForm"
-                                     action="#{auditBean.newAudit}"/>
                 </h:panelGroup>
             </b:panelGrid>
-            <h:panelGroup id="createMemberPanel" rendered="#{clubBean.showCreateMember}">
-                <ui:include src="createMember.xhtml"/>
-            </h:panelGroup>
-            <h:panelGroup id="membersPanel" rendered="#{clubBean.showMembers}">
-                <ui:include src="clubMembers.xhtml"/>
-            </h:panelGroup>
-            <h:panelGroup id="createAuditPanel" rendered="#{clubBean.showCreateAudit}">
-                <ui:include src="../audit/createAudit.xhtml"/>
-            </h:panelGroup>
+            <b:tabView contentStyle="padding-top:10px">
+                <b:tab title="Mitglieder">
+                    <h:panelGroup id="createMemberPanel" rendered="#{clubBean.showCreateMember}">
+                        <ui:include src="createMember.xhtml"/>
+                    </h:panelGroup>
+                    <h:panelGroup id="membersPanel" rendered="#{clubBean.showMembers}">
+                        <ui:include src="clubMembers.xhtml"/>
+                    </h:panelGroup>
+                </b:tab>
+                <b:tab title="Prüfungen">
+
+                    <h:panelGroup id="createAuditPanel" rendered="#{clubBean.showCreateAudit}">
+                        <ui:include src="../audit/createAudit.xhtml"/>
+                    </h:panelGroup>
+                    <h:panelGroup id="auditPanel" rendered="#{clubBean.showAudits}">
+                        <ui:include src="../audit/audits.xhtml"/>
+                    </h:panelGroup>
+                </b:tab>
+            </b:tabView>
         </h:form>
     </ui:define>
 </ui:composition>
