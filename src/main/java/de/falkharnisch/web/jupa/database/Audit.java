@@ -19,6 +19,9 @@ public class Audit implements BaseEntity {
     @OneToOne
     private User auditor;
 
+    @OneToOne
+    private AuditStatus status;
+
     @Override
     public Integer getId() {
         return id;
@@ -50,5 +53,13 @@ public class Audit implements BaseEntity {
 
     public void setAuditor(User auditor) {
         this.auditor = auditor;
+    }
+
+    public AuditStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(AuditStatus status) {
+        this.status = status;
     }
 }
