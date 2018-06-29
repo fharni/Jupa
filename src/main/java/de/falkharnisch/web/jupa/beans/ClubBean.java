@@ -80,4 +80,8 @@ public class ClubBean {
     public boolean isShowAudits() {
         return !auditBean.isShowCreateAudit();
     }
+
+    public List<Club> getFederationClubs(){
+        return clubService.getClubsForFederation(club.getDistrict().getFederation());
+    }
 }

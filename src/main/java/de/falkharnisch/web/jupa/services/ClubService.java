@@ -7,6 +7,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -51,5 +52,14 @@ public class ClubService extends BaseService<Club> {
         Root<Club> root = query.from(Club.class);
         query.where(builder.like(root.get(Club_.name), name));
         return em.createQuery(query).getSingleResult();
+    }
+
+    public List<Club> getClubsForFederation(Federation federation) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Club> query = builder.createQuery(Club.class);
+        Root<Club> club = query.from(Club.class);
+        Join<Club, District> districtJoin = club.join(Club_.district);
+        query.where(builder.equal(districtJoin.get(District_.federation), federation));
+        return em.createQuery(query).getResultList();
     }
 }

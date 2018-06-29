@@ -20,9 +20,12 @@
                     <h2>Aufgaben</h2>
                 </h:panelGroup>
             </b:panelGrid>
-            <b:tabView>
+            <b:tabView contentStyle="padding-top:10px">
                 <b:tab title="Prüfungen">
                     <ui:include src="audits.xhtml"/>
+                </b:tab>
+                <b:tab title="Vereine">
+                    <ui:include src="clubs.xhtml"/>
                 </b:tab>
             </b:tabView>
         </h:form>
