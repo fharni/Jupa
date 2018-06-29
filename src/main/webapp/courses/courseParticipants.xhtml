@@ -17,7 +17,7 @@
         <b:dataTableColumn label="Vermerk" value="#{participants.annotation.name}"/>
     </b:dataTable>
     <b:messages/>
-    <b:panelGrid colSpans="3,4,2,3" size="sm">
+    <b:panelGrid colSpans="1,4,1,3,3" size="sm">
         <p:outputLabel value="PassID" for="idInput"/>
         <p:autoComplete id="idInput" value="#{courseBean.newCourseParticipant}"
                         minQueryLength="3" completeMethod="#{courseBean.autoCompleteUser}"

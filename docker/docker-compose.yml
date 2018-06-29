@@ -19,6 +19,7 @@ services:
     ports:
       - 13306:3306
     environment:
+      LANG: C.UTF-8
       MYSQL_ROOT_PASSWORD: my-secret-pw
       MYSQL_DATABASE: jupa
       MYSQL_USER: jupa
