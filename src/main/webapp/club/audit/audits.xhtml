@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html
+        xmlns:b="http://bootsfaces.net/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition>
+    <b:commandButton value="Vereinsprüfung beantragen" update="contentForm"
+                     action="#{auditBean.newAudit}"/>
+    <b:dataTable value="#{auditBean.clubAudits}" var="audit"
+                 paginated="false" searching="false" info="false">
+        <b:dataTableColumn label="Datum" order="asc">
+            <h:outputText value="#{audit.startDate}">
+                <f:convertDateTime pattern="dd-MM-yyyy HH:mm"/>
+            </h:outputText>
+        </b:dataTableColumn>
+        <b:dataTableColumn label="Prüfer" value="#{audit.auditor}"/>
+        <b:dataTableColumn label="Disziplin" value="#{audit.discipline}"/>
+        <b:dataTableColumn label="Status" value="#{audit.status}"/>
+        <b:dataTableColumn label="Aktion">
+            <b:commandButton value="Teilnehmer" iconAwesome="fa-group" ajax="true" update="contentForm"
+                             onclick="ajax:auditBean.showMembers(audit)"
+                             rendered="#{audit.status.id == 2}"/>
+        </b:dataTableColumn>
+    </b:dataTable>
+</ui:composition>
+</html>

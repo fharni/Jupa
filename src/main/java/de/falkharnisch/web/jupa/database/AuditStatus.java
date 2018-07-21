@@ -2,7 +2,8 @@ package de.falkharnisch.web.jupa.database;
 
 import javax.persistence.*;
 
-@Entity(name = "audit_status")
+@Entity
+@Table(name = "AUDIT_STATUS")
 public class AuditStatus implements BaseEntity {
 
     @Id
@@ -21,7 +22,7 @@ public class AuditStatus implements BaseEntity {
         this.id = id;
     }
 
-    public String getStatus() {
+    private String getStatus() {
         return status;
     }
 

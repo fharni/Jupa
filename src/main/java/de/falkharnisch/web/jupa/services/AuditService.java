@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class AuditService extends BaseService<Audit> {
 
-    private enum STATUS {
+    public enum STATUS {
         REQUEST(1),
         DEFINE_PARTICIPANTS(2);
 
@@ -39,6 +39,10 @@ public class AuditService extends BaseService<Audit> {
         statusMap = status.stream().collect(Collectors.toMap(AuditStatus::getId, a -> a));
     }
 
+    public AuditStatus getStatus(STATUS status) {
+        return statusMap.get(status.id);
+    }
+
     public List<Audit> getAuditsForClub(Club club) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Audit> query = builder.createQuery(Audit.class);
@@ -57,9 +61,21 @@ public class AuditService extends BaseService<Audit> {
         return em.createQuery(query).getResultList();
     }
 
+    public List<AuditMember> getMembersForAudit(Audit audit) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<AuditMember> query = builder.createQuery(AuditMember.class);
+        Root<AuditMember> root = query.from(AuditMember.class);
+        query.where(builder.equal(root.get(AuditMember_.audit), audit));
+        return em.createQuery(query).getResultList();
+    }
+
     public void approveAudit(Audit audit) {
         AuditStatus auditStatus = statusMap.get(STATUS.DEFINE_PARTICIPANTS.id);
         audit.setStatus(auditStatus);
         merge(audit);
+    }
+
+    public void removeAuditMember(AuditMember member) {
+        remove(member);
     }
 }

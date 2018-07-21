@@ -25,18 +25,22 @@ public class ClubBean {
     @ManagedProperty(value = "#{auditBean}")
     private AuditBean auditBean;
 
+    @SuppressWarnings("unused")
     public UserEditBean getUserEditBean() {
         return userEditBean;
     }
 
+    @SuppressWarnings("unused")
     public void setUserEditBean(UserEditBean userEditBean) {
         this.userEditBean = userEditBean;
     }
 
+    @SuppressWarnings("unused")
     public AuditBean getAuditBean() {
         return auditBean;
     }
 
+    @SuppressWarnings("unused")
     public void setAuditBean(AuditBean auditBean) {
         this.auditBean = auditBean;
     }
@@ -78,10 +82,14 @@ public class ClubBean {
     }
 
     public boolean isShowAudits() {
-        return !auditBean.isShowCreateAudit();
+        return auditBean.isShowAudit();
     }
 
-    public List<Club> getFederationClubs(){
+    public boolean isShowAuditMembers() {
+        return auditBean.isShowMembers();
+    }
+
+    public List<Club> getFederationClubs() {
         return clubService.getClubsForFederation(club.getDistrict().getFederation());
     }
 }

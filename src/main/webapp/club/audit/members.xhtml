@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html
+        xmlns:b="http://bootsfaces.net/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition>
+    <b:panelGrid columns="2" colSpans="1,11" size="sm">
+        <h:outputText value="Datum:"/>
+        <h:outputText value="#{auditBean.selectedAudit.startDate}">
+            <f:convertDateTime pattern="dd-MM-yyyy HH:mm"/>
+        </h:outputText>
+
+        <h:outputText value="Prüfer:"/>
+        <h:outputLabel value="#{auditBean.selectedAudit.auditor}"/>
+
+        <h:outputText value="Disziplin:"/>
+        <h:outputLabel value="#{auditBean.selectedAudit.discipline}"/>
+    </b:panelGrid>
+    <h2>Prüfungsteilnehmer</h2>
+    <b:dataTable value="#{auditBean.members}" var="member"
+                 paginated="false" searching="false" info="false">
+        <b:dataTableColumn label="Name" value="#{member.user}"/>
+        <b:dataTableColumn label="Angestrebte Graduierung" value="#{member.grading.name}"/>
+        <b:dataTableColumn label="Aktion">
+            <b:commandButton value="Entfernen" iconAwesome="trash" ajax="true" update="contentForm"
+                             onclick="ajax:auditBean.removeMember(member)"/>
+        </b:dataTableColumn>
+    </b:dataTable>
+
+    <b:commandButton value="Zurück" action="#{auditBean.back}"
+                     update="contentForm" immediate="true"/>
+</ui:composition>
+</html>

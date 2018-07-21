@@ -1,6 +1,7 @@
 package de.falkharnisch.web.jupa.database;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -20,7 +21,12 @@ public class Audit implements BaseEntity {
     private User auditor;
 
     @OneToOne
+    @NotNull
     private AuditStatus status;
+
+    @OneToOne
+    @NotNull
+    private Discipline discipline;
 
     @Override
     public Integer getId() {
@@ -61,5 +67,13 @@ public class Audit implements BaseEntity {
 
     public void setStatus(AuditStatus status) {
         this.status = status;
+    }
+
+    public Discipline getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(Discipline discipline) {
+        this.discipline = discipline;
     }
 }
