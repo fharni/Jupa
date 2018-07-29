@@ -11,14 +11,14 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <hibernate.version>5.2.15.Final</hibernate.version>
+        <hibernate.version>5.3.3.Final</hibernate.version>
         <primefaces.version>6.2</primefaces.version>
 
         <version.org.jboss.arquillian>1.4.0.Final</version.org.jboss.arquillian>
         <version.org.jboss.arquillian.drone>2.5.1</version.org.jboss.arquillian.drone>
         <version.org.jboss.arquillian.graphene>2.3.2</version.org.jboss.arquillian.graphene>
 
-        <selenium-java.version>3.11.0</selenium-java.version>
+        <selenium-java.version>3.13.0</selenium-java.version>
     </properties>
 
     <dependencies>
@@ -32,6 +32,11 @@
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.7</version>
+        </dependency>
 
         <!-- hibernate -->
         <dependency>
@@ -42,6 +47,11 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-java8</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
 

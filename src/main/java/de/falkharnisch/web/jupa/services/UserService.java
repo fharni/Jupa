@@ -1,8 +1,6 @@
 package de.falkharnisch.web.jupa.services;
 
-import de.falkharnisch.web.jupa.database.Club;
-import de.falkharnisch.web.jupa.database.User;
-import de.falkharnisch.web.jupa.database.User_;
+import de.falkharnisch.web.jupa.database.*;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -20,9 +18,6 @@ import java.util.List;
 @Transactional
 @ApplicationScoped
 public class UserService extends BaseService<User> {
-
-    public static final int FEDERATION_MULTIPLIKATOR = 100000;
-    public static final int DISTRICT_MULTIPLIKATOR = 1000;
 
     public User getUserById(@NotNull Integer id) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
@@ -78,5 +73,17 @@ public class UserService extends BaseService<User> {
         query.select(builder.greatest(root.get(User_.username)));
         query.where(builder.like(root.get(User_.username), club.getDisplayId() + "%"));
         return em.createQuery(query).getSingleResult();
+    }
+
+    public List<User> getUsersForClub(Club club) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root<Membership> root = query.from(Membership.class);
+        query.select(root.get(Membership_.user));
+        query.where(builder.and(
+                builder.equal(root.get(Membership_.club), club)),
+                builder.isNull(root.get(Membership_.endDate))
+        );
+        return em.createQuery(query).getResultList();
     }
 }

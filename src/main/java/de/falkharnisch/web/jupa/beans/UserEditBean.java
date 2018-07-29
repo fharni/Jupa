@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.text.DecimalFormat;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -63,10 +63,10 @@ public class UserEditBean {
     private ConfigurationService configurationService;
 
     private User selectedUser;
-    private Date selectedBeginDate;
+    private LocalDate selectedBeginDate;
     private Discipline selectedDiscipline;
     private Grading selectedGrading;
-    private Date selectedGradingDate;
+    private LocalDate selectedGradingDate;
     private UploadedFile profilePic;
 
     private User user;
@@ -85,11 +85,11 @@ public class UserEditBean {
         this.selectedUser = selectedUser;
     }
 
-    public Date getSelectedBeginDate() {
+    public LocalDate getSelectedBeginDate() {
         return selectedBeginDate;
     }
 
-    public void setSelectedBeginDate(Date selectedBeginDate) {
+    public void setSelectedBeginDate(LocalDate selectedBeginDate) {
         this.selectedBeginDate = selectedBeginDate;
     }
 
@@ -109,11 +109,11 @@ public class UserEditBean {
         this.selectedGrading = selectedGrading;
     }
 
-    public Date getSelectedGradingDate() {
+    public LocalDate getSelectedGradingDate() {
         return selectedGradingDate;
     }
 
-    public void setSelectedGradingDate(Date selectedGradingDate) {
+    public void setSelectedGradingDate(LocalDate selectedGradingDate) {
         this.selectedGradingDate = selectedGradingDate;
     }
 

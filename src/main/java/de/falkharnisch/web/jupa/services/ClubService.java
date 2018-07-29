@@ -25,18 +25,6 @@ public class ClubService extends BaseService<Club> {
         return user.getClub();
     }
 
-    public List<User> getUsersForClub(Club club) {
-        CriteriaBuilder builder = em.getCriteriaBuilder();
-        CriteriaQuery<User> query = builder.createQuery(User.class);
-        Root<Membership> root = query.from(Membership.class);
-        query.select(root.get(Membership_.user));
-        query.where(builder.and(
-                builder.equal(root.get(Membership_.club), club)),
-                builder.isNull(root.get(Membership_.endDate))
-        );
-        return em.createQuery(query).getResultList();
-    }
-
     public List<Club> getClubByNamepart(String namePart) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Club> query = builder.createQuery(Club.class);

@@ -8,7 +8,11 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
-import java.util.*;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Transactional
 @ApplicationScoped
@@ -56,7 +60,7 @@ public class GradingService extends BaseService<UserGrading> {
         return disciplineGradingMap.get(discipline);
     }
 
-    public void addGradingForUser(User user, Grading grading, Date date) {
+    public void addGradingForUser(User user, Grading grading, LocalDate date) {
         UserGrading userGrading = new UserGrading();
         userGrading.setUser(user);
         userGrading.setGrading(grading);

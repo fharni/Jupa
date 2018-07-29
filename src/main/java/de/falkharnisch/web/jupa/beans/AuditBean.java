@@ -27,6 +27,8 @@ public class AuditBean {
     private GradingService gradingService;
 
     private Audit selectedAudit;
+    private User selectedUser;
+    private Grading selectedGrading;
 
     private User user;
     private List<AuditMember> members;
@@ -107,6 +109,48 @@ public class AuditBean {
 
     @SuppressWarnings("unused")
     public void removeMember(AuditMember member) {
+        this.members.remove(member);
         auditService.removeAuditMember(member);
+    }
+
+    public List<User> getRemainingClubMembers() {
+        List<User> users = userService.getUsersForClub(selectedAudit.getClub());
+        for(AuditMember am : members) {
+            users.remove(am.getUser());
+        }
+        return users;
+    }
+
+    public User getSelectedUser() {
+        return selectedUser;
+    }
+
+    public void setSelectedUser(User selectedUser) {
+        this.selectedUser = selectedUser;
+    }
+
+    public void addUserToAudit(){
+        AuditMember member = new AuditMember();
+        member.setAudit(selectedAudit);
+        member.setUser(selectedUser);
+        member.setGrading(selectedGrading);
+
+        auditService.persistAuditMember(member);
+        this.members.add(member);
+
+        selectedUser = null;
+        selectedGrading = null;
+    }
+
+    public Grading getSelectedGrading() {
+        return selectedGrading;
+    }
+
+    public void setSelectedGrading(Grading selectedGrading) {
+        this.selectedGrading = selectedGrading;
+    }
+
+    public List<Grading> getGradings(){
+        return gradingService.getGradingsByDiscipline(selectedAudit.getDiscipline());
     }
 }

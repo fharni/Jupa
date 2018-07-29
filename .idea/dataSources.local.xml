@@ -2,14 +2,14 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="jupa@localhost" uuid="f77340cf-5161-4214-8dd3-2138d147f4ea">
-      <database-info product="HSQL Database Engine" version="2.3.2" jdbc-version="4.0" driver-name="HSQL Database Engine Driver" driver-version="2.3.2">
+      <database-info product="HSQL Database Engine" version="2.3.2" jdbc-version="4.0" driver-name="HSQL Database Engine Driver" driver-version="2.3.2" family="HSQLDB" exact-version="2.3.2">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
       <introspection-schemas>PUBLIC:PUBLIC</introspection-schemas>
     </data-source>
     <data-source name="jdbc:mariadb://localhost:3306/jupa" uuid="769539aa-7d17-44ce-af59-9a54e91f45aa">
-      <database-info product="MySQL" version="10.3.7-MariaDB-1:10.3.7+maria~jessie" jdbc-version="4.2" driver-name="MariaDB connector/J" driver-version="2.2.1">
+      <database-info product="MySQL" version="10.3.7-MariaDB-1:10.3.7+maria~jessie" jdbc-version="4.2" driver-name="MariaDB connector/J" driver-version="2.2.1" family="MARIADB" exact-version="10.3.7">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>

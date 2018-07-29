@@ -3,6 +3,7 @@ package de.falkharnisch.web.jupa.beans;
 import de.falkharnisch.web.jupa.database.Club;
 import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.services.ClubService;
+import de.falkharnisch.web.jupa.services.UserService;
 import de.falkharnisch.web.jupa.util.Util;
 
 import javax.annotation.PostConstruct;
@@ -18,6 +19,9 @@ public class ClubBean {
 
     @Inject
     private ClubService clubService;
+
+    @Inject
+    private UserService userService;
 
     @ManagedProperty(value = "#{userEditBean}")
     private UserEditBean userEditBean;
@@ -58,7 +62,7 @@ public class ClubBean {
     }
 
     public List<User> getClubMembers() {
-        return clubService.getUsersForClub(club);
+        return userService.getUsersForClub(club);
     }
 
     public String getDistrict() {

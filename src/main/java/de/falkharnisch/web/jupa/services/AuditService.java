@@ -78,4 +78,8 @@ public class AuditService extends BaseService<Audit> {
     public void removeAuditMember(AuditMember member) {
         remove(member);
     }
+
+    public void persistAuditMember(AuditMember member){
+        persistOther(member);
+    }
 }

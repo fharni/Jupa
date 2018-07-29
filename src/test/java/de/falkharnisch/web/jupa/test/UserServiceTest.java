@@ -1,21 +1,22 @@
 package de.falkharnisch.web.jupa.test;
 
+import de.falkharnisch.web.jupa.database.Club;
 import de.falkharnisch.web.jupa.database.User;
+import de.falkharnisch.web.jupa.services.ClubService;
 import de.falkharnisch.web.jupa.services.UserService;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.testng.annotations.Test;
 
 import javax.inject.Inject;
-
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.junit.Assert.assertNotNull;
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertFalse;
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.Assert.*;
 
 public class UserServiceTest extends AbstractArquillianTest {
+
+    @Inject
+    private ClubService clubService;
 
     @Inject
     private UserService userService;
@@ -24,7 +25,7 @@ public class UserServiceTest extends AbstractArquillianTest {
     public void testSelectAll() {
         List<User> users = userService.getUserByNamepart("");
         assertNotNull(users);
-        assertEquals("Falsche Anzahl an Benutzern", 11, users.size());
+        assertEquals(users.size(), 11, "Falsche Anzahl an Benutzern");
     }
 
     @Test(dependsOnMethods = "testSelectAll")
@@ -39,38 +40,52 @@ public class UserServiceTest extends AbstractArquillianTest {
         users = userService.getUserByNamepart("");
         int countAfter = users.size();
 
-        assertEquals("Falsche Anzahl an Benutzern", countBefore+1, countAfter);
+        assertEquals(countAfter, countBefore + 1, "Falsche Anzahl an Benutzern");
     }
 
     @Test
-    public void testSelectById(){
+    public void testSelectById() {
         User user = userService.getUserById(4);
         assertEquals("Referent", user.getForename());
         assertEquals("desBezirkes", user.getSurname());
     }
 
     @Test
-    public void testSelectByUsername(){
+    public void testSelectByUsername() {
         User user = userService.getUserByUsername("0504001000019");
         assertEquals(user.getForename(), "Chefin");
         assertEquals(user.getSurname(), "desVereins");
     }
 
     @Test
-    public void testSelectByUsernamePart(){
+    public void testSelectByUsernamePart() {
         List<User> users = userService.getUserByUsernamePart("0502001");
-        assertEquals("Falsche Anzahl an Benutzern", 8, users.size());
+        assertEquals(users.size(), 8, "Falsche Anzahl an Benutzern");
     }
 
     @Test
-    public void testLogin(){
+    public void testLogin() {
         boolean login = userService.login("0503001000012", "test");
-        assertTrue("Sollte erfolgreich angemeldet werden", login);
+        assertTrue(login, "Sollte erfolgreich angemeldet werden");
 
         login = userService.login("0503001000012", "test12");
-        assertFalse("Sollte nicht angemeldet werden", login);
+        assertFalse(login, "Sollte nicht angemeldet werden");
 
         login = userService.login("0503001000013", "test");
-        assertFalse("Sollte nicht angemeldet werden", login);
+        assertFalse(login, "Sollte nicht angemeldet werden");
+    }
+
+    @Test
+    public void testMaxIdForClub() {
+        Club c = clubService.getClubByName("TV 1875 Paderborn e.V.");
+        String maxIdForClub = userService.getMaxIdForClub(c);
+        assertEquals(maxIdForClub, "0502001000084", "Die höchste ID passt nicht");
+    }
+
+    @Test
+    public void testUsersForClub() {
+        Club c = clubService.getClubByName("TV 1875 Paderborn e.V.");
+        List<User> usersForClub = userService.getUsersForClub(c);
+        assertEquals(usersForClub.size(), 8, "Für den Verein konnten nicht die korrekten Mitglieder gefunden werden");
     }
 }

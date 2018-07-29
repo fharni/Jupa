@@ -6,7 +6,8 @@
         xmlns:b="http://bootsfaces.net/ui"
         xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://primefaces.org/ui">
 <ui:composition>
     <b:panelGrid columns="2" colSpans="1,11" size="sm">
         <h:outputText value="Datum:"/>
@@ -30,6 +31,20 @@
                              onclick="ajax:auditBean.removeMember(member)"/>
         </b:dataTableColumn>
     </b:dataTable>
+
+    <p:selectOneMenu id="members" value="#{auditBean.selectedUser}" converter="#{userConverter}">
+        <f:selectItem itemLabel="Bitte auswählen" noSelectionOption="true"/>
+        <f:selectItems value="#{auditBean.remainingClubMembers}"
+                       var="user" itemLabel="#{user}" itemValue="#{user}"/>
+    </p:selectOneMenu>
+    <p:selectOneMenu id="grading" value="#{auditBean.selectedGrading}" converter="#{gradingConverter}"
+                     required="true">
+        <f:selectItem itemLabel="Bitte auswählen" noSelectionOption="true"/>
+        <f:selectItems value="#{auditBean.gradings}"
+                       var="grading" itemLabel="#{grading.name}" itemValue="#{grading}"/>
+    </p:selectOneMenu>
+    <b:commandButton value="teilnehmen" update="contentForm" look="primary"
+                     action="#{auditBean.addUserToAudit}"/>
 
     <b:commandButton value="Zurück" action="#{auditBean.back}"
                      update="contentForm" immediate="true"/>
