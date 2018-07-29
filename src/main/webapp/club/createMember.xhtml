@@ -18,14 +18,14 @@
 
         <p:outputLabel value="Geburtsdatum:" for="birthday"/>
         <p:calendar id="birthday" value="#{userEditBean.selectedUser.birthday}"
-                    required="true" locale="de" navigator="true" />
+                    required="true" locale="de" navigator="true" converter="localDateConverter" pattern="dd.MM.yyyy"/>
 
         <p:outputLabel value="E-Mail:" for="email"/>
         <p:inputText id="email" value="#{userEditBean.selectedUser.email}"
                      required="true"/>
         <p:outputLabel value="Eintrittsdatum:" for="beginDate"/>
         <p:calendar id="beginDate" value="#{userEditBean.selectedBeginDate}"
-                    required="true" locale="de" navigator="true"/>
+                    required="true" locale="de" navigator="true" converter="localDateConverter" pattern="dd.MM.yyyy"/>
     </b:panelGrid>
     <h3>Eventuell bestehende höchste Graduierung</h3>
     <b:panelGrid colSpans="2,10" size="sm">
@@ -48,9 +48,9 @@
 
         <p:outputLabel value="Datum:" for="gradingDate"/>
         <p:calendar id="gradingDate" value="#{userEditBean.selectedGradingDate}"
-                    locale="de" navigator="true"/>
+                    locale="de" navigator="true" converter="localDateConverter"/>
 
-        <b:commandButton value="Mitglied anlegen" action="#{userEditBean.saveMember}"
+        <b:commandButton id="saveMemberButton" value="Mitglied anlegen" action="#{userEditBean.saveMember}"
                          update="contentForm" look="primary"/>
         <b:commandButton value="Abbrechen" action="#{userEditBean.abort}"
                          update="contentForm" immediate="true"/>

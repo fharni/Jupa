@@ -12,9 +12,7 @@
                  value="#{userBean.gradings}" var="grading">
         <b:dataTableColumn label="Graduierung" value="#{grading.grading.name}"/>
         <b:dataTableColumn label="Datum">
-            <h:outputText value="#{grading.date}">
-                <f:convertDateTime pattern="dd-MM-yyyy"/>
-            </h:outputText>
+            <h:outputText value="#{grading.date}" converter="localDateConverter" />
         </b:dataTableColumn>
     </b:dataTable>
 </ui:composition>

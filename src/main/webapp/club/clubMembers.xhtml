@@ -8,7 +8,7 @@
 <ui:composition>
     <h2>Mitglieder</h2>
     <b:commandButton value="Mitglied erstellen" update="contentForm"
-                     action="#{userEditBean.newMember}"/>
+                     action="#{userEditBean.newMember}" id="createMembersButton"/>
     <b:dataTable value="#{clubBean.clubMembers}" var="member"
                  paginated="false" searching="false" info="false">
         <b:dataTableColumn label="Name" value="#{member.surname}"/>

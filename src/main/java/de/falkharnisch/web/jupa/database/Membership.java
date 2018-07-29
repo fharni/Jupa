@@ -1,7 +1,15 @@
 package de.falkharnisch.web.jupa.database;
 
-import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Membership implements BaseEntity {
@@ -18,11 +26,11 @@ public class Membership implements BaseEntity {
     @JoinColumn(name = "CLUB_ID")
     private Club club;
 
-    @Temporal(TemporalType.DATE)
-    private Date beginDate;
+    @Column
+    private LocalDate beginDate;
 
-    @Temporal(TemporalType.DATE)
-    private Date endDate;
+    @Column
+    private LocalDate endDate;
 
     @Column(nullable = false)
     private Boolean mainClub = Boolean.TRUE;
@@ -30,7 +38,7 @@ public class Membership implements BaseEntity {
     public Membership() {
     }
 
-    public Membership(User user, Club club, Date beginDate) {
+    public Membership(User user, Club club, LocalDate beginDate) {
         this.user = user;
         this.club = club;
         this.beginDate = beginDate;
@@ -49,15 +57,15 @@ public class Membership implements BaseEntity {
         this.club = club;
     }
 
-    public Date getBeginDate() {
+    public LocalDate getBeginDate() {
         return beginDate;
     }
 
-    public void setBeginDate(Date beginDate) {
+    public void setBeginDate(LocalDate beginDate) {
         this.beginDate = beginDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 

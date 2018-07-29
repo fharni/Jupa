@@ -1,7 +1,14 @@
 package de.falkharnisch.web.jupa.database;
 
-import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_grading")
@@ -17,8 +24,8 @@ public class UserGrading implements BaseEntity {
     @OneToOne
     private Grading grading;
 
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    @Column
+    private LocalDate date;
 
     @Override
     public Integer getId() {
@@ -37,11 +44,11 @@ public class UserGrading implements BaseEntity {
         this.grading = grading;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 }

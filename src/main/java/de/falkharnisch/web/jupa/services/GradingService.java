@@ -1,6 +1,9 @@
 package de.falkharnisch.web.jupa.services;
 
-import de.falkharnisch.web.jupa.database.*;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -8,10 +11,13 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import de.falkharnisch.web.jupa.database.Discipline;
+import de.falkharnisch.web.jupa.database.Grading;
+import de.falkharnisch.web.jupa.database.Grading_;
+import de.falkharnisch.web.jupa.database.User;
+import de.falkharnisch.web.jupa.database.UserGrading;
+import de.falkharnisch.web.jupa.database.UserGrading_;
 
 @Transactional
 @ApplicationScoped
@@ -60,7 +66,7 @@ public class GradingService extends BaseService<UserGrading> {
         return disciplineGradingMap.get(discipline);
     }
 
-    public void addGradingForUser(User user, Grading grading, Date date) {
+    public void addGradingForUser(User user, Grading grading, LocalDate date) {
         UserGrading userGrading = new UserGrading();
         userGrading.setUser(user);
         userGrading.setGrading(grading);

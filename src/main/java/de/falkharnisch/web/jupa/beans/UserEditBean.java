@@ -1,16 +1,7 @@
 package de.falkharnisch.web.jupa.beans;
 
-import de.falkharnisch.web.jupa.database.Discipline;
-import de.falkharnisch.web.jupa.database.Grading;
-import de.falkharnisch.web.jupa.database.User;
-import de.falkharnisch.web.jupa.services.ConfigurationService;
-import de.falkharnisch.web.jupa.services.GradingService;
-import de.falkharnisch.web.jupa.services.MembershipService;
-import de.falkharnisch.web.jupa.services.UserService;
-import de.falkharnisch.web.jupa.util.RandomString;
-import de.falkharnisch.web.jupa.util.Util;
-import org.mindrot.jbcrypt.BCrypt;
-import org.slf4j.Logger;
+import java.text.DecimalFormat;
+import java.time.LocalDate;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -23,8 +14,19 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.text.DecimalFormat;
-import java.util.Date;
+
+import org.mindrot.jbcrypt.BCrypt;
+import org.slf4j.Logger;
+
+import de.falkharnisch.web.jupa.database.Discipline;
+import de.falkharnisch.web.jupa.database.Grading;
+import de.falkharnisch.web.jupa.database.User;
+import de.falkharnisch.web.jupa.services.ConfigurationService;
+import de.falkharnisch.web.jupa.services.GradingService;
+import de.falkharnisch.web.jupa.services.MembershipService;
+import de.falkharnisch.web.jupa.services.UserService;
+import de.falkharnisch.web.jupa.util.RandomString;
+import de.falkharnisch.web.jupa.util.Util;
 
 /**
  * Managed bean for manipulating other user data.
@@ -56,10 +58,10 @@ public class UserEditBean {
     private ConfigurationService configurationService;
 
     private User selectedUser;
-    private Date selectedBeginDate;
+    private LocalDate selectedBeginDate;
     private Discipline selectedDiscipline;
     private Grading selectedGrading;
-    private Date selectedGradingDate;
+    private LocalDate selectedGradingDate;
 
     private User user;
 
@@ -77,11 +79,11 @@ public class UserEditBean {
         this.selectedUser = selectedUser;
     }
 
-    public Date getSelectedBeginDate() {
+    public LocalDate getSelectedBeginDate() {
         return selectedBeginDate;
     }
 
-    public void setSelectedBeginDate(Date selectedBeginDate) {
+    public void setSelectedBeginDate(LocalDate selectedBeginDate) {
         this.selectedBeginDate = selectedBeginDate;
     }
 
@@ -101,11 +103,11 @@ public class UserEditBean {
         this.selectedGrading = selectedGrading;
     }
 
-    public Date getSelectedGradingDate() {
+    public LocalDate getSelectedGradingDate() {
         return selectedGradingDate;
     }
 
-    public void setSelectedGradingDate(Date selectedGradingDate) {
+    public void setSelectedGradingDate(LocalDate selectedGradingDate) {
         this.selectedGradingDate = selectedGradingDate;
     }
 

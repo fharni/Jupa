@@ -1,19 +1,25 @@
 package de.falkharnisch.web.jupa.beans;
 
-import de.falkharnisch.web.jupa.database.*;
-import de.falkharnisch.web.jupa.services.ClubService;
-import de.falkharnisch.web.jupa.services.CourseService;
-import de.falkharnisch.web.jupa.services.UserService;
-import de.falkharnisch.web.jupa.util.Util;
-import org.primefaces.event.SelectEvent;
+import java.time.LocalDate;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import java.util.Date;
-import java.util.List;
+
+import org.primefaces.event.SelectEvent;
+
+import de.falkharnisch.web.jupa.database.Annotation;
+import de.falkharnisch.web.jupa.database.Club;
+import de.falkharnisch.web.jupa.database.Course;
+import de.falkharnisch.web.jupa.database.CourseParticipant;
+import de.falkharnisch.web.jupa.database.User;
+import de.falkharnisch.web.jupa.services.ClubService;
+import de.falkharnisch.web.jupa.services.CourseService;
+import de.falkharnisch.web.jupa.services.UserService;
+import de.falkharnisch.web.jupa.util.Util;
 
 @ManagedBean
 @SessionScoped
@@ -106,7 +112,7 @@ public class CourseBean {
     }
 
     public void onDateSelect(SelectEvent event) {
-        selectedCourse.setEndDate((Date) event.getObject());
+        selectedCourse.setEndDate((LocalDate) event.getObject());
     }
 
     public void loadCourseParticipants(Course course) {

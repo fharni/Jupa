@@ -8,7 +8,7 @@
     <ui:define name="content">
         <h:form id="contentForm">
             <h1>Mein Verein</h1>
-            <h:outputLabel value="#{clubBean.clubName}"/>
+            <h:outputLabel value="#{clubBean.clubName}" id="clubname"/>
             <h:panelGroup id="createMemberPanel" rendered="#{userEditBean.showCreateMember}">
                 <ui:include src="createMember.xhtml"/>
             </h:panelGroup>
