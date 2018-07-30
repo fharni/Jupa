@@ -37,8 +37,7 @@
         <f:selectItems value="#{auditBean.remainingClubMembers}"
                        var="user" itemLabel="#{user}" itemValue="#{user}"/>
     </p:selectOneMenu>
-    <p:selectOneMenu id="grading" value="#{auditBean.selectedGrading}" converter="#{gradingConverter}"
-                     required="true">
+    <p:selectOneMenu id="grading" value="#{auditBean.selectedGrading}" converter="#{gradingConverter}">
         <f:selectItem itemLabel="Bitte auswählen" noSelectionOption="true"/>
         <f:selectItems value="#{auditBean.gradings}"
                        var="grading" itemLabel="#{grading.name}" itemValue="#{grading}"/>

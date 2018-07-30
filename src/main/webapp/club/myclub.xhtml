@@ -16,7 +16,7 @@
                     <h1>Mein Verein</h1>
                     <b:panelGrid columns="2" colSpans="2,10" size="sm">
                         <h:outputText value="Name:"/>
-                        <h:outputLabel value="#{clubBean.clubName}"/>
+                        <h:outputLabel value="#{clubBean.clubName}" id="clubname"/>
 
                         <h:outputText value="Bezirk:"/>
                         <h:outputLabel value="#{clubBean.district}"/>
@@ -31,7 +31,7 @@
                 </h:panelGroup>
             </b:panelGrid>
             <b:tabView contentStyle="padding-top:10px">
-                <b:tab title="Mitglieder">
+                <b:tab title="Mitglieder" id="membersTab">
                     <h:panelGroup id="createMemberPanel" rendered="#{clubBean.showCreateMember}">
                         <ui:include src="createMember.xhtml"/>
                     </h:panelGroup>
@@ -39,8 +39,7 @@
                         <ui:include src="clubMembers.xhtml"/>
                     </h:panelGroup>
                 </b:tab>
-                <b:tab title="Prüfungen">
-
+                <b:tab title="Prüfungen" id="auditTab">
                     <h:panelGroup id="createAuditPanel" rendered="#{clubBean.showCreateAudit}">
                         <ui:include src="audit/createAudit.xhtml"/>
                     </h:panelGroup>

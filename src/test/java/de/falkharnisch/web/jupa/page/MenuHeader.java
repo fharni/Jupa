@@ -9,6 +9,9 @@ public class MenuHeader {
     @FindBy(id = "headerForm:home")
     private WebElement home;
 
+    @FindBy(id = "headerForm:myclub")
+    private WebElement myclub;
+
     @FindBy(id = "headerForm:passport")
     private WebElement passport;
 
@@ -17,6 +20,10 @@ public class MenuHeader {
 
     public void goToPassport() {
     	Graphene.guardHttp(passport).click();
+    }
+
+    public void goToMyClub() {
+        Graphene.guardHttp(myclub).click();
     }
 
     public void logout() {
