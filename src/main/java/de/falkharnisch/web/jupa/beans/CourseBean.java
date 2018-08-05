@@ -12,7 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @ManagedBean
@@ -106,7 +106,7 @@ public class CourseBean {
     }
 
     public void onDateSelect(SelectEvent event) {
-        selectedCourse.setEndDate((Date) event.getObject());
+        selectedCourse.setEndDate((LocalDateTime) event.getObject());
     }
 
     public void loadCourseParticipants(Course course) {

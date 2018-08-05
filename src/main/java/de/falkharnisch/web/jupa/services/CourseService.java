@@ -68,4 +68,13 @@ public class CourseService extends BaseService<Course> {
     public void persistParticipant(CourseParticipant entity) {
         super.persistOther(entity);
     }
+
+    public List<Course> getCoursesForUser(User user) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Course> query = builder.createQuery(Course.class);
+        Root<CourseParticipant> root = query.from(CourseParticipant.class);
+        query.select(root.get(CourseParticipant_.course));
+        query.where(builder.equal(root.get(CourseParticipant_.user), user));
+        return em.createQuery(query).getResultList();
+    }
 }

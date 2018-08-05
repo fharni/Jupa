@@ -131,9 +131,13 @@ public class User implements BaseEntity {
         return roles;
     }
 
+    public String getFullname() {
+        return getForename() + " " + getSurname();
+    }
+
     @Override
     public String toString() {
-        return getForename() + " " + getSurname() + " (" + getUsername() + ")";
+        return getFullname() + " (" + getUsername() + ")";
     }
 
     @Override

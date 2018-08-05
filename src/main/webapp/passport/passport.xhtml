@@ -34,24 +34,27 @@
                 <p:barcode type="ean13" value="#{userBean.username}" width="150"/>
             </b:panelGrid>
         </b:panel>
+        <b:panel id="gradingTable" title="Graduierungen" rendered="#{userBean.grading}"
+                 smallScreen="6" mediumScreen="5" largeScreen="4">
+            <ui:include src="gradings.xhtml"/>
+        </b:panel>
         <b:panel id="licensesTable" title="Lizenzen" col-sm="6" rendered="#{userBean.licenses}">
             <b:dataTable searching="false" paginated="false" info="false">
                 <b:dataTableColumn label="Name"/>
                 <b:dataTableColumn label="Gültig bis"/>
             </b:dataTable>
         </b:panel>
-        <b:panel id="courseTable" title="Lehrgänge" col-sm="8" rendered="#{userBean.courses}">
-            <b:dataTable searching="false" paginated="false" info="false">
-                <b:dataTableColumn label="Datum" order="desc"/>
-                <b:dataTableColumn label="Name"/>
-                <b:dataTableColumn label="Referent"/>
-                <b:dataTableColumn label="Ort"/>
+        <b:panel id="courseTable" title="Lehrgänge" rendered="#{userBean.course}"
+                 smallScreen="12" mediumScreen="9" largeScreen="7">
+            <b:dataTable searching="false" paginated="false" info="false"
+                         value="#{userBean.courses}" var="course">
+                <b:dataTableColumn label="Datum" order="desc" value="#{course.startDate}"/>
+                <b:dataTableColumn label="Name" value="#{course.topic}"/>
+                <b:dataTableColumn label="Referent" value="#{course.instructor.fullname}"/>
+                <b:dataTableColumn label="Ort" value="#{course.place}"/>
             </b:dataTable>
         </b:panel>
-        <b:panel id="gradingTable" title="Graduierungen" rendered="#{userBean.grading}"
-                 smallScreen="6" mediumScreen="5" largeScreen="4">
-            <ui:include src="gradings.xhtml"/>
-        </b:panel>
+
     </ui:define>
 </ui:composition>
 </html>

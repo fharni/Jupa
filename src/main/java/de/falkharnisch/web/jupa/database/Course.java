@@ -1,7 +1,7 @@
 package de.falkharnisch.web.jupa.database;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 public class Course implements BaseEntity {
@@ -11,10 +11,10 @@ public class Course implements BaseEntity {
     private Integer id;
 
     @Column(nullable = false)
-    private Date startDate;
+    private LocalDateTime startDate;
 
     @Column(nullable = false)
-    private Date endDate;
+    private LocalDateTime endDate;
 
     private String topic;
 
@@ -31,19 +31,19 @@ public class Course implements BaseEntity {
         return id;
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 

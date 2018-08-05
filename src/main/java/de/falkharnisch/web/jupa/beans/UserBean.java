@@ -1,9 +1,11 @@
 package de.falkharnisch.web.jupa.beans;
 
 
+import de.falkharnisch.web.jupa.database.Course;
 import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.database.UserGrading;
 import de.falkharnisch.web.jupa.services.ConfigurationService;
+import de.falkharnisch.web.jupa.services.CourseService;
 import de.falkharnisch.web.jupa.services.GradingService;
 import de.falkharnisch.web.jupa.services.UserService;
 import de.falkharnisch.web.jupa.util.Util;
@@ -38,6 +40,9 @@ public class UserBean {
     private GradingService gradingService;
 
     @Inject
+    private CourseService courseService;
+
+    @Inject
     private ConfigurationService configurationService;
 
     @Inject
@@ -45,6 +50,7 @@ public class UserBean {
 
     private User user;
     private List<UserGrading> gradings;
+    private List<Course> courses;
 
     @PostConstruct
     private void initUser() {
@@ -57,6 +63,8 @@ public class UserBean {
             }
             return o1.getGrading().getDiscipline().getId().compareTo(o2.getGrading().getDiscipline().getId());
         });
+
+        courses = courseService.getCoursesForUser(user);
     }
 
     public String getName() {
@@ -137,8 +145,12 @@ public class UserBean {
         return gradings;
     }
 
-    public boolean isCourses() {
-        return false;
+    public boolean isCourse() {
+        return !courses.isEmpty();
+    }
+
+    public List<Course> getCourses() {
+        return courses;
     }
 
     public boolean isLicenses() {
