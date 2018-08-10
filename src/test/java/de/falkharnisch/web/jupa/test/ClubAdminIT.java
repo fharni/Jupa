@@ -9,8 +9,11 @@ import org.jboss.arquillian.graphene.page.Page;
 import org.jboss.arquillian.testng.Arquillian;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.testng.Assert.assertEquals;
 
+@Test(dependsOnGroups = "login")
 public class ClubAdminIT extends AbstractArquillianTest {
 
     @Page
@@ -23,7 +26,7 @@ public class ClubAdminIT extends AbstractArquillianTest {
     private CreateMemberPage createMemberPage;
 
     @Test(dataProvider = Arquillian.ARQUILLIAN_DATA_PROVIDER)
-    public void testPassport(@InitialPage LoginPage loginPage) {
+    public void testPassport(@InitialPage LoginPage loginPage) throws InterruptedException {
         loginPage.login("0504001000019", "test");
         menuHeader.goToMyClub();
 
@@ -34,6 +37,7 @@ public class ClubAdminIT extends AbstractArquillianTest {
         createMemberPage.setEmail("max@mustermann.de");
 
         createMemberPage.setBirthday("02.02.2018");
+        TimeUnit.SECONDS.sleep(2);
         createMemberPage.setBeginDate("01.01.2018");
     }
 }

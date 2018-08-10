@@ -1,16 +1,15 @@
 package de.falkharnisch.web.jupa.page;
 
-import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.page.Location;
-import org.openqa.selenium.WebDriver;
+import org.jboss.arquillian.graphene.page.Page;
 
 @Location("index.xhtml")
 public class HomePage {
 
-    @Drone
-    private WebDriver driver;
+    @Page
+    private MenuHeader menuHeader;
 
-
-
-
+    public MenuHeader getMenuHeader() {
+        return menuHeader;
+    }
 }

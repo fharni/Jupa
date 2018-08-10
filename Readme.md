@@ -11,7 +11,7 @@ Dieses Tool soll alle Einträge des elektronischen Mitgliedsausweises verwalten.
     jdbcDriver = org.hsqldb.jdbcDriver
   </Resource> -->
 
-  <!-- Prefered MarieDb -->
+  <!-- Prefered MariaDb -->
   <Resource id="jdbc/JuPaDS" type="javax.sql.DataSource">
     jdbcUrl = jdbc:mariadb://localhost:3306/jupa
     jdbcDriver = org.mariadb.jdbc.Driver

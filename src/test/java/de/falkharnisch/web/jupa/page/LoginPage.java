@@ -1,8 +1,6 @@
 package de.falkharnisch.web.jupa.page;
 
-import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.graphene.page.Location;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -10,9 +8,6 @@ import static org.jboss.arquillian.graphene.Graphene.guardAjax;
 
 @Location("login.xhtml")
 public class LoginPage {
-
-    @Drone
-    private WebDriver driver;
 
     @FindBy(id = "headerForm:menu-links")
     private MenuHeader menuHeader;
@@ -31,5 +26,9 @@ public class LoginPage {
         this.password.sendKeys(password);
 
         guardAjax(loginButton).click();
+    }
+
+    public boolean hasLoginButton() {
+        return loginButton.isDisplayed();
     }
 }

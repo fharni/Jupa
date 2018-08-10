@@ -1,6 +1,7 @@
 package de.falkharnisch.web.jupa.test;
 
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.Filters;
 import org.jboss.shrinkwrap.api.GenericArchive;
@@ -10,12 +11,16 @@ import org.jboss.shrinkwrap.api.importer.ExplodedImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.jboss.shrinkwrap.resolver.api.maven.PomEquippedResolveStage;
+import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 
 public abstract class AbstractArquillianTest extends Arquillian {
 
     private static final String WEBAPP_SRC = "src/main/webapp";
+
+    @Drone
+    private WebDriver driver;
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {

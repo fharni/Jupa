@@ -19,11 +19,15 @@ public class MenuHeader {
     private WebElement logout;
 
     public void goToPassport() {
-    	Graphene.guardHttp(passport).click();
+        Graphene.guardHttp(passport).click();
     }
 
     public void goToMyClub() {
         Graphene.guardHttp(myclub).click();
+    }
+
+    public boolean hasLogoutButton() {
+        return logout.isDisplayed();
     }
 
     public void logout() {

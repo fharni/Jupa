@@ -34,8 +34,6 @@ public class CreateMemberPage {
     }
 
     public void setBirthday(String birthday) {
-        this.birthday.click();
-        this.birthday.click();
         this.birthday.sendKeys(birthday);
     }
 
@@ -44,8 +42,6 @@ public class CreateMemberPage {
     }
 
     public void setBeginDate(String beginDate) {
-        this.beginDate.click();
-        this.beginDate.click();
         this.beginDate.sendKeys(beginDate);
     }
 
