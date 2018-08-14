@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html
+        xmlns:b="http://bootsfaces.net/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<ui:composition>
+    <b:dataTable searching="false" paginated="false" info="false"
+                 value="#{userBean.licenses}" var="license">
+        <b:dataTableColumn label="Name" value="#{license.license.name}"/>
+        <b:dataTableColumn label="Gültig bis" value="#{license.endDate}"/>
+    </b:dataTable>
+</ui:composition>
+</html>

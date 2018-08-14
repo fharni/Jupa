@@ -4,10 +4,8 @@ package de.falkharnisch.web.jupa.beans;
 import de.falkharnisch.web.jupa.database.Course;
 import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.database.UserGrading;
-import de.falkharnisch.web.jupa.services.ConfigurationService;
-import de.falkharnisch.web.jupa.services.CourseService;
-import de.falkharnisch.web.jupa.services.GradingService;
-import de.falkharnisch.web.jupa.services.UserService;
+import de.falkharnisch.web.jupa.database.UserLicense;
+import de.falkharnisch.web.jupa.services.*;
 import de.falkharnisch.web.jupa.util.Util;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -43,6 +41,9 @@ public class UserBean {
     private CourseService courseService;
 
     @Inject
+    private LicenseService licenseService;
+
+    @Inject
     private ConfigurationService configurationService;
 
     @Inject
@@ -51,6 +52,7 @@ public class UserBean {
     private User user;
     private List<UserGrading> gradings;
     private List<Course> courses;
+    private List<UserLicense> licenses;
 
     @PostConstruct
     private void initUser() {
@@ -65,6 +67,8 @@ public class UserBean {
         });
 
         courses = courseService.getCoursesForUser(user);
+
+        licenses = licenseService.getLicensesForUser(user);
     }
 
     public String getName() {
@@ -153,7 +157,11 @@ public class UserBean {
         return courses;
     }
 
-    public boolean isLicenses() {
-        return false;
+    public boolean isLicense() {
+        return !licenses.isEmpty();
+    }
+
+    public List<UserLicense> getLicenses() {
+        return licenses;
     }
 }

@@ -8,18 +8,18 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
-@FacesConverter(forClass = LocalDateTime.class, value = "localDateTimeFacesConverter")
-public class CalenderDateTimeConverter implements Converter {
+@FacesConverter(forClass = LocalDate.class, value = "localDateFacesConverter")
+public class CalenderDateConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(extractPattern(component));
         try {
-            return LocalDateTime.parse(value, formatter);
+            return LocalDate.parse(value, formatter);
         } catch (Exception e) {
             return null;
         }
@@ -32,8 +32,8 @@ public class CalenderDateTimeConverter implements Converter {
         }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(extractPattern(component));
-        if (value instanceof LocalDateTime) {
-            return formatter.format((LocalDateTime) value);
+        if (value instanceof LocalDate) {
+            return formatter.format((LocalDate) value);
         } else {
             return "";
         }
@@ -44,6 +44,6 @@ public class CalenderDateTimeConverter implements Converter {
             Calendar calendarComponent = (Calendar) component;
             return calendarComponent.getPattern();
         }
-        return "yyyy-MM-dd HH:mm";
+        return "yyyy-MM-dd";
     }
 }

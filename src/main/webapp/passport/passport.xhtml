@@ -35,24 +35,16 @@
             </b:panelGrid>
         </b:panel>
         <b:panel id="gradingTable" title="Graduierungen" rendered="#{userBean.grading}"
-                 smallScreen="6" mediumScreen="5" largeScreen="4">
+                 smallScreen="5" mediumScreen="5" largeScreen="4">
             <ui:include src="gradings.xhtml"/>
         </b:panel>
-        <b:panel id="licensesTable" title="Lizenzen" col-sm="6" rendered="#{userBean.licenses}">
-            <b:dataTable searching="false" paginated="false" info="false">
-                <b:dataTableColumn label="Name"/>
-                <b:dataTableColumn label="Gültig bis"/>
-            </b:dataTable>
+        <b:panel id="licensesTable" title="Lizenzen" rendered="#{userBean.license}"
+                 smallScreen="7" mediumScreen="5" largeScreen="4">
+            <ui:include src="licenses.xhtml"/>
         </b:panel>
         <b:panel id="courseTable" title="Lehrgänge" rendered="#{userBean.course}"
                  smallScreen="12" mediumScreen="9" largeScreen="7">
-            <b:dataTable searching="false" paginated="false" info="false"
-                         value="#{userBean.courses}" var="course">
-                <b:dataTableColumn label="Datum" order="desc" value="#{course.startDate}"/>
-                <b:dataTableColumn label="Name" value="#{course.topic}"/>
-                <b:dataTableColumn label="Referent" value="#{course.instructor.fullname}"/>
-                <b:dataTableColumn label="Ort" value="#{course.place}"/>
-            </b:dataTable>
+            <ui:include src="courses.xhtml"/>
         </b:panel>
 
     </ui:define>

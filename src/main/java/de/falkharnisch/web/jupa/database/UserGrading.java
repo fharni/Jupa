@@ -24,6 +24,10 @@ public class UserGrading implements BaseEntity {
         return id;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public void setUser(User user) {
         this.user = user;
     }
