@@ -11,9 +11,7 @@
 <ui:composition>
     <b:panelGrid columns="2" colSpans="1,11" size="sm">
         <h:outputText value="Datum:"/>
-        <h:outputText value="#{auditBean.selectedAudit.startDate}">
-            <f:convertDateTime pattern="dd-MM-yyyy HH:mm"/>
-        </h:outputText>
+        <h:outputLabel value="#{auditBean.selectedAudit.startDate}"/>
 
         <h:outputText value="Prüfer:"/>
         <h:outputLabel value="#{auditBean.selectedAudit.auditor}"/>
@@ -32,18 +30,20 @@
         </b:dataTableColumn>
     </b:dataTable>
 
-    <p:selectOneMenu id="members" value="#{auditBean.selectedUser}" converter="#{userConverter}">
-        <f:selectItem itemLabel="Bitte auswählen" noSelectionOption="true"/>
-        <f:selectItems value="#{auditBean.remainingClubMembers}"
-                       var="user" itemLabel="#{user}" itemValue="#{user}"/>
-    </p:selectOneMenu>
-    <p:selectOneMenu id="grading" value="#{auditBean.selectedGrading}" converter="#{gradingConverter}">
-        <f:selectItem itemLabel="Bitte auswählen" noSelectionOption="true"/>
-        <f:selectItems value="#{auditBean.gradings}"
-                       var="grading" itemLabel="#{grading.name}" itemValue="#{grading}"/>
-    </p:selectOneMenu>
-    <b:commandButton value="teilnehmen" update="contentForm" look="primary"
-                     action="#{auditBean.addUserToAudit}"/>
+    <b:panelGrid columns="3" colSpans="2,2,8">
+        <p:selectOneMenu id="members" value="#{auditBean.selectedUser}" converter="#{userConverter}">
+            <f:selectItem itemLabel="Bitte auswählen" noSelectionOption="true"/>
+            <f:selectItems value="#{auditBean.remainingClubMembers}"
+                           var="user" itemLabel="#{user}" itemValue="#{user}"/>
+        </p:selectOneMenu>
+        <p:selectOneMenu id="grading" value="#{auditBean.selectedGrading}" converter="#{gradingConverter}">
+            <f:selectItem itemLabel="Bitte auswählen" noSelectionOption="true"/>
+            <f:selectItems value="#{auditBean.gradings}"
+                           var="grading" itemLabel="#{grading.name}" itemValue="#{grading}"/>
+        </p:selectOneMenu>
+        <b:commandButton value="teilnehmen" update="contentForm" look="primary"
+                         action="#{auditBean.addUserToAudit}"/>
+    </b:panelGrid>
 
     <b:commandButton value="Zurück" action="#{auditBean.back}"
                      update="contentForm" immediate="true"/>

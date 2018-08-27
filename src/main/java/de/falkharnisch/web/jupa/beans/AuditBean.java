@@ -94,6 +94,13 @@ public class AuditBean {
         this.members = auditService.getMembersForAudit(audit);
     }
 
+    @SuppressWarnings("unused")
+    public void releaseAudit(Audit audit){
+        AuditStatus auditStatus = auditService.getStatus(AuditService.STATUS.RELEASE);
+        audit.setStatus(auditStatus);
+        auditService.merge(audit);
+    }
+
     public List<AuditMember> getMembers() {
         return members;
     }

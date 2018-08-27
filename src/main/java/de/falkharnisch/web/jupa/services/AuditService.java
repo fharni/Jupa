@@ -19,7 +19,8 @@ public class AuditService extends BaseService<Audit> {
 
     public enum STATUS {
         REQUEST(1),
-        DEFINE_PARTICIPANTS(2);
+        DEFINE_PARTICIPANTS(2),
+        RELEASE(3);
 
         int id;
 

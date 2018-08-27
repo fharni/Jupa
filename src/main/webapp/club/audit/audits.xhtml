@@ -22,6 +22,12 @@
             <b:commandButton value="Teilnehmer" iconAwesome="fa-group" ajax="true" update="contentForm"
                              onclick="ajax:auditBean.showMembers(audit)"
                              rendered="#{audit.status.id == 2}"/>
+            <b:commandButton value="Zur Prüfung freigeben" iconAwesome="fa-check" ajax="true"
+                             onclick="ajax:auditBean.releaseAudit(audit)"
+                             update="contentForm" look="success"
+                             rendered="#{audit.status.id == 2}"/>
+            <b:commandButton value="Prüfungsliste" look="info" iconAwesome="fa-file-excel-o" ajax="true"
+                             rendered="#{audit.status.id == 3}"/>
         </b:dataTableColumn>
     </b:dataTable>
 </ui:composition>
