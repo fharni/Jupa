@@ -36,17 +36,20 @@ public class MembershipServiceTest extends AbstractArquillianTest {
         assertEquals(memberships2.size(), 1, "Falsche Anzahl an aktiven Mitgliedschaften");
     }
 
-    @Test
+    @Test(dependsOnMethods = "testGetMembership")
     public void testNewMembership() {
         User user = userService.getUserById(1);
         Club club = clubService.getClubByName("TV Eichen 1888 e.V.");
 
+        int membershipSize = membershipService.getMemberships(user).size();
+        int activeMembershipSize = membershipService.getActiveMemberships(user).size();
+
         membershipService.beginMembership(user, club, LocalDate.now());
 
         List<Membership> memberships = membershipService.getMemberships(user);
-        assertEquals(memberships.size(), 3, "Falsche Anzahl an Mitgliedschaften");
+        assertEquals(memberships.size(), membershipSize + 1, "Falsche Anzahl an Mitgliedschaften");
 
         List<Membership> memberships2 = membershipService.getActiveMemberships(user);
-        assertEquals(memberships2.size(), 2, "Falsche Anzahl an aktiven Mitgliedschaften");
+        assertEquals(memberships2.size(), activeMembershipSize + 1, "Falsche Anzahl an aktiven Mitgliedschaften");
     }
 }
