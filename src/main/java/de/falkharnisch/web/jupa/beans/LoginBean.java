@@ -3,6 +3,7 @@ package de.falkharnisch.web.jupa.beans;
 import de.falkharnisch.web.jupa.database.Function;
 import de.falkharnisch.web.jupa.database.Role;
 import de.falkharnisch.web.jupa.database.User;
+import de.falkharnisch.web.jupa.services.LicenseService;
 import de.falkharnisch.web.jupa.services.UserService;
 
 import javax.faces.application.FacesMessage;
@@ -20,8 +21,13 @@ import java.util.Set;
 public class LoginBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Inject
     private UserService userService;
+
+    @Inject
+    private LicenseService licenseService;
+
     private String password;
     private String uname;
 
@@ -48,8 +54,14 @@ public class LoginBean implements Serializable {
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
                     .getExternalContext().getSession(false);
             session.setAttribute("username", uname);
+            User user = userService.getUserByUsername(uname);
 
-            Set<String> userGroups = getGroups();
+            Set<String> userGroups = getGroups(user);
+
+            if (licenseService.isUserAuditor(user)) {
+                userGroups.add("menu.auditor");
+            }
+
             session.setAttribute("usergroups", userGroups);
             return "home";
         } else {
@@ -63,9 +75,8 @@ public class LoginBean implements Serializable {
         }
     }
 
-    private Set<String> getGroups() {
+    private Set<String> getGroups(User user) {
         Set<String> userGroups = new HashSet<>();
-        User user = userService.getUserByUsername(uname);
         for (Role role : user.getRoles()) {
             for (Function function : role.getFunctions()) {
                 userGroups.add(function.getFunction());

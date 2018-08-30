@@ -39,4 +39,11 @@
             <to-view-id>/federation/federation.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>auditor</from-outcome>
+            <to-view-id>/auditor/audits.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

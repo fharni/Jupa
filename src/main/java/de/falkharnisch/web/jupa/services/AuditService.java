@@ -70,6 +70,14 @@ public class AuditService extends BaseService<Audit> {
         return em.createQuery(query).getResultList();
     }
 
+    public List<Audit> getAuditsForAuditor(User user) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Audit> query = builder.createQuery(Audit.class);
+        Root<Audit> root = query.from(Audit.class);
+        query.where(builder.equal(root.get(Audit_.auditor), user));
+        return em.createQuery(query).getResultList();
+    }
+
     public void approveAudit(Audit audit) {
         AuditStatus auditStatus = statusMap.get(STATUS.DEFINE_PARTICIPANTS.id);
         audit.setStatus(auditStatus);
@@ -80,7 +88,7 @@ public class AuditService extends BaseService<Audit> {
         remove(member);
     }
 
-    public void persistAuditMember(AuditMember member){
+    public void persistAuditMember(AuditMember member) {
         persistOther(member);
     }
 }

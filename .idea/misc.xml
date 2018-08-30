@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="EntryPointsManager">
-    <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="javax.persistence.Converter" />
-      <item index="1" class="java.lang.String" itemvalue="javax.persistence.OneToOne" />
-      <item index="2" class="java.lang.String" itemvalue="org.jboss.arquillian.container.test.api.Deployment" />
-      <item index="3" class="java.lang.String" itemvalue="org.jboss.arquillian.drone.api.annotation.Drone" />
-      <item index="4" class="java.lang.String" itemvalue="org.openqa.selenium.support.FindBy" />
+    <list size="7">
+      <item index="0" class="java.lang.String" itemvalue="javax.persistence.Column" />
+      <item index="1" class="java.lang.String" itemvalue="javax.persistence.Converter" />
+      <item index="2" class="java.lang.String" itemvalue="javax.persistence.Id" />
+      <item index="3" class="java.lang.String" itemvalue="javax.persistence.OneToOne" />
+      <item index="4" class="java.lang.String" itemvalue="org.jboss.arquillian.container.test.api.Deployment" />
+      <item index="5" class="java.lang.String" itemvalue="org.jboss.arquillian.drone.api.annotation.Drone" />
+      <item index="6" class="java.lang.String" itemvalue="org.openqa.selenium.support.FindBy" />
     </list>
     <writeAnnotations>
       <writeAnnotation name="javax.persistence.Column" />

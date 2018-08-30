@@ -21,6 +21,8 @@
                            rendered="#{menuAccessBean.showMenuCourses}"/>
                 <b:navLink value="Verband" outcome="federation" id="federation"
                            rendered="#{menuAccessBean.showMenuFederation}"/>
+                <b:navLink value="Prüfer" outcome="auditor" id="auditor"
+                           rendered="#{menuAccessBean.showMenuAuditor}"/>
                 <b:navCommandLink value="Abmelden" action="#{accessBean.logout}" id="logout"
                                   rendered="#{accessBean.loggedIn}"/>
             </b:navbarLinks>

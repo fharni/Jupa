@@ -1,12 +1,11 @@
 package de.falkharnisch.web.jupa.services;
 
-import de.falkharnisch.web.jupa.database.User;
-import de.falkharnisch.web.jupa.database.UserLicense;
-import de.falkharnisch.web.jupa.database.UserLicense_;
+import de.falkharnisch.web.jupa.database.*;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -21,5 +20,19 @@ public class LicenseService extends BaseService<UserLicense> {
         Root<UserLicense> root = query.from(UserLicense.class);
         query.where(builder.equal(root.get(UserLicense_.user), user));
         return em.createQuery(query).getResultList();
+    }
+
+    public boolean isUserAuditor(User user) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<UserLicense> query = builder.createQuery(UserLicense.class);
+        Root<UserLicense> root = query.from(UserLicense.class);
+        Join<UserLicense, License> licenseJoin = root.join(UserLicense_.license);
+        Join<License, LicenseType> licenseTypeJoin = licenseJoin.join(License_.type);
+        query.where(builder.and(
+                builder.equal(root.get(UserLicense_.user), user),
+                builder.equal(licenseTypeJoin.get(LicenseType_.id), 3)
+                )
+        );
+        return !em.createQuery(query).getResultList().isEmpty();
     }
 }

@@ -3,27 +3,22 @@ package de.falkharnisch.web.jupa.database;
 import javax.persistence.*;
 
 @Entity
-public class License implements BaseEntity {
+@Table(name = "license_type")
+public class LicenseType implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column
-    private String name;
-
-    @Column
-    private Integer level;
-
-    @OneToOne
-    private LicenseType type;
+    private String type;
 
     @Override
     public Integer getId() {
-        return id;
+        return null;
     }
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 }

@@ -83,6 +83,10 @@ public class AuditBean {
         return auditService.getAuditsForFederation(user.getClub().getDistrict().getFederation());
     }
 
+    public List<Audit> getAuditsForAuditor(){
+        return auditService.getAuditsForAuditor(user);
+    }
+
     @SuppressWarnings("unused")
     public void approveAudit(Audit audit) {
         auditService.approveAudit(audit);
