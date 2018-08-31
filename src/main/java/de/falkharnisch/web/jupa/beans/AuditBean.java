@@ -71,8 +71,8 @@ public class AuditBean {
         selectedAudit = null;
     }
 
-    public List<User> autoCompleteInstructor(String query) {
-        return userService.getUserByNamepart(query);
+    public List<User> autoCompleteAuditor(String query) {
+        return userService.getAuditorByNamepart(query);
     }
 
     public List<Audit> getClubAudits() {

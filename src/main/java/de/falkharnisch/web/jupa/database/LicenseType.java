@@ -6,6 +6,8 @@ import javax.persistence.*;
 @Table(name = "license_type")
 public class LicenseType implements BaseEntity {
 
+    public static int AUDITOR = 3;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

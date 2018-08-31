@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 @Transactional
@@ -30,7 +31,8 @@ public class LicenseService extends BaseService<UserLicense> {
         Join<License, LicenseType> licenseTypeJoin = licenseJoin.join(License_.type);
         query.where(builder.and(
                 builder.equal(root.get(UserLicense_.user), user),
-                builder.equal(licenseTypeJoin.get(LicenseType_.id), 3)
+                builder.greaterThanOrEqualTo(root.get(UserLicense_.endDate), LocalDate.now()),
+                builder.equal(licenseTypeJoin.get(LicenseType_.id), LicenseType.AUDITOR)
                 )
         );
         return !em.createQuery(query).getResultList().isEmpty();
