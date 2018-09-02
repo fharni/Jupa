@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 @Test(dependsOnGroups = "login")
-public class PassportPageIT extends AbstractArquillianTest {
+public class PassportPageIT extends AbstractDroneTest {
 
     @Page
     private MenuHeader menuHeader;
@@ -21,12 +21,12 @@ public class PassportPageIT extends AbstractArquillianTest {
 
     @Test(dataProvider = Arquillian.ARQUILLIAN_DATA_PROVIDER)
     public void testPassport(@InitialPage LoginPage loginPage) {
-        loginPage.login("0502001000015", "test");
+        loginPage.login("0502001000015", "falk");
 
         menuHeader.goToPassport();
 
         assertEquals(passportPage.getUsername(), "0502001000015", "Username doesn't match");
-        assertEquals(passportPage.getName(), "Schüler Eins", "Name doesn't match");
+        assertEquals(passportPage.getName(), "Falk Harnisch", "Name doesn't match");
         assertEquals(passportPage.getClubName(), "TV 1875 Paderborn e.V.", "Clubname doesn't match");
         assertEquals(passportPage.getDistrictName(), "Bielefeld", "Districtname doesn't match");
         assertEquals(passportPage.getFederationName(), "Nordrhein-Westfalen", "Federationname doesn't match");

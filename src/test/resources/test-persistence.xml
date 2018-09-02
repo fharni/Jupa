@@ -13,7 +13,11 @@
             <property name="hibernate.connection.charSet" value="UTF-8"/>
             <property name="hibernate.connection.useUnicode" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-            <property name="hibernate.hbm2ddl.import_files" value="initial_data.sql"/>
+            <property name="hibernate.hbm2ddl.import_files" value="B00_federation.sql, B01_district.sql,
+            B04_function.sql, B05_role.sql, B06_annotation.sql, B08_discipline.sql, B09_grading.sql,
+            B10_configuration.sql, B12_audit.sql, B13_license.sql,
+            T02_club_testdaten.sql, T03_user_testdaten.sql, T05_role_testdaten.sql, T10_grading_testdaten.sql,
+            T11_membership_testdaten.sql, T12_audit_testdaten.sql, T13_course_testdaten.sql, T14_license_testdaten.sql"/>
             <property name="hibernate.hbm2ddl.import_files_sql_extractor"
                       value="org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor"/>
             <property name="hibernate.enable_lazy_load_no_trans" value="true"/>

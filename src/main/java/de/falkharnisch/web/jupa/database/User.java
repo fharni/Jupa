@@ -43,7 +43,7 @@ public class User implements BaseEntity {
             joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
     )
-    private Set<Role> roles;
+    private Set<UserRole> userRoles;
 
     public User() {
     }
@@ -127,8 +127,8 @@ public class User implements BaseEntity {
         return memberships;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
     }
 
     public String getFullname() {

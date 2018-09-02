@@ -1,8 +1,8 @@
 package de.falkharnisch.web.jupa.beans;
 
 import de.falkharnisch.web.jupa.database.Function;
-import de.falkharnisch.web.jupa.database.Role;
 import de.falkharnisch.web.jupa.database.User;
+import de.falkharnisch.web.jupa.database.UserRole;
 import de.falkharnisch.web.jupa.services.LicenseService;
 import de.falkharnisch.web.jupa.services.UserService;
 
@@ -77,8 +77,8 @@ public class LoginBean implements Serializable {
 
     private Set<String> getGroups(User user) {
         Set<String> userGroups = new HashSet<>();
-        for (Role role : user.getRoles()) {
-            for (Function function : role.getFunctions()) {
+        for (UserRole userRole : user.getUserRoles()) {
+            for (Function function : userRole.getRole().getFunctions()) {
                 userGroups.add(function.getFunction());
             }
         }

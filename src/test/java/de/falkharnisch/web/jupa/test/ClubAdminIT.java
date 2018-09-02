@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import static org.testng.Assert.assertEquals;
 
 @Test(dependsOnGroups = "login")
-public class ClubAdminIT extends AbstractArquillianTest {
+public class ClubAdminIT extends AbstractDroneTest {
 
     @Page
     private MenuHeader menuHeader;
@@ -27,7 +27,7 @@ public class ClubAdminIT extends AbstractArquillianTest {
 
     @Test(dataProvider = Arquillian.ARQUILLIAN_DATA_PROVIDER)
     public void testPassport(@InitialPage LoginPage loginPage) throws InterruptedException {
-        loginPage.login("0504001000019", "test");
+        loginPage.login("0504001000019", "maike");
         menuHeader.goToMyClub();
 
         assertEquals(myClubPage.getClubname(), "SG Erfstadt 1970 e.V.");

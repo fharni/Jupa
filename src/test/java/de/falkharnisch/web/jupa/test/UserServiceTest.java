@@ -25,7 +25,7 @@ public class UserServiceTest extends AbstractArquillianTest {
     public void testSelectAll() {
         List<User> users = userService.getUserByNamepart("");
         assertNotNull(users);
-        assertEquals(users.size(), 11, "Falsche Anzahl an Benutzern");
+        assertEquals(users.size(), 16, "Falsche Anzahl an Benutzern");
     }
 
     @Test(dependsOnMethods = "testSelectAll")
@@ -46,26 +46,26 @@ public class UserServiceTest extends AbstractArquillianTest {
     @Test
     public void testSelectById() {
         User user = userService.getUserById(4);
-        assertEquals("Referent", user.getForename());
-        assertEquals("desBezirkes", user.getSurname());
+        assertEquals(user.getForename(), "Brian");
+        assertEquals(user.getSurname(), "Smith");
     }
 
     @Test
     public void testSelectByUsername() {
         User user = userService.getUserByUsername("0504001000019");
-        assertEquals(user.getForename(), "Chefin");
-        assertEquals(user.getSurname(), "desVereins");
+        assertEquals(user.getForename(), "Maike");
+        assertEquals(user.getSurname(), "John");
     }
 
     @Test
     public void testSelectByUsernamePart() {
         List<User> users = userService.getUserByUsernamePart("0502001");
-        assertEquals(users.size(), 8, "Falsche Anzahl an Benutzern");
+        assertEquals(users.size(), 12, "Falsche Anzahl an Benutzern");
     }
 
     @Test
     public void testLogin() {
-        boolean login = userService.login("0503001000012", "test");
+        boolean login = userService.login("0503001000012", "wolfgang");
         assertTrue(login, "Sollte erfolgreich angemeldet werden");
 
         login = userService.login("0503001000012", "test12");
@@ -79,13 +79,13 @@ public class UserServiceTest extends AbstractArquillianTest {
     public void testMaxIdForClub() {
         Club c = clubService.getClubByName("TV 1875 Paderborn e.V.");
         String maxIdForClub = userService.getMaxIdForClub(c);
-        assertEquals(maxIdForClub, "0502001000084", "Die höchste ID passt nicht");
+        assertEquals(maxIdForClub, "0502001000121", "Die höchste ID passt nicht");
     }
 
     @Test
     public void testUsersForClub() {
         Club c = clubService.getClubByName("TV 1875 Paderborn e.V.");
         List<User> usersForClub = userService.getUsersForClub(c);
-        assertEquals(usersForClub.size(), 8, "Für den Verein konnten nicht die korrekten Mitglieder gefunden werden");
+        assertEquals(usersForClub.size(), 12, "Für den Verein konnten nicht die korrekten Mitglieder gefunden werden");
     }
 }

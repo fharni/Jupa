@@ -37,6 +37,6 @@ public class ClubServiceTest extends AbstractArquillianTest {
     public void testClubsForFederation() {
         Club club = clubService.getClubByName("TV 1875 Paderborn e.V.");
         List<Club> clubs = clubService.getClubsForFederation(club.getDistrict().getFederation());
-        assertEquals(clubs.size(), 4);
+        assertEquals(clubs.size(), 5);
     }
 }

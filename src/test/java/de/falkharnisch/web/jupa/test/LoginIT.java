@@ -10,14 +10,14 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 @Test(groups = "login")
-public class LoginIT extends AbstractArquillianTest {
+public class LoginIT extends AbstractDroneTest {
 
     @Page
     private HomePage homePage;
 
     @Test(dataProvider = Arquillian.ARQUILLIAN_DATA_PROVIDER)
     public void should_login_successfully(@InitialPage LoginPage loginPage) {
-        loginPage.login("0502001000015", "test");
+        loginPage.login("0502001000015", "falk");
         assertTrue(homePage.getMenuHeader().hasLogoutButton());
 
         // TOOO find and fix this bug

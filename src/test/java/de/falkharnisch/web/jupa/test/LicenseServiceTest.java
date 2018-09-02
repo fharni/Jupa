@@ -32,7 +32,7 @@ public class LicenseServiceTest extends AbstractArquillianTest {
         User user = userService.getUserById(1);
         assertTrue(licenseService.isUserAuditor(user), "Benutzer ist kein Prüfer");
 
-        User user2 = userService.getUserById(2);
+        User user2 = userService.getUserById(3);
         assertFalse(licenseService.isUserAuditor(user2), "Benutzer ist Prüfer");
     }
 }

@@ -2,7 +2,7 @@ package de.falkharnisch.web.jupa.database;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Audit implements BaseEntity {
@@ -12,7 +12,7 @@ public class Audit implements BaseEntity {
     private Integer id;
 
     @Column(nullable = false)
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
     @OneToOne
     private Club club;
@@ -37,11 +37,11 @@ public class Audit implements BaseEntity {
         this.id = id;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 

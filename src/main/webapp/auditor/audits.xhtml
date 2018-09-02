@@ -24,6 +24,8 @@
                 <b:dataTableColumn label="Aktion">
                     <b:commandButton value="Prüfungsliste" look="info" iconAwesome="fa-file-excel-o" ajax="true"
                                      rendered="#{audit.status.id == 3}"/>
+                    <b:commandButton value="Ergebnisse eintragen" ajax="true"
+                                     rendered="#{audit.status.id == 3}"/>
                 </b:dataTableColumn>
             </b:dataTable>
         </h:form>

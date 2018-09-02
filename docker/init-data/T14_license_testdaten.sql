@@ -6,5 +6,5 @@ INSERT INTO user_license (id, user_id, license_id, begindate, enddate) VALUES (5
 INSERT INTO user_license (id, user_id, license_id, begindate, enddate) VALUES (6, 1, 17, '2013-10-04', '2019-12-31');
 INSERT INTO user_license (id, user_id, license_id, begindate, enddate) VALUES (7, 1, 18, '2011-04-09', '2019-12-31');
 INSERT INTO user_license (id, user_id, license_id, begindate, enddate) VALUES (8, 2, 18, '2012-01-01', '2019-12-31');
-INSERT INTO user_license (id, user_id, license_id, begindate, enddate) VALUES (9, 4, 18, '2011-04-09', '2019-12-31');
-INSERT INTO user_license (id, user_id, license_id, begindate, enddate) VALUES (10, 5, 18, '2011-04-09', '2019-12-31');
+INSERT INTO user_license (id, user_id, license_id, begindate, enddate) VALUES (9, 4, 18, '2013-01-01', '2019-12-31');
+INSERT INTO user_license (id, user_id, license_id, begindate, enddate) VALUES (10, 5, 18, '2014-01-01', '2019-12-31');

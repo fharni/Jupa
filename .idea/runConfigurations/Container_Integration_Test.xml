@@ -10,7 +10,7 @@
     </extension>
     <option name="arquillianRunConfiguration">
       <value>
-        <option name="containerStateName" value="Manual container configuration" />
+        <option name="containerStateName" value="TomEE Embedded" />
       </value>
     </option>
     <option name="SUITE_NAME" value="" />
