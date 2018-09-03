@@ -37,12 +37,7 @@ public class User implements BaseEntity {
     @JoinColumn(name = "USER_ID")
     private Set<Membership> memberships;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "USER_ROLE",
-            joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
-    )
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<UserRole> userRoles;
 
     public User() {

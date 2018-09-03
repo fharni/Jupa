@@ -8,8 +8,10 @@
 >
 <ui:composition>
     <b:dataTable searching="false" paginated="false" info="false"
-                 value="#{userBean.licenses}" var="license">
+                 value="#{userBean.licenses}" var="license"
+                 responsive="true">
         <b:dataTableColumn label="Name" value="#{license.license.name}"/>
+        <b:dataTableColumn label="Erwerb" value="#{license.beginDate}"/>
         <b:dataTableColumn label="Gültig bis" value="#{license.endDate}"/>
     </b:dataTable>
 </ui:composition>

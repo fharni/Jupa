@@ -12,6 +12,11 @@
                  paginated="false" searching="false" info="false">
         <b:dataTableColumn label="Name" value="#{member.surname}"/>
         <b:dataTableColumn label="Vorname" value="#{member.forename}"/>
+        <b:dataTableColumn label="Graduierung">
+            <ui:repeat value="#{gradingBean.getGradingListForUser(member).keySet()}" var="gradingList">
+                #{gradingBean.getGradingListForUser(member).get(gradingList).name} (#{gradingList})<br />
+            </ui:repeat>
+        </b:dataTableColumn>
         <b:dataTableColumn label="ID" value="#{member.username}"/>
     </b:dataTable>
 </ui:composition>

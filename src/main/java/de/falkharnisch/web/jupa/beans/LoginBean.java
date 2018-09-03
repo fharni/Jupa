@@ -84,6 +84,4 @@ public class LoginBean implements Serializable {
         }
         return userGroups;
     }
-
-
 }

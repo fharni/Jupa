@@ -10,7 +10,7 @@
 <ui:composition template="/WEB-INF/templates/commonLayout.xhtml">
     <ui:define name="content">
         <b:panel id="passPanel" title="Mein Ju-Jutsu Pass"
-                 smallScreen="12" mediumScreen="9" largeScreen="7">
+                 smallScreen="12" mediumScreen="8" largeScreen="8">
             <b:panelGrid colSpans="3,5,4" size="sm">
                 <p:graphicImage value="#{userBean.image}" height="#{userBean.getImageHeight()}"
                                 width="#{userBean.getImageWidth()}"/>
@@ -35,15 +35,15 @@
             </b:panelGrid>
         </b:panel>
         <b:panel id="gradingTable" title="Graduierungen" rendered="#{userBean.grading}"
-                 smallScreen="5" mediumScreen="5" largeScreen="4">
+                 smallScreen="5" mediumScreen="5" largeScreen="5">
             <ui:include src="gradings.xhtml"/>
         </b:panel>
         <b:panel id="licensesTable" title="Lizenzen" rendered="#{userBean.license}"
-                 smallScreen="7" mediumScreen="5" largeScreen="4">
+                 smallScreen="7" mediumScreen="7" largeScreen="7">
             <ui:include src="licenses.xhtml"/>
         </b:panel>
         <b:panel id="courseTable" title="Lehrgänge" rendered="#{userBean.course}"
-                 smallScreen="12" mediumScreen="9" largeScreen="7">
+                 smallScreen="12" mediumScreen="12" largeScreen="12">
             <ui:include src="courses.xhtml"/>
         </b:panel>
 

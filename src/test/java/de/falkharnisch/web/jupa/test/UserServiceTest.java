@@ -1,7 +1,9 @@
 package de.falkharnisch.web.jupa.test;
 
 import de.falkharnisch.web.jupa.database.Club;
+import de.falkharnisch.web.jupa.database.Role;
 import de.falkharnisch.web.jupa.database.User;
+import de.falkharnisch.web.jupa.database.UserRole;
 import de.falkharnisch.web.jupa.services.ClubService;
 import de.falkharnisch.web.jupa.services.UserService;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
@@ -10,6 +12,7 @@ import org.testng.annotations.Test;
 import javax.inject.Inject;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import static org.testng.Assert.*;
 
@@ -87,5 +90,17 @@ public class UserServiceTest extends AbstractArquillianTest {
         Club c = clubService.getClubByName("TV 1875 Paderborn e.V.");
         List<User> usersForClub = userService.getUsersForClub(c);
         assertEquals(usersForClub.size(), 12, "Für den Verein konnten nicht die korrekten Mitglieder gefunden werden");
+    }
+
+    @Test
+    public void testRoles() {
+        User user = userService.getUserByUsername("0504000000010");
+        Set<UserRole> userRoles = user.getUserRoles();
+        assertEquals(userRoles.size(), 1);
+        for (UserRole r : userRoles) {
+            Role role = r.getRole();
+            assertEquals(role.getRole(), "Geschäftsstelle", "Falsche Rolle vergeben");
+            assertEquals(role.getFunctions().size(), 3);
+        }
     }
 }

@@ -10,10 +10,12 @@ public class UserRole implements BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "USER_ID", nullable = false)
     private User user;
 
     @OneToOne
+    @JoinColumn(name = "ROLE_ID", nullable = false)
     private Role role;
 
     @OneToOne
