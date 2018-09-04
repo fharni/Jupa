@@ -9,7 +9,7 @@
       <introspection-schemas>PUBLIC:PUBLIC</introspection-schemas>
     </data-source>
     <data-source name="jdbc:mariadb://localhost:3306/jupa" uuid="769539aa-7d17-44ce-af59-9a54e91f45aa">
-      <database-info product="MySQL" version="10.3.7-MariaDB-1:10.3.7+maria~jessie" jdbc-version="4.2" driver-name="MariaDB connector/J" driver-version="2.2.1" family="MARIADB" exact-version="10.3.7">
+      <database-info product="MySQL" version="10.3.9-MariaDB-1:10.3.9+maria~bionic" jdbc-version="4.2" driver-name="MariaDB connector/J" driver-version="2.2.1" family="MARIADB" exact-version="10.3.9">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>

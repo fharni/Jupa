@@ -5,30 +5,24 @@
 <html
         xmlns:b="http://bootsfaces.net/ui"
         xmlns:ui="http://java.sun.com/jsf/facelets"
-        xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
 >
-<ui:composition template="/WEB-INF/templates/commonLayout.xhtml">
-    <ui:define name="content">
-        <h:form id="contentForm" enctype="multipart/form-data">
-            <p:messages id="messages" showDetail="true" closable="true">
-                <p:autoUpdate/>
-            </p:messages>
-            <b:dataTable value="#{auditBean.auditsForAuditor}" var="audit"
-                         paginated="false" searching="false" info="false">
-                <b:dataTableColumn label="Datum" order="desc">
-                    <h:outputText value="#{audit.startDate}"/>
-                </b:dataTableColumn>
-                <b:dataTableColumn label="Prüfer" value="#{audit.auditor}"/>
-                <b:dataTableColumn label="Disziplin" value="#{audit.discipline}"/>
-                <b:dataTableColumn label="Status" value="#{audit.status}"/>
-                <b:dataTableColumn label="Aktion">
-                    <b:commandButton value="Prüfungsliste" look="info" iconAwesome="fa-file-excel-o" ajax="true"
-                                     rendered="#{audit.status.id == 3}"/>
-                    <b:commandButton value="Ergebnisse eintragen" ajax="true"
-                                     rendered="#{audit.status.id == 3}"/>
-                </b:dataTableColumn>
-            </b:dataTable>
-        </h:form>
-    </ui:define>
+<ui:composition>
+    <b:dataTable value="#{auditBean.auditsForAuditor}" var="audit"
+                 paginated="false" searching="false" info="false">
+        <b:dataTableColumn label="Datum" order="desc">
+            <h:outputText value="#{audit.startDate}"/>
+        </b:dataTableColumn>
+        <b:dataTableColumn label="Prüfer" value="#{audit.auditor}"/>
+        <b:dataTableColumn label="Disziplin" value="#{audit.discipline}"/>
+        <b:dataTableColumn label="Status" value="#{audit.status}"/>
+        <b:dataTableColumn label="Aktion">
+            <b:commandButton value="Prüfungsliste" look="info" iconAwesome="fa-file-excel-o" ajax="true"
+                             rendered="#{audit.status.id == 3}"/>
+            <b:commandButton value="Ergebnisse eintragen" ajax="true" update="contentForm"
+                             rendered="#{audit.status.id == 3}"
+                             onclick="ajax:auditBean.showMembers(audit)"/>
+        </b:dataTableColumn>
+    </b:dataTable>
 </ui:composition>
 </html>

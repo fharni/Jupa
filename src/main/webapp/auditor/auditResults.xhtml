@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html
+        xmlns:b="http://bootsfaces.net/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+<ui:composition>
+    <h2>Prüfungsergebniss eintragen</h2>
+    <b:panelGrid colSpans="1,11" size="sm">
+        <h:outputText value="Verein:"/>
+        <h:outputText id="club" value="#{auditBean.selectedAudit.club}"/>
+        <h:outputText value="Datum:"/>
+        <h:outputText id="name" value="#{auditBean.selectedAudit.startDate}"/>
+    </b:panelGrid>
+
+    <b:dataTable value="#{auditBean.members}" var="member"
+                 paginated="false" searching="false" info="false">
+        <b:dataTableColumn label="Name" value="#{member.user}"/>
+        <b:dataTableColumn label="Angestrebte Graduierung" value="#{member.grading.name}"/>
+        <b:dataTableColumn label="Aktion">
+
+        </b:dataTableColumn>
+    </b:dataTable>
+
+    <b:commandButton value="Zurück" action="#{auditBean.back}"
+                     update="contentForm" immediate="true"/>
+</ui:composition>
+</html>

@@ -51,11 +51,11 @@ public class AuditBean {
         return selectedAudit != null && this.members == null;
     }
 
-    boolean isShowAudit() {
+    public boolean isShowAudit() {
         return selectedAudit == null;
     }
 
-    boolean isShowMembers() {
+    public boolean isShowMembers() {
         return selectedAudit != null && this.members != null;
     }
 

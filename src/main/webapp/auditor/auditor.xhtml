@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+>
+<ui:composition template="/WEB-INF/templates/commonLayout.xhtml">
+    <ui:define name="content">
+        <h:form id="contentForm" enctype="multipart/form-data">
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate/>
+            </p:messages>
+
+            <h:panelGroup id="auditPanel" rendered="#{auditBean.showAudit}">
+                <ui:include src="audits.xhtml"/>
+            </h:panelGroup>
+
+            <h:panelGroup id="auditResultPanel" rendered="#{auditBean.showMembers}">
+                <ui:include src="auditResults.xhtml"/>
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>
