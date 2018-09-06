@@ -17,16 +17,8 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class AuditService extends BaseService<Audit> {
 
-    public enum STATUS {
-        REQUEST(1),
-        DEFINE_PARTICIPANTS(2),
-        RELEASE(3);
-
-        int id;
-
-        STATUS(int id) {
-            this.id = id;
-        }
+    public void saveAuditMember(AuditMember member) {
+        mergeOther(member);
     }
 
     private Map<Integer, AuditStatus> statusMap;
@@ -90,5 +82,18 @@ public class AuditService extends BaseService<Audit> {
 
     public void persistAuditMember(AuditMember member) {
         persistOther(member);
+    }
+
+    public enum STATUS {
+        REQUEST(1),
+        DEFINE_PARTICIPANTS(2),
+        RELEASE(3),
+        FINISH(4);
+
+        int id;
+
+        STATUS(int id) {
+            this.id = id;
+        }
     }
 }

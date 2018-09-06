@@ -19,6 +19,8 @@ public class AuditMember implements BaseEntity {
     @OneToOne
     private Grading grading;
 
+    private Boolean passed;
+
     @Override
     public Integer getId() {
         return id;
@@ -50,5 +52,13 @@ public class AuditMember implements BaseEntity {
 
     public void setGrading(Grading grading) {
         this.grading = grading;
+    }
+
+    public Boolean getPassed() {
+        return passed;
+    }
+
+    public void setPassed(Boolean passed) {
+        this.passed = passed;
     }
 }

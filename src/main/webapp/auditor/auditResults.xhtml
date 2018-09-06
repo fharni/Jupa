@@ -20,12 +20,22 @@
                  paginated="false" searching="false" info="false">
         <b:dataTableColumn label="Name" value="#{member.user}"/>
         <b:dataTableColumn label="Angestrebte Graduierung" value="#{member.grading.name}"/>
+        <b:dataTableColumn label="Ergebnis">
+            <h:outputLabel value="Bestanden" rendered="#{member.passed}"/>
+            <h:outputLabel value="Durchgefallen" rendered="#{not empty member.passed and not member.passed}"/>
+            <h:outputLabel value="Kein Ergebnis" rendered="#{empty member.passed}"/>
+        </b:dataTableColumn>
         <b:dataTableColumn label="Aktion">
-
+            <b:commandButton value="Bestanden" ajax="true" update="contentForm" look="success"
+                             onclick="ajax:auditBean.memberPassAudit(member)"/>
+            <b:commandButton value="Durchgefallen" ajax="true" update="contentForm" look="danger"
+                             onclick="ajax:auditBean.memberFailAudit(member)"/>
         </b:dataTableColumn>
     </b:dataTable>
 
     <b:commandButton value="Zurück" action="#{auditBean.back}"
+                     update="contentForm" immediate="true"/>
+    <b:commandButton value="Abschließen" action="#{auditBean.finishAudit}" look="primary"
                      update="contentForm" immediate="true"/>
 </ui:composition>
 </html>

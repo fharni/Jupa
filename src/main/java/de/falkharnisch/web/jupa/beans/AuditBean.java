@@ -164,4 +164,30 @@ public class AuditBean {
     public List<Grading> getGradings(){
         return gradingService.getGradingsByDiscipline(selectedAudit.getDiscipline());
     }
+
+    @SuppressWarnings("unused")
+    public void memberPassAudit(AuditMember member) {
+        member.setPassed(true);
+        auditService.saveAuditMember(member);
+    }
+
+    @SuppressWarnings("unused")
+    public void memberFailAudit(AuditMember member) {
+        member.setPassed(false);
+        auditService.saveAuditMember(member);
+    }
+
+    public void finishAudit() {
+        AuditStatus auditStatus = auditService.getStatus(AuditService.STATUS.FINISH);
+        selectedAudit.setStatus(auditStatus);
+        auditService.merge(selectedAudit);
+        for (AuditMember member : members) {
+            if (member.getPassed()) {
+                User user = member.getUser();
+                Grading grading = member.getGrading();
+                gradingService.addGradingForUser(user, grading, selectedAudit.getStartDate().toLocalDate());
+            }
+        }
+        back();
+    }
 }
