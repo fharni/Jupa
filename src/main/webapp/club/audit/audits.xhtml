@@ -15,6 +15,7 @@
         <b:dataTableColumn label="Datum" order="desc">
             <h:outputText value="#{audit.startDate}"/>
         </b:dataTableColumn>
+        <b:dataTableColumn label="ID" value="#{audit.fullDisplayId}"/>
         <b:dataTableColumn label="Prüfer" value="#{audit.auditor}"/>
         <b:dataTableColumn label="Disziplin" value="#{audit.discipline}"/>
         <b:dataTableColumn label="Status" value="#{audit.status}"/>
