@@ -44,6 +44,17 @@ public class AuditService extends BaseService<Audit> {
         return em.createQuery(query).getResultList();
     }
 
+    public Integer getLastAuditId(Club club) {
+    	CriteriaBuilder builder = em.getCriteriaBuilder();
+    	CriteriaQuery<Integer> query = builder.createQuery(Integer.class);
+    	Root<Audit> root = query.from(Audit.class);
+    	query.select(builder.max(root.get(Audit_.displayId)));
+    	query.where(
+    			builder.equal(root.get(Audit_.club), club)
+    			);
+    	return em.createQuery(query).getSingleResult();
+    }
+
     public List<Audit> getAuditsForFederation(Federation federation) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Audit> query = builder.createQuery(Audit.class);

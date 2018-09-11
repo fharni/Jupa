@@ -63,7 +63,9 @@ public class AuditBean {
         selectedAudit.setClub(user.getClub());
         AuditStatus auditStatus = auditService.getStatus(AuditService.STATUS.REQUEST);
         selectedAudit.setStatus(auditStatus);
+        selectedAudit.setDisplayId(auditService.getLastAuditId(user.getClub()) + 1);
         auditService.persist(selectedAudit);
+
         this.selectedAudit = null;
     }
 

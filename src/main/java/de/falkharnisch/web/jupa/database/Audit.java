@@ -28,6 +28,9 @@ public class Audit implements BaseEntity {
     @NotNull
     private Discipline discipline;
 
+    @Column(nullable=false)
+    private Integer displayId;
+
     @Override
     public Integer getId() {
         return id;
@@ -76,4 +79,17 @@ public class Audit implements BaseEntity {
     public void setDiscipline(Discipline discipline) {
         this.discipline = discipline;
     }
+
+	public Integer getDisplayId() {
+		return displayId;
+	}
+
+	public void setDisplayId(Integer displayId) {
+		this.displayId = displayId;
+	}
+
+	public String getFullDisplayId() {
+		return String.format("%s-P-%04d", getClub().getDisplayId(), getDisplayId());
+	}
+
 }
