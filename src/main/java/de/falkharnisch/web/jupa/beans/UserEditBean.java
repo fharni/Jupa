@@ -12,12 +12,13 @@ import de.falkharnisch.web.jupa.util.Util;
 import org.mindrot.jbcrypt.BCrypt;
 import org.primefaces.model.UploadedFile;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -27,6 +28,7 @@ import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -36,19 +38,19 @@ import java.util.Set;
 /**
  * Managed bean for manipulating other user data.
  */
-@ManagedBean
+@Named
 @SessionScoped
-public class UserEditBean {
+public class UserEditBean implements Serializable {
 
     private static final int CLUB_PREFIX_END_INDEX = 7;
     private static final int USERID_WITHOUT_CHECKSUM_LENGTH = 12;
+
+    private static final Logger logger = LoggerFactory.getLogger(UserEditBean.class);
+
     private RandomString randomString = new RandomString();
 
-    @Resource(mappedName = "java:comp/env/tomee/mail/MailSession")
+    @Resource(mappedName = "mail/MailSession")
     private Session smtpSession;
-
-    @Inject
-    private Logger logger;
 
     @Inject
     private UserService userService;
@@ -125,7 +127,7 @@ public class UserEditBean {
         this.profilePic = profilePic;
     }
 
-    public boolean isShowCreateMember() {
+    boolean isShowCreateMember() {
         return selectedUser != null;
     }
 

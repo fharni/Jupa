@@ -6,17 +6,17 @@ import de.falkharnisch.web.jupa.database.UserRole;
 import de.falkharnisch.web.jupa.services.LicenseService;
 import de.falkharnisch.web.jupa.services.UserService;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-@ManagedBean(name = "loginBean")
+@Named("loginBean")
 @SessionScoped
 public class LoginBean implements Serializable {
 

@@ -1,0 +1,36 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Arquillian Test" type="ArquillianTestNG" factoryName="">
+    <module name="jupa-web" />
+    <shortenClasspath name="MANIFEST" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="de.falkharnisch.web.jupa.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="arquillianRunConfiguration">
+      <value>
+        <option name="containerStateName" value="TomEE Embedded" />
+      </value>
+    </option>
+    <option name="SUITE_NAME" value="" />
+    <option name="PACKAGE_NAME" value="de.falkharnisch.web.jupa.test" />
+    <option name="MAIN_CLASS_NAME" value="de.falkharnisch.web.jupa.test.LicenseServiceTest" />
+    <option name="GROUP_NAME" value="" />
+    <option name="TEST_OBJECT" value="PATTERN" />
+    <option name="PARAMETERS" value="" />
+    <option name="OUTPUT_DIRECTORY" value="" />
+    <option name="TEST_SEARCH_SCOPE">
+      <value defaultName="moduleWithDependencies" />
+    </option>
+    <option name="PROPERTIES_FILE" value="" />
+    <properties />
+    <listeners />
+    <patterns>
+      <pattern testClass="de.falkharnisch.web.jupa.test.*Test" />
+    </patterns>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

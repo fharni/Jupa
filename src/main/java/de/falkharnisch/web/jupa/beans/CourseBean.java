@@ -8,16 +8,17 @@ import de.falkharnisch.web.jupa.util.Util;
 import org.primefaces.event.SelectEvent;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@ManagedBean
+@Named
 @SessionScoped
-public class CourseBean {
+public class CourseBean implements Serializable {
 
     @Inject
     private ClubService clubService;
@@ -85,6 +86,7 @@ public class CourseBean {
         this.selectedCourse = null;
     }
 
+    @SuppressWarnings("unused")
     public void editCourse(Course course) {
         selectedCourse = course;
     }
@@ -109,6 +111,7 @@ public class CourseBean {
         selectedCourse.setEndDate((LocalDateTime) event.getObject());
     }
 
+    @SuppressWarnings("unused")
     public void loadCourseParticipants(Course course) {
         selectedCourse = course;
         courseParticipants = courseService.getParticipantsForCourse(course);

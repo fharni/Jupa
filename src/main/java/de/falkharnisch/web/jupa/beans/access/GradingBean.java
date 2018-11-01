@@ -6,22 +6,24 @@ import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.database.UserGrading;
 import de.falkharnisch.web.jupa.services.GradingService;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @SessionScoped
-@ManagedBean
-public class GradingBean {
+@Named
+public class GradingBean implements Serializable {
 
     @Inject
     private GradingService gradingService;
 
     private Map<User, Map<Discipline, Grading>> userGradingList = new HashMap<>();
 
+    @SuppressWarnings("unused")
     public int getDisciplineCountForUser(User user) {
         if (!userGradingList.containsKey(user)) {
             getGradingListForUser(user);
@@ -29,6 +31,7 @@ public class GradingBean {
         return userGradingList.get(user).size();
     }
 
+    @SuppressWarnings("unused")
     public Grading getGradingForUserAndDiscipline(User user, Discipline discipline) {
         if (user != null && discipline != null) {
             return userGradingList.get(user).get(discipline);

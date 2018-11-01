@@ -1,10 +1,10 @@
 package de.falkharnisch.web.jupa.beans.access;
 
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Serializable;
@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * Managed Bean for handling with the user service.
  */
-@ManagedBean
+@Named
 @RequestScoped
 public class AccessBean implements Serializable {
 

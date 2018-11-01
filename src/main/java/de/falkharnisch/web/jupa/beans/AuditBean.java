@@ -7,15 +7,16 @@ import de.falkharnisch.web.jupa.services.UserService;
 import de.falkharnisch.web.jupa.util.Util;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
-@ManagedBean
+@Named
 @SessionScoped
-public class AuditBean {
+public class AuditBean implements Serializable {
 
     @Inject
     private UserService userService;
@@ -83,7 +84,7 @@ public class AuditBean {
         return auditService.getAuditsForFederation(user.getClub().getDistrict().getFederation());
     }
 
-    public List<Audit> getAuditsForAuditor(){
+    public List<Audit> getAuditsForAuditor() {
         return auditService.getAuditsForAuditor(user);
     }
 
@@ -99,7 +100,7 @@ public class AuditBean {
     }
 
     @SuppressWarnings("unused")
-    public void releaseAudit(Audit audit){
+    public void releaseAudit(Audit audit) {
         AuditStatus auditStatus = auditService.getStatus(AuditService.STATUS.RELEASE);
         audit.setStatus(auditStatus);
         auditService.merge(audit);
@@ -126,7 +127,7 @@ public class AuditBean {
 
     public List<User> getRemainingClubMembers() {
         List<User> users = userService.getUsersForClub(selectedAudit.getClub());
-        for(AuditMember am : members) {
+        for (AuditMember am : members) {
             users.remove(am.getUser());
         }
         return users;
@@ -140,7 +141,7 @@ public class AuditBean {
         this.selectedUser = selectedUser;
     }
 
-    public void addUserToAudit(){
+    public void addUserToAudit() {
         AuditMember member = new AuditMember();
         member.setAudit(selectedAudit);
         member.setUser(selectedUser);
@@ -161,7 +162,7 @@ public class AuditBean {
         this.selectedGrading = selectedGrading;
     }
 
-    public List<Grading> getGradings(){
+    public List<Grading> getGradings() {
         return gradingService.getGradingsByDiscipline(selectedAudit.getDiscipline());
     }
 

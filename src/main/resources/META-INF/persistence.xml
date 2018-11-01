@@ -3,6 +3,7 @@
 
     <persistence-unit name="JuPaPU">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>jdbc/Jupa</jta-data-source>
 
         <properties>
             <property name="tomee.jpa.factory.lazy" value="true"/>

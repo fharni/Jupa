@@ -10,4 +10,10 @@
     <extension qualifier="graphene">
         <property name="waitGuardInterval">5</property>
     </extension>
+
+    <container qualifier="chameleon" default="true">
+        <configuration>
+            <property name="chameleonTarget">glassfish:5.0:remote</property>
+        </configuration>
+    </container>
 </arquillian>

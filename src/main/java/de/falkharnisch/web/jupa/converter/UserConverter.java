@@ -4,6 +4,7 @@ import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.services.UserService;
 import org.slf4j.Logger;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -24,8 +25,15 @@ public class UserConverter implements Converter {
         if (value != null && value.trim().length() > 0) {
             try {
                 String[] left = value.split("\\(");
-                String[] right = left[1].split("\\)");
-                return userService.getUserByUsername(right[0]);
+                if (left.length == 2) {
+                    String[] right = left[1].split("\\)");
+                    return userService.getUserByUsername(right[0]);
+                } else {
+                    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Der Benutzer ist nicht gültig.",
+                            "Bitte benutzen Sie die Autovervollständigung des Nachnamens ab 3 Buchstaben.");
+                    fc.addMessage(this.getClass().getName(), message);
+                }
             } catch (NoResultException e) {
                 logger.info("Benutzer %s nicht gefunden", value, e);
             }
