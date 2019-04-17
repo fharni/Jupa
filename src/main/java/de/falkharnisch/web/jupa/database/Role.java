@@ -6,7 +6,9 @@ import java.util.Set;
 @Entity
 public class Role implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = -1705709153484254142L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 

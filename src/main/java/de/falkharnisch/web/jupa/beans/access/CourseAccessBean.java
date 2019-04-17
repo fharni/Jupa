@@ -8,7 +8,9 @@ import java.io.Serializable;
 @RequestScoped
 public class CourseAccessBean extends AccessBean implements Serializable {
 
-    public boolean isShowCourseListForDistrict() {
+	private static final long serialVersionUID = 3161945165302916315L;
+
+	public boolean isShowCourseListForDistrict() {
         return isUserInRole("course.list.district");
     }
 

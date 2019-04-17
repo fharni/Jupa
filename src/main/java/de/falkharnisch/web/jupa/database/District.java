@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Entity
 public class District implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = 9215522517610722937L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

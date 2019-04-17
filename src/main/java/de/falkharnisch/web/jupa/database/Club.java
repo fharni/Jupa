@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Entity
 public class Club implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = 4876252593317682847L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

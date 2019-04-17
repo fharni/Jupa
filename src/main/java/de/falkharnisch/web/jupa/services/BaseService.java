@@ -9,7 +9,9 @@ import java.io.Serializable;
 
 abstract class BaseService<T extends BaseEntity> implements Serializable {
 
-    @Inject
+	private static final long serialVersionUID = -2661053363747703552L;
+
+	@Inject
     @ContainerManaged
     protected EntityManager em;
 

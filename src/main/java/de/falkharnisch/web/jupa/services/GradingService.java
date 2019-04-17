@@ -18,7 +18,9 @@ import java.util.Set;
 @ApplicationScoped
 public class GradingService extends BaseService<UserGrading> {
 
-    private Map<Discipline, List<Grading>> disciplineGradingMap;
+	private static final long serialVersionUID = -2110915354769890333L;
+
+	private Map<Discipline, List<Grading>> disciplineGradingMap;
 
     @PostConstruct
     private void init() {

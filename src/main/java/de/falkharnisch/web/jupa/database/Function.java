@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Entity
 public class Function implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = -1036396229659957847L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 

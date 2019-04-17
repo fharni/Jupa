@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Entity
 public class Configuration implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = -97983691286135822L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

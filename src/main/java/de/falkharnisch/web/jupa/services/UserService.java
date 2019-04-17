@@ -21,7 +21,9 @@ import java.util.List;
 @ApplicationScoped
 public class UserService extends BaseService<User> {
 
-    public User getUserById(@NotNull Integer id) {
+	private static final long serialVersionUID = -5119071064216567097L;
+
+	public User getUserById(@NotNull Integer id) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);

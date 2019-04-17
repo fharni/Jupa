@@ -17,7 +17,9 @@ import java.util.List;
 @ApplicationScoped
 public class MembershipService extends BaseService<Membership> {
 
-    public void beginMembership(User user, Club club, LocalDate startDate) {
+	private static final long serialVersionUID = 933421437468862627L;
+
+	public void beginMembership(User user, Club club, LocalDate startDate) {
         Membership membership = new Membership(user, club, startDate);
         persist(membership);
     }

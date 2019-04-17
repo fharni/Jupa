@@ -18,7 +18,9 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class CourseService extends BaseService<Course> {
 
-    private List<Annotation> annotations;
+	private static final long serialVersionUID = 5306404073404096438L;
+
+	private List<Annotation> annotations;
     private Map<String, Annotation> annotationMap;
 
     @PostConstruct

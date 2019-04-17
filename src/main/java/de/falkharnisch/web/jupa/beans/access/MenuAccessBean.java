@@ -8,7 +8,9 @@ import java.io.Serializable;
 @RequestScoped
 public class MenuAccessBean extends AccessBean implements Serializable {
 
-    public boolean isShowMenuMyClub() {
+	private static final long serialVersionUID = 2399052533926775750L;
+
+	public boolean isShowMenuMyClub() {
         return isUserInRole("menu.my_club");
     }
 

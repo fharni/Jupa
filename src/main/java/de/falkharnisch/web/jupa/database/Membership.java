@@ -6,7 +6,9 @@ import java.time.LocalDate;
 @Entity
 public class Membership implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = 5546632604118688197L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
