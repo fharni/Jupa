@@ -44,7 +44,7 @@ public class UserEditBean {
     private static final int USERID_WITHOUT_CHECKSUM_LENGTH = 12;
     private RandomString randomString = new RandomString();
 
-    @Resource(mappedName = "java:comp/env/tomee/mail/MailSession")
+    @Resource(mappedName = "java:jboss/mail/Default")
     private Session smtpSession;
 
     @Inject

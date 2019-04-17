@@ -1,4 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+    http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.falkharnisch.web.jupa</groupId>
@@ -7,12 +10,12 @@
     <packaging>war</packaging>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>9</maven.compiler.source>
+        <maven.compiler.target>9</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <hibernate.version>5.3.6.Final</hibernate.version>
+        <hibernate.version>5.4.2.Final</hibernate.version>
         <primefaces.version>6.2</primefaces.version>
 
         <version.org.jboss.arquillian>1.4.0.Final</version.org.jboss.arquillian>
@@ -60,7 +63,7 @@
             <artifactId>hibernate-c3p0</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
-
+        <!-- 
         <dependency>
             <groupId>org.apache.tomee</groupId>
             <artifactId>arquillian-tomee-embedded</artifactId>
@@ -73,6 +76,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        -->
 
         <!-- primefaces -->
         <dependency>
@@ -103,16 +107,17 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
+            <version>8.0.1</version>
             <scope>provided</scope>
         </dependency>
+        <!-- 
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jasper</artifactId>
             <version>8.5.32</version>
             <scope>provided</scope>
         </dependency>
-
+        -->
         <!-- Test -->
         <dependency>
             <groupId>org.testng</groupId>
@@ -139,6 +144,13 @@
             <artifactId>graphene-webdriver</artifactId>
             <version>${version.org.jboss.arquillian.graphene}</version>
             <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+            <version>3.2.10</version>
             <scope>test</scope>
         </dependency>
 
@@ -193,12 +205,25 @@
     <build>
         <plugins>
             <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.7</version>
                 <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <release>11</release>
                     <compilerArgument>-proc:none</compilerArgument>
                     <encoding>UTF-8</encoding>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.2</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -229,16 +254,18 @@
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.21.0</version>
+                <version>3.0.0-M3</version>
                 <configuration>
-                    <argLine>-Dfile.encoding=UTF8</argLine>
+                    <argLine>-Dfile.encoding=UTF8
+                        --illegal-access=permit</argLine>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.21.0</version>
+                <version>3.0.0-M3</version>
                 <configuration>
-                    <argLine>-Dfile.encoding=UTF8</argLine>
+                    <argLine>-Dfile.encoding=UTF8
+                        --illegal-access=permit</argLine>
                 </configuration>
                 <executions>
                     <execution>
@@ -252,7 +279,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.1</version>
+                <version>0.8.3</version>
                 <executions>
                     <execution>
                         <goals>
