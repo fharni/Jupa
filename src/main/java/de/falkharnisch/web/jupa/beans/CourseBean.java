@@ -5,19 +5,24 @@ import de.falkharnisch.web.jupa.services.ClubService;
 import de.falkharnisch.web.jupa.services.CourseService;
 import de.falkharnisch.web.jupa.services.UserService;
 import de.falkharnisch.web.jupa.util.Util;
+
 import org.primefaces.event.SelectEvent;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.transaction.Transactional;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@ManagedBean
+@Named
 @SessionScoped
-public class CourseBean {
+public class CourseBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Inject
     private ClubService clubService;

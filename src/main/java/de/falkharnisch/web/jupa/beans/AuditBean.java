@@ -7,15 +7,19 @@ import de.falkharnisch.web.jupa.services.UserService;
 import de.falkharnisch.web.jupa.util.Util;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
-@ManagedBean
+@Named
 @SessionScoped
-public class AuditBean {
+public class AuditBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Inject
     private UserService userService;

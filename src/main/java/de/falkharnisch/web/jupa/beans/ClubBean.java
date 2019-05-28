@@ -7,15 +7,19 @@ import de.falkharnisch.web.jupa.services.UserService;
 import de.falkharnisch.web.jupa.util.Util;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.annotation.ManagedProperty;
 import javax.inject.Inject;
+import javax.inject.Named;
+
+import java.io.Serializable;
 import java.util.List;
 
-@ManagedBean
+@Named
 @SessionScoped
-public class ClubBean {
+public class ClubBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Inject
     private ClubService clubService;

@@ -9,24 +9,27 @@ import de.falkharnisch.web.jupa.services.MembershipService;
 import de.falkharnisch.web.jupa.services.UserService;
 import de.falkharnisch.web.jupa.util.RandomString;
 import de.falkharnisch.web.jupa.util.Util;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.primefaces.model.UploadedFile;
 import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -36,9 +39,11 @@ import java.util.Set;
 /**
  * Managed bean for manipulating other user data.
  */
-@ManagedBean
+@Named
 @SessionScoped
-public class UserEditBean {
+public class UserEditBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private static final int CLUB_PREFIX_END_INDEX = 7;
     private static final int USERID_WITHOUT_CHECKSUM_LENGTH = 12;
