@@ -8,7 +8,6 @@ import de.falkharnisch.web.jupa.util.Util;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.annotation.ManagedProperty;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -27,31 +26,11 @@ public class ClubBean implements Serializable {
     @Inject
     private UserService userService;
 
-    @ManagedProperty(value = "#{userEditBean}")
+    @Inject
     private UserEditBean userEditBean;
 
-    @ManagedProperty(value = "#{auditBean}")
+    @Inject
     private AuditBean auditBean;
-
-    @SuppressWarnings("unused")
-    public UserEditBean getUserEditBean() {
-        return userEditBean;
-    }
-
-    @SuppressWarnings("unused")
-    public void setUserEditBean(UserEditBean userEditBean) {
-        this.userEditBean = userEditBean;
-    }
-
-    @SuppressWarnings("unused")
-    public AuditBean getAuditBean() {
-        return auditBean;
-    }
-
-    @SuppressWarnings("unused")
-    public void setAuditBean(AuditBean auditBean) {
-        this.auditBean = auditBean;
-    }
 
     private Club club;
 

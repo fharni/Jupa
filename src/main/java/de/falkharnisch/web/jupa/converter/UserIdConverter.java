@@ -2,6 +2,7 @@ package de.falkharnisch.web.jupa.converter;
 
 import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.services.UserService;
+
 import org.slf4j.Logger;
 
 import javax.faces.component.UIComponent;
@@ -12,7 +13,7 @@ import javax.inject.Named;
 import javax.persistence.NoResultException;
 
 @Named
-public class UserIdConverter implements Converter {
+public class UserIdConverter implements Converter<User> {
 
     @Inject
     private Logger logger;
@@ -20,7 +21,7 @@ public class UserIdConverter implements Converter {
     @Inject
     private UserService userService;
 
-    public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
+    public User getAsObject(FacesContext fc, UIComponent uic, String value) {
         if (value != null && value.trim().length() > 0) {
             try {
                 return userService.getUserById(Integer.parseInt(value));
@@ -31,7 +32,7 @@ public class UserIdConverter implements Converter {
         return null;
     }
 
-    public String getAsString(FacesContext fc, UIComponent uic, Object object) {
+    public String getAsString(FacesContext fc, UIComponent uic, User object) {
         if (object instanceof User) {
             User user = ((User) object);
             if (user.getId() != null) {

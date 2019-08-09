@@ -6,16 +6,20 @@ import de.falkharnisch.web.jupa.database.User;
 import de.falkharnisch.web.jupa.database.UserGrading;
 import de.falkharnisch.web.jupa.services.GradingService;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
+
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Named
 @SessionScoped
-@ManagedBean
-public class GradingBean {
+public class GradingBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Inject
     private GradingService gradingService;
