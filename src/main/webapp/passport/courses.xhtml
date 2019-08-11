@@ -10,7 +10,7 @@
     <b:dataTable searching="false" paginated="false" info="false"
                  value="#{userBean.courses}" var="course">
         <b:dataTableColumn label="Datum" order="desc">
-            <h:outputText value="#{course.startDate}" converter="localDateTimeFacesConverter"/>
+            <h:outputText value="#{course.startDate}"/>
         </b:dataTableColumn>
         <b:dataTableColumn label="Name" value="#{course.topic}"/>
         <b:dataTableColumn label="Referent" value="#{course.instructor.fullname}"/>

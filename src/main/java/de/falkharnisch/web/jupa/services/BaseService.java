@@ -5,13 +5,14 @@ import de.falkharnisch.web.jupa.producer.qualifier.ContainerManaged;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+
 import java.io.Serializable;
 
 abstract class BaseService<T extends BaseEntity> implements Serializable {
 
-	private static final long serialVersionUID = -2661053363747703552L;
+    private static final long serialVersionUID = -2661053363747703552L;
 
-	@Inject
+    @Inject
     @ContainerManaged
     protected EntityManager em;
 
