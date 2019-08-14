@@ -1,6 +1,12 @@
 version: '3.1'
 
 services:
+  builder:
+    build: ./builder
+    container_name: jupa-builder
+    volumes:
+      - ./builder/.m2:/root/.m2
+      - ./builder/target:/target
   web:
     build: ./wildfly
     container_name: jupa-app
@@ -11,7 +17,7 @@ services:
       - 8088:8080
       - 9990:9990
     volumes:
-      - ./wildfly/deployments:/opt/jboss/wildlfy/standalone/deployments
+      - ./builder/target:/opt/jboss/wildlfy/standalone/deployments
   db:
     image: mariadb:10.4
     container_name: jupa-db
