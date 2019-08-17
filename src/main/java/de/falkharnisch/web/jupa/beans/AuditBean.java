@@ -93,18 +93,15 @@ public class AuditBean implements Serializable {
         return auditService.getAuditsForAuditor(user);
     }
 
-    @SuppressWarnings("unused")
     public void approveAudit(Audit audit) {
         auditService.approveAudit(audit);
     }
 
-    @SuppressWarnings("unused")
     public void showMembers(Audit audit) {
         this.selectedAudit = audit;
         this.members = auditService.getMembersForAudit(audit);
     }
 
-    @SuppressWarnings("unused")
     public void releaseAudit(Audit audit){
         AuditStatus auditStatus = auditService.getStatus(AuditService.STATUS.RELEASE);
         audit.setStatus(auditStatus);
@@ -124,7 +121,6 @@ public class AuditBean implements Serializable {
         this.members = null;
     }
 
-    @SuppressWarnings("unused")
     public void removeMember(AuditMember member) {
         this.members.remove(member);
         auditService.removeAuditMember(member);
@@ -171,13 +167,11 @@ public class AuditBean implements Serializable {
         return gradingService.getGradingsByDiscipline(selectedAudit.getDiscipline());
     }
 
-    @SuppressWarnings("unused")
     public void memberPassAudit(AuditMember member) {
         member.setPassed(true);
         auditService.saveAuditMember(member);
     }
 
-    @SuppressWarnings("unused")
     public void memberFailAudit(AuditMember member) {
         member.setPassed(false);
         auditService.saveAuditMember(member);

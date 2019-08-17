@@ -1,6 +1,7 @@
 package de.falkharnisch.web.jupa.database;
 
 import javax.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -49,7 +50,6 @@ public class Membership implements BaseEntity {
         this.club = club;
     }
 
-    @SuppressWarnings("unused")
     public LocalDate getBeginDate() {
         return beginDate;
     }
@@ -58,7 +58,6 @@ public class Membership implements BaseEntity {
         this.beginDate = beginDate;
     }
 
-    @SuppressWarnings("unused")
     public LocalDate getEndDate() {
         return endDate;
     }
