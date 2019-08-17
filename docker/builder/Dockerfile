@@ -1,4 +1,4 @@
-from openjdk:11-jdk
+FROM openjdk:12-jdk
 
 MAINTAINER Falk Harnisch <docker@falkharnisch.de>
 
