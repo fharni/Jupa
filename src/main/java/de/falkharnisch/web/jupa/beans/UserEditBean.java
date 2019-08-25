@@ -25,6 +25,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.transaction.Transactional;
 
 import java.io.File;
 import java.io.IOException;
@@ -142,6 +143,7 @@ public class UserEditBean implements Serializable {
         selectedUser = null;
     }
 
+    @Transactional
     public void saveMember() {
         if (selectedUser.getId() == null) {
             String userId = getNextUserId();
@@ -195,7 +197,6 @@ public class UserEditBean implements Serializable {
     private void mailPasswordToUser(String password) {
         if (configurationService.getConfigurationBooleanValue("sendmail.enabled")) {
             try {
-
                 String recipient = selectedUser.getEmail();
                 String subject = configurationService.getConfigurationValue("sendmail.newuser.subject");
                 String body = String.format(configurationService.getConfigurationValue("sendmail.newuser.body"),

@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
@@ -177,6 +178,7 @@ public class AuditBean implements Serializable {
         auditService.saveAuditMember(member);
     }
 
+    @Transactional
     public void finishAudit() {
         AuditStatus auditStatus = auditService.getStatus(AuditService.STATUS.FINISH);
         selectedAudit.setStatus(auditStatus);
