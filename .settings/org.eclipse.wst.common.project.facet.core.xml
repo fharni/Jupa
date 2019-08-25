@@ -8,5 +8,5 @@
   <installed facet="jst.web" version="4.0"/>
   <installed facet="jboss.m2" version="1.0"/>
   <installed facet="jst.cdi" version="2.0"/>
-  <installed facet="java" version="12"/>
+  <installed facet="java" version="11"/>
 </faceted-project>
