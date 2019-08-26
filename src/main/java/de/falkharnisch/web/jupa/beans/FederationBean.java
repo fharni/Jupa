@@ -5,13 +5,17 @@ import de.falkharnisch.web.jupa.services.ClubService;
 import de.falkharnisch.web.jupa.util.Util;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
-@ManagedBean
+import java.io.Serializable;
+
+@Named
 @SessionScoped
-public class FederationBean {
+public class FederationBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Inject
     private ClubService clubService;

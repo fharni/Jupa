@@ -7,7 +7,9 @@ import java.time.LocalDate;
 @Table(name = "user_grading")
 public class UserGrading implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = 854947619463539075L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

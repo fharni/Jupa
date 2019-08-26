@@ -7,7 +7,9 @@ import java.time.LocalDate;
 @Table(name = "user_license")
 public class UserLicense implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = 3386695308893400031L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

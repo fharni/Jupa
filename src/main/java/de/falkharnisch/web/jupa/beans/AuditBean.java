@@ -7,15 +7,20 @@ import de.falkharnisch.web.jupa.services.UserService;
 import de.falkharnisch.web.jupa.util.Util;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
+import javax.transaction.Transactional;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
-@ManagedBean
+@Named
 @SessionScoped
-public class AuditBean {
+public class AuditBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Inject
     private UserService userService;
@@ -89,18 +94,15 @@ public class AuditBean {
         return auditService.getAuditsForAuditor(user);
     }
 
-    @SuppressWarnings("unused")
     public void approveAudit(Audit audit) {
         auditService.approveAudit(audit);
     }
 
-    @SuppressWarnings("unused")
     public void showMembers(Audit audit) {
         this.selectedAudit = audit;
         this.members = auditService.getMembersForAudit(audit);
     }
 
-    @SuppressWarnings("unused")
     public void releaseAudit(Audit audit){
         AuditStatus auditStatus = auditService.getStatus(AuditService.STATUS.RELEASE);
         audit.setStatus(auditStatus);
@@ -120,7 +122,6 @@ public class AuditBean {
         this.members = null;
     }
 
-    @SuppressWarnings("unused")
     public void removeMember(AuditMember member) {
         this.members.remove(member);
         auditService.removeAuditMember(member);
@@ -167,18 +168,17 @@ public class AuditBean {
         return gradingService.getGradingsByDiscipline(selectedAudit.getDiscipline());
     }
 
-    @SuppressWarnings("unused")
     public void memberPassAudit(AuditMember member) {
         member.setPassed(true);
         auditService.saveAuditMember(member);
     }
 
-    @SuppressWarnings("unused")
     public void memberFailAudit(AuditMember member) {
         member.setPassed(false);
         auditService.saveAuditMember(member);
     }
 
+    @Transactional
     public void finishAudit() {
         AuditStatus auditStatus = auditService.getStatus(AuditService.STATUS.FINISH);
         selectedAudit.setStatus(auditStatus);

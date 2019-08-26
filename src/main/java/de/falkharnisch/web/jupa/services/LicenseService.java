@@ -15,7 +15,9 @@ import java.util.List;
 @ApplicationScoped
 public class LicenseService extends BaseService<UserLicense> {
 
-    public List<UserLicense> getLicensesForUser(User user) {
+	private static final long serialVersionUID = 2418124648257832350L;
+
+	public List<UserLicense> getLicensesForUser(User user) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<UserLicense> query = builder.createQuery(UserLicense.class);
         Root<UserLicense> root = query.from(UserLicense.class);

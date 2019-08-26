@@ -2,6 +2,7 @@ package de.falkharnisch.web.jupa.converter;
 
 import de.falkharnisch.web.jupa.database.Club;
 import de.falkharnisch.web.jupa.services.ClubService;
+
 import org.slf4j.Logger;
 
 import javax.faces.component.UIComponent;
@@ -12,7 +13,7 @@ import javax.inject.Named;
 import javax.persistence.NoResultException;
 
 @Named
-public class ClubConverter implements Converter {
+public class ClubConverter implements Converter<Club> {
 
     @Inject
     private Logger logger;
@@ -20,7 +21,7 @@ public class ClubConverter implements Converter {
     @Inject
     private ClubService clubService;
 
-    public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
+    public Club getAsObject(FacesContext fc, UIComponent uic, String value) {
         if (value != null && value.trim().length() > 0) {
             try {
                 return clubService.getClubByName(value);
@@ -31,7 +32,7 @@ public class ClubConverter implements Converter {
         return null;
     }
 
-    public String getAsString(FacesContext fc, UIComponent uic, Object object) {
+    public String getAsString(FacesContext fc, UIComponent uic, Club object) {
         if (object instanceof Club) {
             return ((Club) object).getName();
         } else {

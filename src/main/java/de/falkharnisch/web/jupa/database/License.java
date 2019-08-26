@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Entity
 public class License implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = -8012360547399239068L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

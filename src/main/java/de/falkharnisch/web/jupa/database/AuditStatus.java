@@ -6,7 +6,9 @@ import javax.persistence.*;
 @Table(name = "AUDIT_STATUS")
 public class AuditStatus implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = 5623409645697138411L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

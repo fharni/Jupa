@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Entity
 public class Discipline implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = 127099124261986914L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 

@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Entity
 public class Grading implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = -3995146409552325566L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 

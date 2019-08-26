@@ -6,7 +6,9 @@ import javax.persistence.*;
 @Table(name = "COURSE_USER")
 public class CourseParticipant implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = 8774095204908912765L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

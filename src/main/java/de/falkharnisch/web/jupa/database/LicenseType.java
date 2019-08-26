@@ -6,7 +6,9 @@ import javax.persistence.*;
 @Table(name = "license_type")
 public class LicenseType implements BaseEntity {
 
-    public static int AUDITOR = 3;
+	private static final long serialVersionUID = -7003254541567447615L;
+
+	public static int AUDITOR = 3;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

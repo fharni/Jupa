@@ -7,7 +7,9 @@ import java.time.LocalDateTime;
 @Entity
 public class Audit implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = 6394942778779885091L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

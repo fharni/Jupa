@@ -12,6 +12,7 @@ CREATE TABLE audit
   startdate     datetime            NOT NULL,
   status_id     INTEGER DEFAULT 1   NOT NULL,
   discipline_id INTEGER             NOT NULL,
+  displayid     INTEGER             NOT NULL,
   CONSTRAINT audit_club_ID_fk FOREIGN KEY (club_id) REFERENCES club (ID),
   CONSTRAINT audit_user_ID_fk FOREIGN KEY (auditor_id) REFERENCES user (ID),
   CONSTRAINT audit_status_id_fk FOREIGN KEY (status_id) REFERENCES audit_status (id),

@@ -1,5 +1,10 @@
 package de.falkharnisch.web.jupa.converter;
 
+import de.falkharnisch.web.jupa.database.Grading;
+import de.falkharnisch.web.jupa.services.GradingService;
+
+import org.slf4j.Logger;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -7,13 +12,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.NoResultException;
 
-import org.slf4j.Logger;
-
-import de.falkharnisch.web.jupa.database.Grading;
-import de.falkharnisch.web.jupa.services.GradingService;
-
 @Named
-public class GradingConverter implements Converter {
+public class GradingConverter implements Converter<Grading> {
 
     @Inject
     private Logger logger;
@@ -22,7 +22,7 @@ public class GradingConverter implements Converter {
     private GradingService gradingService;
 
     @Override
-	public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
+    public Grading getAsObject(FacesContext fc, UIComponent uic, String value) {
         if (value != null && value.trim().length() > 0) {
             try {
                 String[] left = value.split(" \\(");
@@ -45,7 +45,7 @@ public class GradingConverter implements Converter {
     }
 
     @Override
-	public String getAsString(FacesContext fc, UIComponent uic, Object object) {
+    public String getAsString(FacesContext fc, UIComponent uic, Grading object) {
         if (object instanceof Grading) {
             Grading grading = ((Grading) object);
             return grading.getName() + " (" + grading.getDiscipline().getName() + ")";

@@ -6,7 +6,9 @@ import java.time.LocalDateTime;
 @Entity
 public class Course implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = -5347986284781892039L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

@@ -1,14 +1,17 @@
 package de.falkharnisch.web.jupa.beans.access;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+
 import java.io.Serializable;
 
-@ManagedBean
+@Named
 @RequestScoped
 public class MenuAccessBean extends AccessBean implements Serializable {
 
-    public boolean isShowMenuMyClub() {
+	private static final long serialVersionUID = 2399052533926775750L;
+
+	public boolean isShowMenuMyClub() {
         return isUserInRole("menu.my_club");
     }
 

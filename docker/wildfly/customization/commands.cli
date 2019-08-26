@@ -1,0 +1,9 @@
+# Add MySQL module
+module add --name=org.mariadb --resources=/opt/jboss/wildfly/customization/mariadb-java-client-2.3.0.jar --dependencies=javax.api,javax.transaction.api
+
+# Add MySQL driver
+/subsystem=datasources/jdbc-driver=mariadb:add(driver-name=mariadb,driver-module-name=org.mariadb,driver-xa-datasource-class-name=org.mariadb.jdbc.MariaDbDataSource)
+
+# Add Datasource
+data-source add --name=JupaDs --jndi-name=java:jboss/datasources/JupaDS --driver-name=mariadb --connection-url=jdbc:mariadb://db:3306/jupa --user-name=jupa --password=jupa
+

@@ -1,19 +1,25 @@
 version: '3.1'
 
 services:
+  builder:
+    build: ./builder
+    container_name: jupa-builder
+    volumes:
+      - ./builder/.m2:/root/.m2
+      - ./builder/target:/target
   web:
-    image: tomee:8-jre-7.0.4-webprofile
+    build: ./wildfly
     container_name: jupa-app
     restart: always
     depends_on:
       - db
     ports:
       - 8088:8080
+      - 9990:9990
     volumes:
-      - ./webapps:/usr/local/tomee/webapps
-      - ./tomee-conf:/ust/local/tomee/conf
+      - ./builder/target:/opt/jboss/wildlfy/standalone/deployments
   db:
-    image: mariadb:10.3
+    image: mariadb:10.4
     container_name: jupa-db
     restart: always
     ports:

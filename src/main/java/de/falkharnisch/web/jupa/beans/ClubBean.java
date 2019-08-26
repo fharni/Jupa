@@ -7,15 +7,18 @@ import de.falkharnisch.web.jupa.services.UserService;
 import de.falkharnisch.web.jupa.util.Util;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
+
+import java.io.Serializable;
 import java.util.List;
 
-@ManagedBean
+@Named
 @SessionScoped
-public class ClubBean {
+public class ClubBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Inject
     private ClubService clubService;
@@ -23,31 +26,11 @@ public class ClubBean {
     @Inject
     private UserService userService;
 
-    @ManagedProperty(value = "#{userEditBean}")
+    @Inject
     private UserEditBean userEditBean;
 
-    @ManagedProperty(value = "#{auditBean}")
+    @Inject
     private AuditBean auditBean;
-
-    @SuppressWarnings("unused")
-    public UserEditBean getUserEditBean() {
-        return userEditBean;
-    }
-
-    @SuppressWarnings("unused")
-    public void setUserEditBean(UserEditBean userEditBean) {
-        this.userEditBean = userEditBean;
-    }
-
-    @SuppressWarnings("unused")
-    public AuditBean getAuditBean() {
-        return auditBean;
-    }
-
-    @SuppressWarnings("unused")
-    public void setAuditBean(AuditBean auditBean) {
-        this.auditBean = auditBean;
-    }
 
     private Club club;
 

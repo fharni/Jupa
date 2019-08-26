@@ -16,7 +16,9 @@ import java.util.List;
 @ApplicationScoped
 public class ClubService extends BaseService<Club> {
 
-    public Club getClubForUsername(String username) {
+	private static final long serialVersionUID = 7429404600517838526L;
+
+	public Club getClubForUsername(String username) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);

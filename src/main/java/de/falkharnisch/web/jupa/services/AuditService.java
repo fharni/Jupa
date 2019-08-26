@@ -17,7 +17,9 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class AuditService extends BaseService<Audit> {
 
-    public void saveAuditMember(AuditMember member) {
+	private static final long serialVersionUID = 4372750765315011927L;
+
+	public void saveAuditMember(AuditMember member) {
         mergeOther(member);
     }
 

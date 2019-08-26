@@ -6,14 +6,19 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("rawtypes")
 @ApplicationScoped
 public class ConfigurationService extends BaseService {
 
+    private static final long serialVersionUID = -2208261515736601456L;
+
     public static final String PROFILE_PIC_PATH = "profile_pic.path";
+
     private Map<String, String> configurationMap;
 
     @PostConstruct

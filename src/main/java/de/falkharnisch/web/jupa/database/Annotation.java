@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Entity
 public class Annotation implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = 4052119490125891886L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

@@ -6,7 +6,9 @@ import javax.persistence.*;
 @Table(name = "user_role")
 public class UserRole implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = -2363810195063435570L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 

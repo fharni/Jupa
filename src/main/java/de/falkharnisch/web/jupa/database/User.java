@@ -11,7 +11,9 @@ import java.util.Set;
 @Entity
 public class User implements BaseEntity {
 
-    @Id
+	private static final long serialVersionUID = -5923454326198644422L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
